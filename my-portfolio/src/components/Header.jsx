@@ -1,3 +1,5 @@
+import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
+
 // src/components/Header.jsx
 import * as React from "react";
 import {
@@ -17,11 +19,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
-const SECTIONS = ["about", "case-studies", "skills", "contact"];
+const SECTIONS = ["about", "portfolio", "skills", "contact"];
 
 export default function Header({ mode, setMode, scrollToId }) {
   const [scrolled, setScrolled] = React.useState(false);
-  const [menuAnchor, setMenuAnchor] = React.useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
@@ -60,8 +63,8 @@ export default function Header({ mode, setMode, scrollToId }) {
               ? "rgba(255, 255, 255, 0.85)"
               : "rgba(255, 255, 255, 0.6)"
             : scrolled
-            ? "rgba(18, 18, 18, 0.85)"
-            : "rgba(18, 18, 18, 0.6)",
+              ? "rgba(18, 18, 18, 0.85)"
+              : "rgba(18, 18, 18, 0.6)",
       }}
     >
       <Toolbar
@@ -74,26 +77,42 @@ export default function Header({ mode, setMode, scrollToId }) {
       >
         {/* LEFT: NAV (desktop) or MENU ICON (mobile) */}
         {isDesktop ? (
-          <Stack
-            direction="row"
-            spacing={2}
-            aria-label="Main navigation"
-            component="nav"
-          >
-            {SECTIONS.map((section) => (
+          <Stack direction="row" spacing={2}>
+            {/* ABOUT / SKILLS / CONTACT scroll on home, go home on other pages */}
+            {["about", "skills", "contact"].map((section) => (
               <Button
                 key={section}
-                onClick={() => handleNavClick(section)}
                 size="small"
                 sx={{
                   fontWeight: 500,
                   letterSpacing: 0.5,
                   "&:hover": { textDecoration: "underline" },
                 }}
+                onClick={() => {
+                  if (location.pathname !== "/") {
+                    navigate(`/#${section}`);
+                  } else {
+                    scrollToId(section);
+                  }
+                }}
               >
-                {section.replace("-", " ").toUpperCase()}
+                {section.toUpperCase()}
               </Button>
             ))}
+
+            {/* Portfolio is its own page */}
+            <Button
+              component={RouterLink}
+              to="/portfolio"
+              size="small"
+              sx={{
+                fontWeight: 500,
+                letterSpacing: 0.5,
+                "&:hover": { textDecoration: "underline" },
+              }}
+            >
+             Portfolio
+            </Button>
           </Stack>
         ) : (
           <IconButton

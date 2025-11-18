@@ -10,6 +10,8 @@ import {
   Link as MuiLink,
 } from "@mui/material";
 
+import { Routes, Route, useLocation } from "react-router-dom";
+
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -17,19 +19,52 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import Header from "./components/Header";
 import Section from "./components/Section";
 import SkillGroup from "./components/SkillGroup";
-import CaseStudyCard from "./components/CaseStudyCard";
+import PortfolioPage from "./pages/Portfolio";
 
 // App receives mode + setMode from main.jsx
 export default function App({ mode, setMode }) {
-  const scrollToId = (id) => {
+  const location = useLocation();
+
+  const scrollToId = React.useCallback((id) => {
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, []);
+
+  // Handle deep link like /#about
+  React.useEffect(() => {
+    if (location.pathname === "/" && location.hash) {
+      const id = location.hash.replace("#", "");
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  }, [location]);
 
   return (
     <>
-      {/* HEADER / NAV */}
       <Header mode={mode} setMode={setMode} scrollToId={scrollToId} />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <HomePage
+              scrollToId={scrollToId}
+            />
+          }
+        />
+        <Route path="/portfolio" element={<PortfolioPage />} />
+      </Routes>
+    </>
+  );
+}
+
+// ---------------- HOME PAGE ----------------
+
+function HomePage({ scrollToId }) {
+  return (
+    <>
       {/* HERO SECTION */}
       <Box id="hero" sx={{ py: { xs: 8, md: 12 } }}>
         <Container maxWidth="md">
@@ -39,7 +74,7 @@ export default function App({ mode, setMode }) {
             </Typography>
 
             <Typography variant="h5" color="text.secondary" align="center">
-             Design Leader | Systems Thinking, Accessibility, and Human-Centered AI
+              Systems Thinker | Accessibility & Design Systems Specialist
             </Typography>
 
             <Typography
@@ -50,15 +85,15 @@ export default function App({ mode, setMode }) {
             >
               I design intuitive, accessible, enterprise-grade products for
               complex, high-stakes environments. This portfolio provides a
-             view of my process, decision-making, and outcomes.
+              clearance-safe view of my process, decision-making, and outcomes.
             </Typography>
 
             <Stack direction={{ xs: "column", sm: "row" }} spacing={2}>
               <Button
                 variant="contained"
-                onClick={() => scrollToId("case-studies")}
+                onClick={() => scrollToId("skills")}
               >
-                View Case Studies
+                View Skills
               </Button>
               <Button variant="outlined" href="/resume.pdf" target="_blank">
                 Download Resume
@@ -111,24 +146,6 @@ export default function App({ mode, setMode }) {
             <li>Cross-functional collaboration in regulated environments</li>
           </ul>
         </Typography>
-      </Section>
-
-      {/* CASE STUDIES SECTION */}
-      <Section id="case-studies" title="Case Studies">
-        <Grid container spacing={3}>
-          <CaseStudyCard
-            title="Modernizing a Mission-Critical Review Workflow"
-            problem="Fragmented tools, manual handoffs, and inconsistent workflows created operational risk and slowed decision-making."
-            role="Lead UX Designer · Systems Thinker · Accessibility Lead"
-            outcomes={[
-              "Reduced workflow steps",
-              "Improved clarity and collaboration",
-              "Reduced errors and redundancy",
-              "Raised accessibility compliance",
-            ]}
-          />
-
-        </Grid>
       </Section>
 
       {/* SKILLS SECTION */}
@@ -186,14 +203,14 @@ export default function App({ mode, setMode }) {
             <Button
               variant="contained"
               size="large"
-              href="mailto:me@SergioAntezana.com"
+              href="mailto:you@example.com"
               startIcon={<MailOutlineIcon />}
             >
-              me@SergioAntezana.com
+              you@example.com
             </Button>
 
             <Typography variant="caption" color="text.secondary">
-              © {new Date().getFullYear()} Powered by OOX
+              © {new Date().getFullYear()} YOUR NAME
             </Typography>
           </Stack>
         </Container>
@@ -202,11 +219,7 @@ export default function App({ mode, setMode }) {
   );
 }
 
-
-// -----------------------------------------------------
-// REUSABLE COMPONENTS
-// -----------------------------------------------------
-
+// REUSABLE
 function IconLink({ href, label, icon }) {
   return (
     <MuiLink

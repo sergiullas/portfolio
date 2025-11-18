@@ -3,6 +3,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { ThemeProvider, CssBaseline } from "@mui/material";
+import { BrowserRouter } from "react-router-dom";
 import { getAppTheme } from "./theme.js";
 // if you already had: import "./index.css"; you can keep it
 
@@ -41,11 +42,13 @@ function Root() {
   }, [mode]);
 
   return (
-    <ThemeProvider theme={appTheme}>
-      <CssBaseline />
-      <App mode={mode} setMode={setMode} />
-      {/* 👆 We pass theme state DOWN to App */}
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={appTheme}>
+        <CssBaseline />
+        <App mode={mode} setMode={setMode} />
+        {/* 👆 We pass theme state DOWN to App */}
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
