@@ -186,14 +186,14 @@ export default function App({ mode, setMode }) {
             <Button
               variant="contained"
               size="large"
-              href="mailto:you@example.com"
+              href="mailto:me@SergioAntezana.com"
               startIcon={<MailOutlineIcon />}
             >
-              you@example.com
+              me@SergioAntezana.com
             </Button>
 
             <Typography variant="caption" color="text.secondary">
-              © {new Date().getFullYear()} YOUR NAME
+              © {new Date().getFullYear()} Powered by OOX
             </Typography>
           </Stack>
         </Container>
