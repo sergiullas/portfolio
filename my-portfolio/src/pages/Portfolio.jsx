@@ -89,12 +89,12 @@ export default function PortfolioPage() {
 
   // 🔓 Unlocked view – reuse your CaseStudy cards
   return (
-    <Section variant="white">
+    <Section
+      variant="white"
+      title="Case studies (clearance-safe)"
+      titleComponent="h1"
+    >
       <Box sx={{ width: "100%", maxWidth: 900, mx: "auto" }}>
-        <Typography variant="h2" component="h1" sx={{ mb: 3 }}>
-          Case studies (clearance-safe)
-        </Typography>
-
         <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
           These examples describe my work at a process and outcomes level, with
           all sensitive details removed or generalized. They illustrate how I

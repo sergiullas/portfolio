@@ -1,4 +1,6 @@
 // src/components/Section.jsx
+// Layout primitive for page sections with optional title, variants, and layouts.
+
 import * as React from "react";
 import { Box, Container, Typography } from "@mui/material";
 
@@ -6,6 +8,10 @@ import { Box, Container, Typography } from "@mui/material";
  * Section
  *
  * Props:
+ * - id: string → used for anchors (/#about) and aria-labelledby
+ * - title: string (optional)
+ * - titleComponent: string → heading element ("h2" by default)
+ * - showTitle: boolean → render the visual title or not
  * - variant: "white" | "soft" | "dark"
  * - fullHeight: boolean → min-height: 100vh + vertical centering
  * - layout: "stack" | "split"
@@ -22,6 +28,8 @@ const BG_MAP = {
 export default function Section({
   id,
   title,
+  titleComponent = "h2",
+  showTitle = true,
   children,
   variant = "white",
   as = "section",
@@ -29,11 +37,18 @@ export default function Section({
   fullHeight = false,
   layout = "stack", // "stack" | "split"
 }) {
+  // Used to connect <section> with its heading for assistive tech
+  const headingId = React.useMemo(() => {
+    if (!id || !title || !showTitle) return undefined;
+    return `${id}-title`;
+  }, [id, title, showTitle]);
+
   return (
     <Box
       id={id}
       component={as}
       data-section-variant={variant}
+      aria-labelledby={headingId}
       sx={(theme) => ({
         bgcolor: BG_MAP[variant] ?? "transparent",
         color: "inherit",
@@ -63,6 +78,7 @@ export default function Section({
               rowGap: { xs: 4, md: 0 },
             })}
           >
+            {/* LEFT: sticky title column */}
             <Box
               sx={(theme) => ({
                 position: { md: "sticky" },
@@ -71,10 +87,11 @@ export default function Section({
                 mb: { xs: 2, md: 0 },
               })}
             >
-              {title && (
+              {title && showTitle && (
                 <Typography
                   variant="h2"
-                  component="h2"
+                  component={titleComponent}
+                  id={headingId}
                   sx={{
                     fontWeight: 500,
                     wordBreak: "break-word",
@@ -86,6 +103,7 @@ export default function Section({
               )}
             </Box>
 
+            {/* RIGHT: content column – always aligned to same x-position */}
             <Box
               sx={{
                 maxWidth: "65ch",
@@ -101,6 +119,7 @@ export default function Section({
             </Box>
           </Box>
         ) : (
+          // DEFAULT STACK LAYOUT (hero etc.)
           <Box
             sx={{
               width: "100%",
@@ -109,10 +128,11 @@ export default function Section({
               alignItems: align === "center" ? "center" : "flex-start",
             }}
           >
-            {title && (
+            {title && showTitle && (
               <Typography
                 variant="h2"
-                component="h2"
+                component={titleComponent}
+                id={headingId}
                 sx={{ mb: 3, fontWeight: 500 }}
               >
                 {title}

@@ -93,10 +93,10 @@ Updated: 2025-02-10 · 15:58 ET
 
 ---
 
-## Phase 2 – Hero & Home Sections as a System (Planned)
-- [ ] Finalize `EditorialHero` props + pattern (kicker, title, subtitle, CTAs, image)
-- [ ] Create `AboutSection`, `ResumeSection`, `ContactSection` wrappers around `Section`
-- [ ] Normalize headings via `Section` (add `titleComponent` prop, optional `aria-labelledby`)
+## Phase 2 – Hero & Home Sections as a System
+- [x] Finalize `EditorialHero` props + pattern (kicker, title, subtitle, CTAs, image)
+- [x] Create `AboutSection`, `ResumeSection`, `ContactSection` wrappers around `Section`
+- [x] Normalize headings via `Section` (add `titleComponent` prop, optional `aria-labelledby`)
 
 ## Phase 3 – Work/Portfolio System (Planned)
 - [ ] Upgrade `CaseStudyCard` into a truly linkable preview card (router integration)

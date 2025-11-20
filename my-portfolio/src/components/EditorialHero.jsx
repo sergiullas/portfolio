@@ -1,4 +1,7 @@
 // src/components/EditorialHero.jsx
+// Cleaned, structured hero layout with editorial grid, accessible headings,
+// consistent spacing, and improved image container behavior.
+
 import * as React from "react";
 import {
   Box,
@@ -25,7 +28,11 @@ export default function EditorialHero({
 }) {
   return (
     <Box sx={{ position: "relative" }}>
-      <Grid container spacing={{ xs: 6, md: 10 }} alignItems="center">
+      <Grid
+        container
+        spacing={{ xs: 6, md: 10 }}
+        alignItems="center"
+      >
         {/* LEFT: text block */}
         <Grid item xs={12} md={6}>
           <Box sx={{ maxWidth: { xs: "38rem", md: "32rem" } }}>
@@ -44,7 +51,11 @@ export default function EditorialHero({
             </Typography>
 
             {/* Primary page-level heading */}
-            <Typography variant="h1" component="h1" gutterBottom>
+            <Typography
+              variant="h1"
+              component="h1"
+              gutterBottom
+            >
               {title}
             </Typography>
 
@@ -109,22 +120,18 @@ export default function EditorialHero({
           >
             View my work
           </Button>
-
-          {/* Secondary CTA keeps its label; routes to contact section on home */}
           <Button
             variant="outlined"
             color="primary"
-            size="medium"
             component={RouterLink}
             to="/#contact"
-            aria-label="See what I'm working on"
           >
             What I'm working on
           </Button>
         </Stack>
       </Box>
 
-      {/* SOCIAL ICONS – left-aligned under hero content */}
+      {/* SOCIAL ICONS */}
       <Box
         sx={{
           mt: 6,
