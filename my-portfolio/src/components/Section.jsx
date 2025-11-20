@@ -1,11 +1,22 @@
 // src/components/Section.jsx
 import * as React from "react";
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
+
+/**
+ * Section
+ *
+ * Props:
+ * - variant: "white" | "soft" | "dark"
+ * - fullHeight: boolean → min-height: 100vh + vertical centering
+ * - layout: "stack" | "split"
+ *    - "stack": title above content (default)
+ *    - "split": sticky title in left column, content in right
+ */
 
 const BG_MAP = {
   white: "background.default",
   soft: "background.soft",
-  dark: "background.paper",
+  dark: "background.dark",
 };
 
 export default function Section({
@@ -22,16 +33,14 @@ export default function Section({
     <Box
       id={id}
       component={as}
+      data-section-variant={variant}
       sx={(theme) => ({
         bgcolor: BG_MAP[variant] ?? "transparent",
-        color:
-          variant === "dark"
-            ? theme.palette.common.white
-            : theme.palette.text.primary,
+        color: "inherit",
         minHeight: fullHeight ? "100vh" : "auto",
         display: "flex",
         alignItems: fullHeight ? "center" : "flex-start",
-        overflow: "visible", // required for sticky
+        overflow: "visible",
       })}
     >
       <Container
@@ -43,16 +52,25 @@ export default function Section({
         }}
       >
         {layout === "split" ? (
-          <Grid container spacing={6}>
-            {/* LEFT STICKY TITLE COLUMN */}
-            <Grid
-              item
-              xs={12}
-              md={4}
+          <Box
+            sx={(theme) => ({
+              display: "grid",
+              // ⭐ Fixed title column, flexible content column
+              gridTemplateColumns: {
+                xs: "1fr",
+                md: "minmax(12rem, 16rem) minmax(0, 1fr)",
+              },
+              columnGap: { xs: 4, md: 8 },
+              rowGap: { xs: 4, md: 0 },
+            })}
+          >
+            {/* LEFT: sticky title column */}
+            <Box
               sx={(theme) => ({
                 position: { md: "sticky" },
                 top: { md: theme.spacing(12) },
                 alignSelf: "flex-start",
+                mb: { xs: 2, md: 0 },
               })}
             >
               {title && (
@@ -61,21 +79,33 @@ export default function Section({
                   component="h2"
                   sx={{
                     fontWeight: 500,
-                    mb: { xs: 2, md: 0 },
+                    // ensure long titles wrap instead of widening the column
+                    wordBreak: "break-word",
+                    hyphens: "auto",
                   }}
                 >
                   {title}
                 </Typography>
               )}
-            </Grid>
+            </Box>
 
-            {/* RIGHT CONTENT COLUMN */}
-            <Grid item xs={12} md={8}>
-              <Box sx={{ maxWidth: "65ch" }}>{children}</Box>
-            </Grid>
-          </Grid>
+            {/* RIGHT: content column – always aligned to same x-position */}
+            <Box
+              sx={{
+                maxWidth: "65ch",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                "& > *": {
+                  width: "100%",
+                },
+              }}
+            >
+              {children}
+            </Box>
+          </Box>
         ) : (
-          // DEFAULT STACK LAYOUT (hero)
+          // DEFAULT STACK LAYOUT (hero etc.)
           <Box
             sx={{
               width: "100%",

@@ -20,7 +20,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 const PRIMARY_SECTIONS = [
   { id: "about", label: "About", to: "/#about" },
-  { id: "skills", label: "Skills", to: "/#skills" },
+  { id: "resume", label: "Resume", to: "/#resume" },
   { id: "contact", label: "Contact", to: "/#contact" },
 ];
 
@@ -44,7 +44,7 @@ export default function Header({ mode, setMode }) {
 
   const isMenuOpen = Boolean(menuAnchor);
 
-  // clicking the name ➝ scroll to top if already on "/", otherwise just let RouterLink navigate
+  // clicking the name → scroll to top if already on "/", otherwise just let RouterLink navigate
   const handleNameClick = (event) => {
     if (window.location.pathname === "/") {
       event.preventDefault();
@@ -65,8 +65,7 @@ export default function Header({ mode, setMode }) {
         backdropFilter: scrolled ? "blur(16px)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
         borderBottom: scrolled ? `1px solid ${theme.palette.divider}` : "none",
-        transition:
-          "background-color 200ms ease, box-shadow 200ms ease, border-color 200ms ease",
+        transition: "background-color 200ms ease, box-shadow 200ms ease, border-color 200ms ease",
         backgroundColor: (t) =>
           scrolled
             ? t.palette.mode === "light"
@@ -85,14 +84,9 @@ export default function Header({ mode, setMode }) {
           alignItems: "center",
         }}
       >
-        {/* LEFT: primary nav (desktop) or placeholder (mobile) */}
+        {/* LEFT: desktop nav OR spacer */}
         {isDesktop ? (
-          <Stack
-            direction="row"
-            spacing={3}
-            component="nav"
-            sx={{ flex: 1 }}
-          >
+          <Stack direction="row" spacing={3} component="nav" sx={{ flex: 1 }}>
             {PRIMARY_SECTIONS.map((item) => (
               <Button
                 key={item.id}
@@ -121,29 +115,42 @@ export default function Header({ mode, setMode }) {
           <Box sx={{ flex: 1 }} />
         )}
 
-        {/* CENTER: name (desktop only) */}
-        {isDesktop && (
-          <Box sx={{ px: 2 }}>
-            <Typography
-              component={RouterLink}
-              to="/"
-              onClick={handleNameClick}
-              variant="subtitle1"
-              sx={{
-                fontWeight: 600,
-                letterSpacing: "0.16em",
-                textTransform: "uppercase",
-                color: "text.primary",
-                textDecoration: "none",
-                cursor: "pointer",
-              }}
-            >
+        {/* ⭐ NAME – ALWAYS VISIBLE ON ALL BREAKPOINTS */}
+        <Box sx={{ px: 2 }}>
+          <Box
+            component={RouterLink}
+            to="/"
+            onClick={handleNameClick}
+            aria-label="Scroll to top"
+            sx={(t) => ({
+              display: "flex",
+              alignItems: "center",
+              padding: t.spacing(0.75, 1.5),
+              borderRadius: "999px",
+              background: "transparent",
+              cursor: "pointer",
+              font: "inherit",
+              textDecoration: "none",
+              textTransform: "uppercase",
+              letterSpacing: "0.16em",
+              color: t.palette.text.primary,
+              outline: "none",
+              "&:hover": {
+                backgroundColor: t.palette.action.hover,
+              },
+              "&:focus-visible": {
+                outline: `2px solid ${t.palette.primary.main}`,
+                outlineOffset: 3,
+              },
+            })}
+          >
+            <Typography variant="subtitle1" component="span" sx={{ fontWeight: 600 }}>
               Sergio Antezana
             </Typography>
           </Box>
-        )}
+        </Box>
 
-        {/* RIGHT: portfolio link + theme toggle + menu on mobile */}
+        {/* RIGHT SIDE */}
         <Box
           sx={{
             flex: 1,
@@ -216,10 +223,7 @@ export default function Header({ mode, setMode }) {
             >
               <Typography
                 textTransform="uppercase"
-                sx={{
-                  letterSpacing: "0.12em",
-                  fontSize: "0.8rem",
-                }}
+                sx={{ letterSpacing: "0.12em", fontSize: "0.8rem" }}
               >
                 {item.label}
               </Typography>
@@ -232,10 +236,7 @@ export default function Header({ mode, setMode }) {
           >
             <Typography
               textTransform="uppercase"
-              sx={{
-                letterSpacing: "0.12em",
-                fontSize: "0.8rem",
-              }}
+              sx={{ letterSpacing: "0.12em", fontSize: "0.8rem" }}
             >
               Portfolio
             </Typography>

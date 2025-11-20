@@ -46,14 +46,7 @@ export default function App({ mode, setMode }) {
       <Header mode={mode} setMode={setMode} scrollToId={scrollToId} />
 
       <Routes>
-        <Route
-          path="/"
-          element={
-            <HomePage
-              scrollToId={scrollToId}
-            />
-          }
-        />
+        <Route path="/" element={<HomePage scrollToId={scrollToId} />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
       </Routes>
     </>
@@ -80,191 +73,73 @@ function HomePage({ scrollToId }) {
           subtitle="Actively applying AI knowledge to design scalable, human-centered products"
           imageAlt="Black and white portrait of the designer"
         />
-
-        {/* Secondary actions + social links */}
-        {/* CTA + social row */}
-        <Box
-          sx={{
-            mt: 6,
-            width: "100%",
-            display: "flex",
-            flexDirection: { xs: "column", sm: "row" },
-            justifyContent: "space-between",
-            alignItems: { xs: "flex-start", sm: "center" },
-            gap: 3,
-          }}
-        >
-          {/* Primary actions */}
-          <Stack direction="row" spacing={2}>
-            <Button
-              variant="outlined"
-              onClick={() => scrollToId("skills")}
-              sx={{
-                borderRadius: 0,
-                px: 3.5,
-                py: 1.3,
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                fontSize: "0.8rem",
-              }}
-            >
-              View skills
-            </Button>
-            <Button
-              variant="text"
-              href="/resume.pdf"
-              target="_blank"
-              rel="noreferrer"
-              sx={{ textTransform: "none" }}
-            >
-              Download resume
-            </Button>
-            <Button
-              variant="text"
-              onClick={() => scrollToId("contact")}
-              sx={{ textTransform: "none" }}
-            >
-              Contact
-            </Button>
-          </Stack>
-
-          {/* Social links */}
-          <Stack
-            direction="row"
-            spacing={2}
-            sx={{
-              alignSelf: { xs: "flex-start", sm: "center" },
-              opacity: 0.7,
-              "&:hover": { opacity: 1 },
-            }}
-          >
-            <IconLink
-              href="https://github.com/your-handle"
-              label="GitHub"
-              icon={<GitHubIcon fontSize="small" />}
-            />
-            <IconLink
-              href="https://www.linkedin.com/in/santezana/"
-              label="LinkedIn"
-              icon={<LinkedInIcon fontSize="small" />}
-            />
-            <IconLink
-              href="mailto:santezana@nayas.com"
-              label="Email"
-              icon={<MailOutlineIcon fontSize="small" />}
-            />
-          </Stack>
-        </Box>
-
       </Section>
 
       {/* ABOUT SECTION */}
-      <Section
-        id="about"
-        title="About me"
-        variant="soft"
-        layout="split"
-      >
-        <Typography variant="body1" color="text.secondary" paragraph>
-          For 15+ years, I’ve designed inside environments where the stakes are high
-          and the complexity is real — intelligence spaces, justice systems,
-          enterprise platforms with thousands of moving parts. In every one of them,
-          my work begins with the same belief: people deserve tools that make their
-          world feel lighter, not heavier.
-        </Typography>
-
-        <Typography variant="body1" color="text.secondary" paragraph>
-          I build systems that scale, patterns that reduce cognitive load, and
-          experiences that let humans focus on the work that actually matters. The
-          moments I chase aren’t flashy UI shots — they’re the quiet ones: a workflow
-          that suddenly makes sense, a task that takes minutes instead of hours, a
-          user who finally feels in control instead of overwhelmed.
-        </Typography>
-
-        <Typography variant="body1" color="text.secondary" paragraph>
-          Lately, I’m exploring how AI can amplify that impact — not by replacing the
-          craft, but by expanding what designers can imagine, prototype, and deliver.
-          I care about accessibility as a principle, not a checkbox. About clarity as
-          a form of respect. About design as a way of thinking that doesn’t turn off
-          at 5 PM.
-        </Typography>
-
-        <Typography variant="body1" color="text.secondary">
-          Because at the core, I’m driven by a simple idea: make the complex feel
-          effortless — and the people using it feel empowered.
-        </Typography>
-      </Section>
-
-
-      {/* SKILLS SECTION */}
-      <Section
-        id="skills"
-        title="Skills & tools"
-        variant="white"
-        layout="split"
-      >
-        <Grid container spacing={3}>
-          <SkillGroup
-            title="Core skills"
-            skills={[
-              "UX strategy",
-              "Workflow & systems design",
-              "User research",
-              "Interaction design",
-              "Prototyping",
-              "Design systems",
-              "Accessibility (WCAG 2.2)",
-              "Cross-functional facilitation",
-            ]}
-          />
-          <SkillGroup
-            title="Tools"
-            skills={[
-              "Figma",
-              "MUI / React",
-              "FigJam",
-              "Miro",
-              "Jira",
-              "Confluence",
-              "Adobe CC",
-              "UserTesting / Lookback",
-            ]}
-          />
-        </Grid>
-      </Section>
-
-      {/* SECURITY SECTION */}
-      <Section id="security" title="Why my work isn’t public" variant="soft">
-        <Typography variant="body1" color="text.secondary">
-          Many of my projects were developed in secure environments and cannot
-          be shared publicly. To maintain confidentiality, this portfolio
-          focuses on my design thinking, systems approach, and measurable
-          outcomes—rather than screenshots or sensitive artifacts.
-        </Typography>
-      </Section>
-
-      {/* CONTACT */}
-      <Section id="contact" variant="dark" align="center" as="footer">
-        <Stack spacing={3} alignItems="center">
-          <Typography variant="h3" component="h2">
-            Let’s collaborate
-          </Typography>
-          <Typography variant="body1" color="text.secondary" align="center">
-            I’m open to full-time roles, consulting, and design system
-            engagements.
+      <Section id="about" title="About me" variant="soft" layout="split">
+        <Stack spacing={3} alignItems="flex-start">
+          <Typography variant="body1" color="text.secondary">
+            For 15+ years, I’ve designed inside environments where the stakes
+            are high and the complexity is real — intelligence spaces, justice
+            systems, enterprise platforms with thousands of moving parts. In
+            every one of them, my work begins with the same belief: people
+            deserve tools that make their world feel lighter, not heavier.
           </Typography>
 
-          <Button
-            variant="contained"
-            size="large"
-            href="mailto:you@example.com"
-            startIcon={<MailOutlineIcon />}
-          >
-            you@example.com
-          </Button>
+          <Typography variant="body1" color="text.secondary">
+            I build systems that scale, patterns that reduce cognitive load, and
+            experiences that let humans focus on the work that actually matters.
+            The moments I chase aren’t flashy UI shots — they’re the quiet ones:
+            a workflow that suddenly makes sense, a task that takes minutes
+            instead of hours, a user who finally feels in control instead of
+            overwhelmed.
+          </Typography>
 
-          <Typography variant="caption" color="text.secondary">
-            © {new Date().getFullYear()} YOUR NAME
+          <Typography variant="body1" color="text.secondary">
+            Lately, I’m exploring how AI can amplify that impact — not by
+            replacing the craft, but by expanding what designers can imagine,
+            prototype, and deliver. I care about accessibility as a principle,
+            not a checkbox. About clarity as a form of respect. About design as
+            a way of thinking that doesn’t turn off at 5 PM.
+          </Typography>
+
+          <Typography variant="body1" color="text.secondary">
+            Because at the core, I’m driven by a simple idea: make the complex
+            feel effortless — and the people using it feel empowered.
+          </Typography>
+        </Stack>
+      </Section>
+
+      {/* RESUME SECTION */}
+      <Section id="resume" title="Resume" variant="white" layout="split">
+        <Stack spacing={3} alignItems="flex-start">
+          <Typography variant="body1" color="text.secondary">
+            Senior Product & UX Designer specializing in design systems at
+            scale, usability & accessibility standards, and AI-enhanced design
+            workflows. Extensive experience leading UX strategy for
+            mission-critical enterprise platforms.
+          </Typography>
+
+          <Stack direction="row" spacing={2}>
+            <Button variant="contained">View my resume</Button>
+            <Button variant="outlined">Download PDF version</Button>
+          </Stack>
+        </Stack>
+      </Section>
+
+      {/* CONTACT SECTION */}
+      <Section id="contact" title="Contact" variant="dark" layout="split">
+        <Stack spacing={4} alignItems="flex-start">
+          <Typography variant="body1" color="text.secondary">
+            I'm always up for good design conversations—whether that's debating
+            design system architecture, talking through a UX challenge you're
+            facing, or exploring what's next for both of us. Fellow designers,
+            recruiters, hiring managers, or anyone curious about human-centered
+            design: let's connect. Virtual coffee or the real thing, I'm in.
+          </Typography>
+
+          <Typography variant="caption" color="text.secondary" sx={{ mt: 8 }}>
+            © {new Date().getFullYear()} Sergio Antezana
           </Typography>
         </Stack>
       </Section>
@@ -272,8 +147,7 @@ function HomePage({ scrollToId }) {
   );
 }
 
-
-// REUSABLE
+// REUSABLE ICON LINK
 function IconLink({ href, label, icon }) {
   return (
     <MuiLink

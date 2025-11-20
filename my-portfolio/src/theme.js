@@ -7,12 +7,15 @@ export const getAppTheme = (mode = "light") =>
       mode,
       primary: {
         // ⭐ Required for visible focus ring
-        main: mode === "light" ? "#1B4DD8" : "#8AB4FF",
+        main: mode === "light" ? "#1a73e8" : "#8AB4FF",
       },
       background: {
         default: mode === "light" ? "#FFFFFF" : "#191917",
-        paper: mode === "light" ? "#FFFFFF" : "#242423",
+        paper: mode === "light" ? "#FFFFFF" : "#2C2C2C",
         soft: mode === "light" ? "#F3F3F3" : "#111111",
+
+        // ⭐ Add this — dedicated dark background for dark sections
+        dark: mode === "light" ? "#111111" : "#000000",
       },
       text: {
         primary: mode === "light" ? "#191917" : "#FFFFFF",
@@ -71,7 +74,16 @@ export const getAppTheme = (mode = "light") =>
           }),
         },
       },
-
+      MuiTypography: {
+        styleOverrides: {
+          root: ({ theme }) => ({
+            // Apply high contrast text only in dark sections
+            '[data-section-variant="dark"] &': {
+              color: theme.palette.grey[200], // or theme.palette.text.primary
+            },
+          }),
+        },
+      },
       MuiContainer: {
         defaultProps: {
           maxWidth: "lg",

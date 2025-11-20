@@ -1,15 +1,28 @@
 // src/components/EditorialHero.jsx
 import * as React from "react";
-import { Box, Grid, Typography } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Typography,
+  Stack,
+  Link as MuiLink,
+  Button,
+} from "@mui/material";
+
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+
 import heroImage from "../assets/hero-sergio.jpg";
 
 export default function EditorialHero({
   kicker = "Senior UX & Product Designer",
-  title = "You have to keep learning — because the world keeps changing.",
-  subtitle = "Actively applying AI knowledge to design scalable, human-centered products.",
+  title = "You have to keep learning — because the world keeps changing",
+  subtitle = "Actively applying AI knowledge to design scalable, human-centered products",
+  imageAlt = "Black and white portrait of the designer",
 }) {
   return (
-    <Box sx={{ position: "relative"}}>
+    <Box sx={{ position: "relative" }}>
       <Grid
         container
         spacing={{ xs: 6, md: 10 }}
@@ -18,8 +31,10 @@ export default function EditorialHero({
         {/* LEFT: text block */}
         <Grid item xs={12} md={6}>
           <Box sx={{ maxWidth: { xs: "38rem", md: "32rem" } }}>
+            {/* Eyebrow / kicker – not a heading */}
             <Typography
-              variant="body2"
+              variant="overline"
+              component="p"
               sx={{
                 textTransform: "uppercase",
                 letterSpacing: "0.18em",
@@ -30,12 +45,19 @@ export default function EditorialHero({
               {kicker}
             </Typography>
 
-            <Typography variant="h1" component="h1" gutterBottom>
+            {/* Primary page-level heading */}
+            <Typography
+              variant="h1"
+              component="h1"
+              gutterBottom
+            >
               {title}
             </Typography>
 
+            {/* Paragraph description */}
             <Typography
               variant="body1"
+              component="p"
               sx={{
                 mt: 3,
                 maxWidth: "40rem",
@@ -61,7 +83,7 @@ export default function EditorialHero({
             <Box
               component="img"
               src={heroImage}
-              alt="Sergio sitting cross-legged on a boardwalk facing the ocean at sunset."
+              alt={imageAlt}
               sx={{
                 width: "100%",
                 height: "100%",
@@ -73,6 +95,68 @@ export default function EditorialHero({
           </Box>
         </Grid>
       </Grid>
+
+      {/* CTAs*/}
+            <Box
+        sx={{
+          mt: 6,
+          width: "100%",
+          display: "flex",
+          justifyContent: "flex-start",
+        }}
+      >
+        <Stack direction="row" spacing={2}>
+          <Button variant="outlined"> What I’ve built</Button>
+          <Button variant="outlined">What I'm working on</Button>
+        </Stack>
+      </Box>
+
+      {/* SOCIAL ICONS – left-aligned under hero content */}
+      <Box
+        sx={{
+          mt: 6,
+          width: "100%",
+          display: "flex",
+          justifyContent: "flex-start",
+        }}
+      >
+        <Stack
+          direction="row"
+          spacing={2}
+          sx={{
+            opacity: 0.7,
+            "&:hover": { opacity: 1 },
+          }}
+        >
+          <MuiLink
+            href="https://github.com/your-handle"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+            sx={{ display: "inline-flex", alignItems: "center", p: 1 }}
+          >
+            <GitHubIcon fontSize="small" />
+          </MuiLink>
+
+          <MuiLink
+            href="https://www.linkedin.com/in/santezana/"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="LinkedIn"
+            sx={{ display: "inline-flex", alignItems: "center", p: 1 }}
+          >
+            <LinkedInIcon fontSize="small" />
+          </MuiLink>
+
+          <MuiLink
+            href="mailto:santezana@nayas.com"
+            aria-label="Email"
+            sx={{ display: "inline-flex", alignItems: "center", p: 1 }}
+          >
+            <MailOutlineIcon fontSize="small" />
+          </MuiLink>
+        </Stack>
+      </Box>
     </Box>
   );
 }
