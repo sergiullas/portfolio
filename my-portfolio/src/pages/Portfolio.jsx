@@ -39,42 +39,45 @@ export default function PortfolioPage() {
   // 🔐 Locked view
   if (!unlocked) {
     return (
-      <Section variant="soft" as="main">
+      <Section variant="white" layout="stack" fullHeight>
         <Box
           sx={{
-            maxWidth: 480,
-            width: "100%",
+        
+            // --- Centering Rules ---
+            maxWidth: 'sm',      // 1. Limit the width of the Box
+            margin: '0 auto',    // 2. Center the limited-width Box horizontally
+            // -----------------------
           }}
         >
-          <Stack spacing={3}>
-            <Typography variant="h2" component="h1">
-              Portfolio access
-            </Typography>
 
-            <Typography variant="body1" color="text.secondary">
-              These case studies are restricted and require a password to view.
-              If you received a password in a recruiting email or conversation,
-              enter it below to unlock a clearance-safe view of my work.
-            </Typography>
+          <Typography variant="h2" component="h2" gutterBottom>
+            My Work
+          </Typography>
 
-            <Box component="form" onSubmit={handleSubmit} noValidate>
-              <Stack spacing={2}>
-                <TextField
-                  label="Password"
-                  type="password"
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  error={Boolean(error)}
-                  helperText={error || " "}
-                  autoComplete="off"
-                  fullWidth
-                />
-                <Button type="submit" variant="contained">
-                  Unlock portfolio
-                </Button>
-              </Stack>
-            </Box>
-          </Stack>
+          <Typography variant="body1" color="text.secondary">
+            These case studies are restricted and require a password to view.
+            If you received a password in a recruiting email or conversation,
+            enter it below to unlock a view of my work.
+          </Typography>
+
+          <Box component="form" onSubmit={handleSubmit} noValidate>
+            <Stack spacing={2}>
+              <TextField
+                label="Password"
+                type="password"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                error={Boolean(error)}
+                helperText={error || " "}
+                autoComplete="off"
+                fullWidth
+              />
+              <Button type="submit" variant="contained">
+                Unlock portfolio
+              </Button>
+            </Stack>
+          </Box>
+
         </Box>
       </Section>
     );

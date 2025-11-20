@@ -9,6 +9,8 @@ import {
   Button,
 } from "@mui/material";
 
+import { Link as RouterLink } from "react-router-dom";
+
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
@@ -97,7 +99,7 @@ export default function EditorialHero({
       </Grid>
 
       {/* CTAs*/}
-            <Box
+      <Box
         sx={{
           mt: 6,
           width: "100%",
@@ -105,9 +107,23 @@ export default function EditorialHero({
           justifyContent: "flex-start",
         }}
       >
-        <Stack direction="row" spacing={2}>
-          <Button variant="outlined"> What I’ve built</Button>
-          <Button variant="outlined">What I'm working on</Button>
+        <Stack direction="row" spacing={2} sx={{ mt: 1, flexWrap: "wrap" }}>
+          <Button
+            variant="contained"
+            color="primary"
+            size="medium"
+            component={RouterLink}
+            to="/portfolio"
+          >
+            View my work
+          </Button>
+          <Button
+            variant="outlined"
+             color="primary"
+            component={RouterLink}
+            to="/#contact"      // 👈 WiP
+          >What I'm working on
+          </Button>
         </Stack>
       </Box>
 
@@ -129,10 +145,10 @@ export default function EditorialHero({
           }}
         >
           <MuiLink
-            href="https://github.com/your-handle"
+            href="https://github.com/sergiullas"
             target="_blank"
             rel="noreferrer"
-            aria-label="GitHub"
+            aria-label="GitHub Profile"
             sx={{ display: "inline-flex", alignItems: "center", p: 1 }}
           >
             <GitHubIcon fontSize="small" />
@@ -142,7 +158,7 @@ export default function EditorialHero({
             href="https://www.linkedin.com/in/santezana/"
             target="_blank"
             rel="noreferrer"
-            aria-label="LinkedIn"
+            aria-label="LinkedIn Profile"
             sx={{ display: "inline-flex", alignItems: "center", p: 1 }}
           >
             <LinkedInIcon fontSize="small" />

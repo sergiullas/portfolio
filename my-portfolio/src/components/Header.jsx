@@ -19,6 +19,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { Link as RouterLink } from "react-router-dom";
 
 const PRIMARY_SECTIONS = [
+  { id: "portfolio", label: "Portfolio", to: "/portfolio" }, 
   { id: "about", label: "About", to: "/#about" },
   { id: "resume", label: "Resume", to: "/#resume" },
   { id: "contact", label: "Contact", to: "/#contact" },
@@ -160,28 +161,6 @@ export default function Header({ mode, setMode }) {
             gap: 1,
           }}
         >
-          {isDesktop && (
-            <Button
-              component={RouterLink}
-              to="/portfolio"
-              color="inherit"
-              size="small"
-              disableRipple
-              sx={{
-                fontWeight: 500,
-                letterSpacing: "0.16em",
-                textTransform: "uppercase",
-                fontSize: "0.75rem",
-                "&:hover": {
-                  textDecoration: "underline",
-                  textUnderlineOffset: "0.25em",
-                  backgroundColor: "transparent",
-                },
-              }}
-            >
-              Portfolio
-            </Button>
-          )}
 
           <IconButton
             color="inherit"

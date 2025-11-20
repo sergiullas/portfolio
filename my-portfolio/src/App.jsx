@@ -43,12 +43,35 @@ export default function App({ mode, setMode }) {
 
   return (
     <>
+     {/* Skip link for keyboard users */}
+    <MuiLink
+      href="#main"
+      sx={(t) => ({
+        position: "fixed",
+        left: t.spacing(2),
+        top: t.spacing(2),
+        zIndex: t.zIndex.tooltip + 1,
+        transform: "translateY(-200%)",
+        "&:focus-visible": {
+          transform: "translateY(0)",
+          backgroundColor: t.palette.background.paper,
+          padding: t.spacing(0.5, 1.5),
+          borderRadius: 999,
+          boxShadow: t.shadows[2],
+        },
+      })}
+    >
+      Skip to main content
+    </MuiLink>
+
       <Header mode={mode} setMode={setMode} scrollToId={scrollToId} />
 
+    <Box component="main" id="main">
       <Routes>
         <Route path="/" element={<HomePage scrollToId={scrollToId} />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
       </Routes>
+    </Box>
     </>
   );
 }
