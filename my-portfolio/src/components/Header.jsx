@@ -16,13 +16,13 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
 
 const PRIMARY_SECTIONS = [
-  { id: "portfolio", label: "Portfolio", to: "/portfolio" }, 
-  { id: "about", label: "About", to: "/#about" },
-  { id: "resume", label: "Resume", to: "/#resume" },
-  { id: "contact", label: "Contact", to: "/#contact" },
+  { id: "portfolio", label: "Portfolio" }, // special: navigates to /portfolio
+  { id: "about", label: "About" },
+  { id: "resume", label: "Resume" },
+  { id: "contact", label: "Contact" },
 ];
 
 export default function Header({ mode, setMode }) {
@@ -31,6 +31,8 @@ export default function Header({ mode, setMode }) {
 
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // scroll shadow/blur
   React.useEffect(() => {
@@ -45,7 +47,7 @@ export default function Header({ mode, setMode }) {
 
   const isMenuOpen = Boolean(menuAnchor);
 
-  // clicking the name → scroll to top if already on "/", otherwise just let RouterLink navigate
+  // clicking the name → scroll to top if already on "/", otherwise let RouterLink navigate
   const handleNameClick = (event) => {
     if (window.location.pathname === "/") {
       event.preventDefault();
@@ -54,6 +56,43 @@ export default function Header({ mode, setMode }) {
         behavior: "smooth",
       });
     }
+  };
+
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const handleNavClick = (item) => (event) => {
+    // Portfolio / Work: go to /portfolio route
+    if (item.id === "portfolio") {
+      event.preventDefault();
+      if (location.pathname !== "/portfolio") {
+        navigate("/portfolio");
+      }
+      return;
+    }
+
+    // About / Resume / Contact → sections on home page
+    event.preventDefault();
+
+    if (location.pathname !== "/") {
+      // Go home first, then scroll once the DOM has the sections
+      navigate("/");
+      // small timeout so React can render the home sections
+      setTimeout(() => {
+        scrollToSection(item.id);
+      }, 100);
+    } else {
+      scrollToSection(item.id);
+    }
+  };
+
+  const handleMobileItemClick = (item) => (event) => {
+    handleNavClick(item)(event);
+    setMenuAnchor(null);
   };
 
   return (
@@ -66,7 +105,8 @@ export default function Header({ mode, setMode }) {
         backdropFilter: scrolled ? "blur(16px)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
         borderBottom: scrolled ? `1px solid ${theme.palette.divider}` : "none",
-        transition: "background-color 200ms ease, box-shadow 200ms ease, border-color 200ms ease",
+        transition:
+          "background-color 200ms ease, box-shadow 200ms ease, border-color 200ms ease",
         backgroundColor: (t) =>
           scrolled
             ? t.palette.mode === "light"
@@ -87,16 +127,21 @@ export default function Header({ mode, setMode }) {
       >
         {/* LEFT: desktop nav OR spacer */}
         {isDesktop ? (
-          <Stack direction="row" spacing={3} component="nav" sx={{ flex: 1 }}>
+          <Stack
+            direction="row"
+            spacing={3}
+            component="nav"
+            aria-label="Primary"
+            sx={{ flex: 1 }}
+          >
             {PRIMARY_SECTIONS.map((item) => (
               <Button
                 key={item.id}
-                component={RouterLink}
-                to={item.to}
+                onClick={handleNavClick(item)}
                 color="inherit"
                 size="small"
                 disableRipple
-                sx={{
+                sx={(t) => ({
                   fontWeight: 500,
                   letterSpacing: "0.16em",
                   textTransform: "uppercase",
@@ -106,7 +151,11 @@ export default function Header({ mode, setMode }) {
                     textUnderlineOffset: "0.25em",
                     backgroundColor: "transparent",
                   },
-                }}
+                  "&:focus-visible": {
+                    outline: `2px solid ${t.palette.primary.main}`,
+                    outlineOffset: 3,
+                  },
+                })}
               >
                 {item.label}
               </Button>
@@ -145,7 +194,11 @@ export default function Header({ mode, setMode }) {
               },
             })}
           >
-            <Typography variant="subtitle1" component="span" sx={{ fontWeight: 600 }}>
+            <Typography
+              variant="subtitle1"
+              component="span"
+              sx={{ fontWeight: 600 }}
+            >
               Sergio Antezana
             </Typography>
           </Box>
@@ -161,7 +214,6 @@ export default function Header({ mode, setMode }) {
             gap: 1,
           }}
         >
-
           <IconButton
             color="inherit"
             onClick={toggleMode}
@@ -194,12 +246,7 @@ export default function Header({ mode, setMode }) {
           transformOrigin={{ vertical: "top", horizontal: "right" }}
         >
           {PRIMARY_SECTIONS.map((item) => (
-            <MenuItem
-              key={item.id}
-              component={RouterLink}
-              to={item.to}
-              onClick={() => setMenuAnchor(null)}
-            >
+            <MenuItem key={item.id} onClick={handleMobileItemClick(item)}>
               <Typography
                 textTransform="uppercase"
                 sx={{ letterSpacing: "0.12em", fontSize: "0.8rem" }}
@@ -208,18 +255,6 @@ export default function Header({ mode, setMode }) {
               </Typography>
             </MenuItem>
           ))}
-          <MenuItem
-            component={RouterLink}
-            to="/portfolio"
-            onClick={() => setMenuAnchor(null)}
-          >
-            <Typography
-              textTransform="uppercase"
-              sx={{ letterSpacing: "0.12em", fontSize: "0.8rem" }}
-            >
-              Portfolio
-            </Typography>
-          </MenuItem>
         </Menu>
       )}
     </AppBar>

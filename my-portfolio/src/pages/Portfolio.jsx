@@ -42,22 +42,24 @@ export default function PortfolioPage() {
       <Section variant="white" layout="stack" fullHeight>
         <Box
           sx={{
-        
-            // --- Centering Rules ---
-            maxWidth: 'sm',      // 1. Limit the width of the Box
-            margin: '0 auto',    // 2. Center the limited-width Box horizontally
-            // -----------------------
+            maxWidth: "sm",
+            margin: "0 auto",
           }}
         >
-
-          <Typography variant="h2" component="h2" gutterBottom>
+          <Typography variant="h2" component="h1" gutterBottom>
             My Work
           </Typography>
 
-          <Typography variant="body1" color="text.secondary">
+          <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
             These case studies are restricted and require a password to view.
             If you received a password in a recruiting email or conversation,
             enter it below to unlock a view of my work.
+          </Typography>
+
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 4 }}>
+            Don&apos;t have a password yet? Feel free to reach out via email or
+            LinkedIn on the homepage and I&apos;ll share more context when
+            appropriate.
           </Typography>
 
           <Box component="form" onSubmit={handleSubmit} noValidate>
@@ -69,6 +71,9 @@ export default function PortfolioPage() {
                 onChange={(e) => setInput(e.target.value)}
                 error={Boolean(error)}
                 helperText={error || " "}
+                FormHelperTextProps={{
+                  role: error ? "alert" : undefined,
+                }}
                 autoComplete="off"
                 fullWidth
               />
@@ -77,7 +82,6 @@ export default function PortfolioPage() {
               </Button>
             </Stack>
           </Box>
-
         </Box>
       </Section>
     );
@@ -85,13 +89,8 @@ export default function PortfolioPage() {
 
   // 🔓 Unlocked view – reuse your CaseStudy cards
   return (
-    <Section variant="white" as="main">
-      <Box
-        sx={{
-          width: "100%",
-          maxWidth: 900,
-        }}
-      >
+    <Section variant="white">
+      <Box sx={{ width: "100%", maxWidth: 900, mx: "auto" }}>
         <Typography variant="h2" component="h1" sx={{ mb: 3 }}>
           Case studies (clearance-safe)
         </Typography>

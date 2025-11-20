@@ -1,3 +1,109 @@
-- Define primary color for theme
-- Social icons - OpenAI + My GPT
-- 
+# Portfolio Refactor Roadmap
+
+Updated: 2025-02-10 · 15:58 ET
+
+---
+
+## ✅ Phase 0 – Baseline UX/Foundation (Completed)
+
+**Goal:** Establish core UX behaviors so we’re not refactoring around a moving target.
+
+- [x] Promote Portfolio/Work in nav and add focus states (Header)
+  - Nav order updated so **Work** (portfolio) is first.
+  - Desktop + mobile nav both driven by a single `PRIMARY_SECTIONS` list.
+  - Added visible `:focus-visible` outlines on nav buttons for keyboard users.
+- [x] Add skip link and `<main>` landmark
+  - Implemented in `LayoutShell` (previously in `App`):
+    - "Skip to main content" link appears on keyboard focus.
+    - All page content is wrapped in `<main id="main">`.
+- [x] Add hero CTAs
+  - `EditorialHero` now includes two CTAs underneath the subtitle:
+    - Primary: **"View my work"** → `/portfolio`.
+    - Secondary: **"What I'm working on"** → `/#contact`.
+  - CTA labels preserved exactly as defined by you.
+
+---
+
+## ✅ Phase 1 – Layout & Navigation System (Current Status)
+
+**Goal:** Make layout + navigation predictable, reusable, and accessible.
+
+### Layout Shell & App Wiring
+- [x] Create `LayoutShell` component to own Header/main (and future Footer)
+  - New file: `src/components/LayoutShell.jsx`.
+  - Responsibilities:
+    - Renders the skip link.
+    - Renders `<Header />` with `mode` / `setMode`.
+    - Wraps children in `<main id="main">` with top padding so content clears the fixed header.
+- [x] Wire `App.jsx` to use `LayoutShell`
+  - `App` now:
+    - Handles routing (`<Routes>` / `<Route>`).
+    - Passes `mode`, `setMode`, and `scrollToId` into `LayoutShell`.
+    - Home + Portfolio pages are rendered as children of `LayoutShell`.
+
+### Header & Navigation Behavior
+- [x] Refine `Header` navigation behavior & accessibility
+  - New logic in `Header.jsx`:
+    - Uses `useLocation` + `useNavigate` from React Router.
+    - **Work (portfolio)**
+      - Always navigates to `/portfolio` from any page.
+    - **About / Resume / Contact**
+      - If already on `/`: smooth scroll to the corresponding section ID.
+      - If on another route (e.g., `/portfolio`): navigate to `/` first, then scroll.
+  - Desktop nav:
+    - Buttons call `handleNavClick(item)` instead of relying purely on `RouterLink`.
+    - Hover & focus styles aligned with accessibility guidance.
+  - Mobile nav:
+    - `MenuItem`s reuse the same navigation behavior via `handleMobileItemClick(item)`.
+  - Header still controls:
+    - Scroll blur / border on scroll.
+    - Theme toggle (light/dark).
+    - Name-as-home link with smooth scroll-to-top when already on `/`.
+
+### Hero & Social Block
+- [x] Editorial hero refinements
+  - `EditorialHero.jsx` now:
+    - Keeps your CTA labels intact.
+    - Ensures the secondary CTA routes correctly to `/#contact`.
+    - Adds an `aria-label` to the secondary CTA for clearer SR context.
+  - Social links already include `aria-label`s and remain consistent.
+
+### Portfolio Page Structure
+- [x] Portfolio gating & content improvements
+  - Locked state (`!unlocked`):
+    - Uses `Section` with `fullHeight` and centered content.
+    - `My Work` is the page-level `h1` when locked.
+    - Expanded explanatory copy about why there is a password and how to request one.
+    - Password field:
+      - Preserves `helperText` behavior.
+      - Adds `FormHelperTextProps={{ role: "alert" }}` when there is an error for screen readers.
+  - Unlocked state:
+    - Uses `Section` without `as="main"` to avoid nested `<main>` inside `LayoutShell`.
+    - Content is centered via `maxWidth: 900` and `mx: "auto"`.
+    - `Case studies (clearance-safe)` is rendered as the page `h1`.
+
+### Case Study Card Interaction
+- [x] CaseStudyCard basic interaction affordance
+  - `CaseStudyCard.jsx` now:
+    - Treats the card as an interactive preview (preparation for future routing).
+    - Adds hover elevation and primary-colored border on hover.
+    - Adds keyboard focus via `tabIndex={0}` and `role="link"`.
+    - Provides an accessible label: `aria-label={`View case study: ${title}`}`.
+  - Note: cards **look and behave** as interactive elements but do not yet navigate to detail pages (reserved for Phase 3).
+
+---
+
+## Phase 2 – Hero & Home Sections as a System (Planned)
+- [ ] Finalize `EditorialHero` props + pattern (kicker, title, subtitle, CTAs, image)
+- [ ] Create `AboutSection`, `ResumeSection`, `ContactSection` wrappers around `Section`
+- [ ] Normalize headings via `Section` (add `titleComponent` prop, optional `aria-labelledby`)
+
+## Phase 3 – Work/Portfolio System (Planned)
+- [ ] Upgrade `CaseStudyCard` into a truly linkable preview card (router integration)
+- [ ] Add `WorkSection` / `CaseStudyList` to render cards from a data array
+- [ ] Clean up password gate flow (`PortfolioGate` + `PortfolioContent` components)
+
+## Phase 4 – Global Interaction & A11Y Pass (Planned)
+- [ ] Define global focus/hover tokens in `theme.js`
+- [ ] Standardize icon/link semantics (e.g., shared `SocialLinks` component)
+- [ ] Add basic motion guidelines respecting `prefers-reduced-motion`

@@ -25,11 +25,7 @@ export default function EditorialHero({
 }) {
   return (
     <Box sx={{ position: "relative" }}>
-      <Grid
-        container
-        spacing={{ xs: 6, md: 10 }}
-        alignItems="center"
-      >
+      <Grid container spacing={{ xs: 6, md: 10 }} alignItems="center">
         {/* LEFT: text block */}
         <Grid item xs={12} md={6}>
           <Box sx={{ maxWidth: { xs: "38rem", md: "32rem" } }}>
@@ -48,11 +44,7 @@ export default function EditorialHero({
             </Typography>
 
             {/* Primary page-level heading */}
-            <Typography
-              variant="h1"
-              component="h1"
-              gutterBottom
-            >
+            <Typography variant="h1" component="h1" gutterBottom>
               {title}
             </Typography>
 
@@ -98,7 +90,7 @@ export default function EditorialHero({
         </Grid>
       </Grid>
 
-      {/* CTAs*/}
+      {/* CTAs */}
       <Box
         sx={{
           mt: 6,
@@ -117,12 +109,17 @@ export default function EditorialHero({
           >
             View my work
           </Button>
+
+          {/* Secondary CTA keeps its label; routes to contact section on home */}
           <Button
             variant="outlined"
-             color="primary"
+            color="primary"
+            size="medium"
             component={RouterLink}
-            to="/#contact"      // 👈 WiP
-          >What I'm working on
+            to="/#contact"
+            aria-label="See what I'm working on"
+          >
+            What I'm working on
           </Button>
         </Stack>
       </Box>
@@ -145,7 +142,7 @@ export default function EditorialHero({
           }}
         >
           <MuiLink
-            href="https://github.com/sergiullas"
+            href="https://github.com/sergiullas/"
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub Profile"

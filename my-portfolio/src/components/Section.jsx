@@ -55,7 +55,6 @@ export default function Section({
           <Box
             sx={(theme) => ({
               display: "grid",
-              // ⭐ Fixed title column, flexible content column
               gridTemplateColumns: {
                 xs: "1fr",
                 md: "minmax(12rem, 16rem) minmax(0, 1fr)",
@@ -64,7 +63,6 @@ export default function Section({
               rowGap: { xs: 4, md: 0 },
             })}
           >
-            {/* LEFT: sticky title column */}
             <Box
               sx={(theme) => ({
                 position: { md: "sticky" },
@@ -79,7 +77,6 @@ export default function Section({
                   component="h2"
                   sx={{
                     fontWeight: 500,
-                    // ensure long titles wrap instead of widening the column
                     wordBreak: "break-word",
                     hyphens: "auto",
                   }}
@@ -89,7 +86,6 @@ export default function Section({
               )}
             </Box>
 
-            {/* RIGHT: content column – always aligned to same x-position */}
             <Box
               sx={{
                 maxWidth: "65ch",
@@ -105,7 +101,6 @@ export default function Section({
             </Box>
           </Box>
         ) : (
-          // DEFAULT STACK LAYOUT (hero etc.)
           <Box
             sx={{
               width: "100%",

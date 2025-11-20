@@ -1,25 +1,12 @@
 // src/App.jsx
 import * as React from "react";
-import {
-  Typography,
-  Box,
-  Button,
-  Stack,
-  Grid,
-  Link as MuiLink,
-} from "@mui/material";
-
+import { Typography, Button, Stack } from "@mui/material";
 import { Routes, Route, useLocation } from "react-router-dom";
 
-import GitHubIcon from "@mui/icons-material/GitHub";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
-
-import Header from "./components/Header";
 import Section from "./components/Section";
 import EditorialHero from "./components/EditorialHero";
-import SkillGroup from "./components/SkillGroup";
 import PortfolioPage from "./pages/Portfolio";
+import LayoutShell from "./components/LayoutShell.jsx";
 
 // App receives mode + setMode from main.jsx
 export default function App({ mode, setMode }) {
@@ -42,37 +29,12 @@ export default function App({ mode, setMode }) {
   }, [location]);
 
   return (
-    <>
-     {/* Skip link for keyboard users */}
-    <MuiLink
-      href="#main"
-      sx={(t) => ({
-        position: "fixed",
-        left: t.spacing(2),
-        top: t.spacing(2),
-        zIndex: t.zIndex.tooltip + 1,
-        transform: "translateY(-200%)",
-        "&:focus-visible": {
-          transform: "translateY(0)",
-          backgroundColor: t.palette.background.paper,
-          padding: t.spacing(0.5, 1.5),
-          borderRadius: 999,
-          boxShadow: t.shadows[2],
-        },
-      })}
-    >
-      Skip to main content
-    </MuiLink>
-
-      <Header mode={mode} setMode={setMode} scrollToId={scrollToId} />
-
-    <Box component="main" id="main">
+    <LayoutShell mode={mode} setMode={setMode} scrollToId={scrollToId}>
       <Routes>
         <Route path="/" element={<HomePage scrollToId={scrollToId} />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
       </Routes>
-    </Box>
-    </>
+    </LayoutShell>
   );
 }
 
@@ -170,7 +132,7 @@ function HomePage({ scrollToId }) {
   );
 }
 
-// REUSABLE ICON LINK
+// REUSABLE ICON LINK (currently unused here but kept for potential reuse)
 function IconLink({ href, label, icon }) {
   return (
     <MuiLink
