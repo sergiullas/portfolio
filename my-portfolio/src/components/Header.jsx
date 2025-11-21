@@ -49,15 +49,13 @@ export default function Header({ mode, setMode }) {
 
   const isMenuOpen = Boolean(menuAnchor);
 
-  // clicking the name → scroll to top if already on "/", otherwise just let RouterLink navigate
+  // clicking the name → scroll to top of page
   const handleNameClick = (event) => {
-    if (window.location.pathname === "/") {
-      event.preventDefault();
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    }
+    event.preventDefault(); // always prevent route change
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
