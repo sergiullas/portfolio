@@ -62,6 +62,8 @@ export default function MyResumePage() {
 
   return (
     <Box
+      component="main"
+      role="main"
       sx={(t) => ({
         minHeight: "100vh",
         bgcolor: t.palette.background.default,
@@ -96,7 +98,7 @@ export default function MyResumePage() {
               >
                 <Avatar
                   alt="Sergio Antezana"
-                   src={headshot}
+                  src={headshot}
                   sx={{ width: 150, height: 150 }}
                 />
 
@@ -544,10 +546,19 @@ function MetaRow({ icon, primary, secondary, href }) {
 }
 
 function SectionBlock({ id, label, children }) {
+  const headingId = `${id}-heading`;
+
   return (
-    <Box id={id} sx={{ mt: 2 }}>
+    <Box
+      id={id}
+      component="section"
+      aria-labelledby={headingId}
+      sx={{ scrollMarginTop: 96 }} // helps when jumping via anchors/header
+    >
       <Typography
+        id={headingId}
         variant="overline"
+        component="h2"
         sx={{
           textTransform: "uppercase",
           letterSpacing: "0.18em",
@@ -562,3 +573,4 @@ function SectionBlock({ id, label, children }) {
     </Box>
   );
 }
+
