@@ -1,0 +1,192 @@
+✅ PHASE 0 – Baseline UX & Full Content Import 
+
+Goal: Turn the PDF résumé into a fully populated, readable, accessible web résumé.
+
+Tasks
+
+ Extract all content from PDF: roles, dates, summaries, achievements, skills.
+
+ Break content into structured sections: Identity, About, Experience, Skills, Education.
+
+ Normalize formatting: remove line breaks, fix bullets, unify tense.
+
+ Re-write About section for web readability (CPL-optimized).
+
+ Populate Experience with roles, durations, companies.
+
+ Add “Responsibilities” and “Achievements” bullets for each role.
+
+ Extract and structure Skills / Methods / Tools from PDF.
+
+ Add Education section (school, degree, year).
+
+ Add Certifications or course list (if present in PDF).
+
+ Create a data model for the résumé (JSON structure).
+
+ Update MyResumePage to consume this structured content.
+
+ Add internal anchors: #about, #experience, #skills, #education.
+
+ Ensure all headings follow H1 → H2 → H3 semantic order.
+
+ Verify accessibility: reading order, aria-labels, link semantics.
+
+ Full dark-mode pass for readability.
+
+PHASE 1 – Identity Block & Pronunciation
+
+Goal: Upgrade the identity block to be expressive, interactive, and recruiter-friendly.
+
+Tasks
+
+ Add pronunciation audio button (click → play).
+
+ Add tooltip: “Hear how to pronounce Sergio Antezana”.
+
+ Create or upload audio file (“Sér-hee-oh An-teh-sah-na”).
+
+ Add small animated sound waves when audio plays.
+
+ Ensure audio is keyboard-activatable (Enter/Space).
+
+ Add accessible text for screen readers (“Pronunciation of Sergio Antezana”).
+
+ Improve alignment of avatar + name + pronouns.
+
+ Reduce CPL for the tagline (max 75–85 characters).
+
+ Tighten the vertical spacing above/below identity block.
+
+ Add fallback icon if avatar fails to load.
+
+ Add micro-interaction: avatar hover scale (2–3%).
+
+ Tune icon weights for dark mode (reduce brightness by 15%).
+
+ Make pronouns (he/him) a standalone meta-block.
+
+ Add id="identity" anchor for future sticky navigation.
+
+PHASE 2 – Resume Meta & Micro-Interactions
+
+Goal: Make the metadata block interactive, intuitive, and recruiter-optimized.
+
+Tasks
+
+ Add copy-to-clipboard for Email.
+
+ Add copy-to-clipboard for LinkedIn.
+
+ Add copy-to-clipboard for GitHub.
+
+ Implement “Copied!” animated feedback (fade out in 1s).
+
+ Add local time display (“Eastern Time (ET) — 10:43 PM”).
+
+ Add visitor’s local offset (“You are +2h ahead”).
+
+ Add animated clock icon (ticks every second).
+
+ Improve spacing between left/right metadata columns.
+
+ Set max-width for metadata card to ~720–760px.
+
+ Add hover state: gentle elevation + subtle border.
+
+ Add SR-only text for every icon (“Email icon”, “Location icon”, etc.).
+
+ Add keyboard focus outline for each metadata row.
+
+ Collapse from 2-column → 1-column at < 900px width.
+
+ Harmonize icon size (20–22px) and baseline alignment.
+
+ Add semantic grouping: role="list" for meta rows.
+
+PHASE 3 – Content Sections (About, Experience, Skills, Education)
+
+Goal: Populate and style all résumé sections using the imported PDF content.
+
+Tasks
+
+ Update About section with final refined content.
+
+ Add Experience section with full job history.
+
+ Add Responsibilities + Achievements per role.
+
+ Add Skills / Tools / Methods section (grouped by type).
+
+ Add Education: school, degree, year.
+
+ Add optional Certifications / Training section.
+
+ Add section dividers matching chanhdai.com style.
+
+ Add consistent headings (OVERLINE → H3 → body).
+
+ Add “Read more” expansion for long descriptions.
+
+ Add scroll anchoring adjustments for fixed header.
+
+ Tune CPL, line-height, paragraph spacing for readability.
+
+ Add smooth scroll for section links.
+
+ Add optional sticky mini-navigation (“About”, “Experience”, “Skills”, “Education”).
+
+ Add viewport-based fade-ins (subtle, accessibility-safe).
+
+ Confirm everything passes AAA contrast in dark/light mode.
+
+Phase 4 – PDF Export & Recruiter Tools
+
+Goal: Provide downloadable résumé formats + built-in recruiter utilities.
+
+Tasks
+
+ Add “Download PDF Version” button.
+
+ Generate PDF using React-PDF or serverless API.
+
+ Create a print-friendly layout (A4/Letter).
+
+ Hide interactions when printing (remove animations/buttons).
+
+ Add “copy entire experience section” button.
+
+ Add “email me this résumé” micro-form.
+
+ Add JSON export of all résumé data.
+
+ Add print CSS to align margins and fonts.
+
+ Add mode-aware PDF export (light/dark).
+
+ Add a recruiter-friendly summary (“Short Summary”, “Long Summary”).
+
+ Add “one-page compressed résumé” toggle.
+
+ Add analytics hook (how many people download the PDF).
+
+ Add optional “Contact via Calendly” scheduling link.
+
+Phase 5 – Nice-to-Haves (Optional Enhancements)
+Tasks
+
+ Add story-based résumé version for leadership positions.
+
+ Add Skills tag cloud variation (visual cluster).
+
+ Add Testimonials or endorsements section.
+
+ Add Work Philosophy block (small paragraph).
+
+ Add “Download full case studies” (auto-email).
+
+ Add Seniority Meter / Role Fit visualization.
+
+ Add “Send résumé to yourself via email” automation.
+
+ Add ML-based résumé tailoring for specific job roles.

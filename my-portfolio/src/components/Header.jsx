@@ -1,3 +1,5 @@
+// Updated: 2025-11-20 · 18:55 ET  // 6:55 PM · Thursday, November 20, 2025
+
 // src/components/Header.jsx
 import * as React from "react";
 import {
@@ -16,13 +18,14 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { Link as RouterLink, useLocation, useNavigate } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
+import { useHeaderNameVisibility } from "../context/HeaderNameContext.jsx";
 
 const PRIMARY_SECTIONS = [
-  { id: "portfolio", label: "Portfolio" }, // special: navigates to /portfolio
-  { id: "about", label: "About" },
-  { id: "resume", label: "Resume" },
-  { id: "contact", label: "Contact" },
+  { id: "portfolio", label: "Portfolio", to: "/portfolio" },
+  { id: "about", label: "About", to: "/#about" },
+  { id: "resume", label: "Resume", to: "/#resume" },
+  { id: "contact", label: "Contact", to: "/#contact" },
 ];
 
 export default function Header({ mode, setMode }) {
@@ -31,8 +34,7 @@ export default function Header({ mode, setMode }) {
 
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-  const location = useLocation();
-  const navigate = useNavigate();
+  const { showName } = useHeaderNameVisibility();
 
   // scroll shadow/blur
   React.useEffect(() => {
@@ -47,7 +49,7 @@ export default function Header({ mode, setMode }) {
 
   const isMenuOpen = Boolean(menuAnchor);
 
-  // clicking the name → scroll to top if already on "/", otherwise let RouterLink navigate
+  // clicking the name → scroll to top if already on "/", otherwise just let RouterLink navigate
   const handleNameClick = (event) => {
     if (window.location.pathname === "/") {
       event.preventDefault();
@@ -56,43 +58,6 @@ export default function Header({ mode, setMode }) {
         behavior: "smooth",
       });
     }
-  };
-
-  const scrollToSection = (id) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
-  const handleNavClick = (item) => (event) => {
-    // Portfolio / Work: go to /portfolio route
-    if (item.id === "portfolio") {
-      event.preventDefault();
-      if (location.pathname !== "/portfolio") {
-        navigate("/portfolio");
-      }
-      return;
-    }
-
-    // About / Resume / Contact → sections on home page
-    event.preventDefault();
-
-    if (location.pathname !== "/") {
-      // Go home first, then scroll once the DOM has the sections
-      navigate("/");
-      // small timeout so React can render the home sections
-      setTimeout(() => {
-        scrollToSection(item.id);
-      }, 100);
-    } else {
-      scrollToSection(item.id);
-    }
-  };
-
-  const handleMobileItemClick = (item) => (event) => {
-    handleNavClick(item)(event);
-    setMenuAnchor(null);
   };
 
   return (
@@ -137,7 +102,6 @@ export default function Header({ mode, setMode }) {
             {PRIMARY_SECTIONS.map((item) => (
               <Button
                 key={item.id}
-                onClick={handleNavClick(item)}
                 color="inherit"
                 size="small"
                 disableRipple
@@ -156,6 +120,8 @@ export default function Header({ mode, setMode }) {
                     outlineOffset: 3,
                   },
                 })}
+                component={RouterLink}
+                to={item.to}
               >
                 {item.label}
               </Button>
@@ -165,43 +131,45 @@ export default function Header({ mode, setMode }) {
           <Box sx={{ flex: 1 }} />
         )}
 
-        {/* ⭐ NAME – ALWAYS VISIBLE ON ALL BREAKPOINTS */}
+        {/* ⭐ NAME – visibility controlled by HeaderNameVisibilityContext */}
         <Box sx={{ px: 2 }}>
-          <Box
-            component={RouterLink}
-            to="/"
-            onClick={handleNameClick}
-            aria-label="Scroll to top"
-            sx={(t) => ({
-              display: "flex",
-              alignItems: "center",
-              padding: t.spacing(0.75, 1.5),
-              borderRadius: "999px",
-              background: "transparent",
-              cursor: "pointer",
-              font: "inherit",
-              textDecoration: "none",
-              textTransform: "uppercase",
-              letterSpacing: "0.16em",
-              color: t.palette.text.primary,
-              outline: "none",
-              "&:hover": {
-                backgroundColor: t.palette.action.hover,
-              },
-              "&:focus-visible": {
-                outline: `2px solid ${t.palette.primary.main}`,
-                outlineOffset: 3,
-              },
-            })}
-          >
-            <Typography
-              variant="subtitle1"
-              component="span"
-              sx={{ fontWeight: 600 }}
+          {showName && (
+            <Box
+              component={RouterLink}
+              to="/"
+              onClick={handleNameClick}
+              aria-label="Scroll to top"
+              sx={(t) => ({
+                display: "flex",
+                alignItems: "center",
+                padding: t.spacing(0.75, 1.5),
+                borderRadius: "999px",
+                background: "transparent",
+                cursor: "pointer",
+                font: "inherit",
+                textDecoration: "none",
+                textTransform: "uppercase",
+                letterSpacing: "0.16em",
+                color: t.palette.text.primary,
+                outline: "none",
+                "&:hover": {
+                  backgroundColor: t.palette.action.hover,
+                },
+                "&:focus-visible": {
+                  outline: `2px solid ${t.palette.primary.main}`,
+                  outlineOffset: 3,
+                },
+              })}
             >
-              Sergio Antezana
-            </Typography>
-          </Box>
+              <Typography
+                variant="subtitle1"
+                component="span"
+                sx={{ fontWeight: 600 }}
+              >
+                Sergio Antezana
+              </Typography>
+            </Box>
+          )}
         </Box>
 
         {/* RIGHT SIDE */}
@@ -246,7 +214,12 @@ export default function Header({ mode, setMode }) {
           transformOrigin={{ vertical: "top", horizontal: "right" }}
         >
           {PRIMARY_SECTIONS.map((item) => (
-            <MenuItem key={item.id} onClick={handleMobileItemClick(item)}>
+            <MenuItem
+              key={item.id}
+              component={RouterLink}
+              to={item.to}
+              onClick={() => setMenuAnchor(null)}
+            >
               <Typography
                 textTransform="uppercase"
                 sx={{ letterSpacing: "0.12em", fontSize: "0.8rem" }}
@@ -255,6 +228,18 @@ export default function Header({ mode, setMode }) {
               </Typography>
             </MenuItem>
           ))}
+          <MenuItem
+            component={RouterLink}
+            to="/portfolio"
+            onClick={() => setMenuAnchor(null)}
+          >
+            <Typography
+              textTransform="uppercase"
+              sx={{ letterSpacing: "0.12em", fontSize: "0.8rem" }}
+            >
+              Portfolio
+            </Typography>
+          </MenuItem>
         </Menu>
       )}
     </AppBar>

@@ -1,11 +1,14 @@
 // src/components/LayoutShell.jsx
+// Wraps the app with HeaderNameVisibilityProvider + Header + <main>.
+
 import * as React from "react";
 import { Box, Link as MuiLink } from "@mui/material";
 import Header from "./Header.jsx";
+import { HeaderNameVisibilityProvider } from "../context/HeaderNameContext.jsx";
 
-function LayoutShell({ mode, setMode, children }) {
+export default function LayoutShell({ mode, setMode, children }) {
   return (
-    <>
+    <HeaderNameVisibilityProvider>
       {/* Skip link for keyboard users */}
       <MuiLink
         href="#main"
@@ -33,13 +36,11 @@ function LayoutShell({ mode, setMode, children }) {
         component="main"
         id="main"
         sx={{
-          pt: { xs: 8, sm: 2 }, // pushes content below fixed header
+          pt: { xs: 8, sm: 10 }, // pushes content below fixed header
         }}
       >
         {children}
       </Box>
-    </>
+    </HeaderNameVisibilityProvider>
   );
 }
-
-export default LayoutShell;
