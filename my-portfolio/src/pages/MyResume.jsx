@@ -17,6 +17,14 @@ import {
   Tooltip,
 } from "@mui/material";
 
+const SECTION_ITEMS = [
+  { id: "summary", label: "Summary" },
+  { id: "skills", label: "Skills" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "education", label: "Education" },
+];
+
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import FlagIcon from "@mui/icons-material/Flag";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -31,9 +39,81 @@ import { useHeaderNameVisibility } from "../context/HeaderNameContext.jsx";
 
 const NAME_AUDIO_SRC = ""; // Optional: set to /audio/sergio-antezana-name.mp3 when available
 
+function computeTimeDiff() {
+  try {
+    const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    const targetTZ = "America/New_York";
+
+    const now = new Date();
+    const userOffset = new Intl.DateTimeFormat("en-US", { timeZone: userTZ, hour: "2-digit", hour12: false }).format(now);
+    const targetOffset = new Intl.DateTimeFormat("en-US", { timeZone: targetTZ, hour: "2-digit", hour12: false }).format(now);
+
+    const userHour = parseInt(userOffset, 10);
+    const targetHour = parseInt(targetOffset, 10);
+
+    let diff = targetHour - userHour;
+    if (diff > 12) diff -= 24;
+    if (diff < -12) diff += 24;
+
+    if (diff === 0) return "Same time";
+    if (diff > 0) return `${diff}h ahead`;
+    return `${Math.abs(diff)}h behind`;
+  } catch {
+    return "";
+  }
+}
+
 export default function MyResumePage() {
   const { setShowName } = useHeaderNameVisibility();
   const heroRef = React.useRef(null);
+  const [activeSection, setActiveSection] = React.useState("summary");
+  const [localTime, setLocalTime] = React.useState("");
+
+  // Local time indicator (updates every minute)
+  React.useEffect(() => {
+    const format = () =>
+      new Intl.DateTimeFormat(undefined, {
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZoneName: "short",
+      }).format(new Date());
+
+    setLocalTime(format());
+    const id = window.setInterval(() => setLocalTime(format()), 60_000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  // Track which section is active while scrolling
+  React.useEffect(() => {
+    const handleScroll = () => {
+      let currentId = SECTION_ITEMS[0]?.id;
+
+      SECTION_ITEMS.forEach(({ id }) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const rect = el.getBoundingClientRect();
+        // 120px from top roughly under your header
+        if (rect.top <= 120 && rect.bottom >= 120) {
+          currentId = id;
+        }
+      });
+
+      setActiveSection(currentId);
+    };
+
+    handleScroll(); // set initial
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleNavClick = React.useCallback((id) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const offset = 80; // header height + breathing room
+    const top = window.scrollY + el.getBoundingClientRect().top - offset;
+
+    window.scrollTo({ top, behavior: "smooth" });
+  }, []);
 
   React.useEffect(() => {
     const target = heroRef.current;
@@ -110,7 +190,6 @@ export default function MyResumePage() {
                     color="text.secondary"
                     sx={{ mt: 1, maxWidth: "40rem" }}
                   >
-                    {/* TODO: refine this summary to match your resume language */}
                     Senior Product Designer & UX Leader | Design Systems • Accessibility • AI-UX | Led teams designing for 50+ developers & 1000s of users | Expert in transforming complex government & enterprise platforms into intuitive products.
                   </Typography>
                 </Box>
@@ -154,7 +233,8 @@ export default function MyResumePage() {
 
                     <MetaRow
                       icon={<AccessTimeIcon fontSize="small" />}
-                      primary="Eastern Time (ET)"
+                      primary={localTime}
+                      secondary={`${computeTimeDiff()} — Eastern Time (ET)`}
                     />
                   </Stack>
                 </Grid>
@@ -189,18 +269,70 @@ export default function MyResumePage() {
               </Grid>
             </Box>
 
-            {/* ABOUT SECTION */}
-            <SectionBlock id="summary" label="Summary">
-              <Typography
-                variant="body1"
-                color="text.secondary"
+            {/* Sticky section nav */}
+            <Box
+              component="nav"
+              aria-label="Resume sections"
+              sx={(t) => ({
+                position: { xs: "static", md: "sticky" },
+                top: { md: 88 },
+                zIndex: 1,
+                mb: { xs: 2, md: 3 },
+                pb: 1,
+                borderBottom: {
+                  xs: `1px solid ${t.palette.divider}`,
+                  md: "none",
+                },
+                backgroundColor: t.palette.background.paper,
+                boxShadow: t.shadows[2],
+                borderRadius: 1,
+              })}
+            >
+              <Stack
+                direction="row"
+                justifyContent="center"
+                spacing={1}
+                sx={{
+                  overflowX: "auto",
+                  py: 0.5,
+                }}
               >
+                {SECTION_ITEMS.map(({ id, label }) => {
+                  const isActive = activeSection === id;
+                  return (
+                    <Box
+                      key={id}
+                      component="button"
+                      type="button"
+                      onClick={() => handleNavClick(id)}
+                      aria-current={isActive ? "true" : undefined}
+                      style={{
+                        border: "none",
+                        background: "transparent",
+                        padding: "4px 12px",
+                        borderRadius: 999,
+                        fontSize: "0.7rem",
+                        textTransform: "uppercase",
+                        letterSpacing: "0.14em",
+                        cursor: "pointer",
+                        opacity: isActive ? 1 : 0.6,
+                        fontWeight: isActive ? 600 : 400,
+                        outlineOffset: 2,
+                      }}
+                    >
+                      {label}
+                    </Box>
+                  );
+                })}
+              </Stack>
+            </Box>
+
+            {/* SUMMARY SECTION */}
+            <SectionBlock id="summary" label="Summary">
+              <Typography variant="body1" color="text.secondary">
                 Senior Product & UX Designer with 15+ years of experience designing data-driven, accessible, and secure enterprise platforms. Expert in transforming complex systems into intuitive, scalable, and human-centered products.
               </Typography>
-              <Typography
-                variant="body1"
-                color="text.secondary"
-              >
+              <Typography variant="body1" color="text.secondary">
                 Known for leading cross-functional design initiatives, establishing design systems, and advancing accessibility standards. Experienced in AI-assisted workflows and design system governance that improve usability and accelerate innovation.
               </Typography>
             </SectionBlock>
@@ -210,35 +342,27 @@ export default function MyResumePage() {
               <Box component="ul" sx={{ pl: 2.5, m: 0, maxWidth: "70ch" }}>
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>Design Leadership &amp; Strategy:</strong> Vision &amp;
-                    Roadmapping · UX Governance · Mentorship · Cross-Functional Alignment ·
-                    Accessibility Advocacy
+                    <strong>Design Leadership &amp; Strategy:</strong> Vision &amp; Roadmapping · UX Governance · Mentorship · Cross-Functional Alignment · Accessibility Advocacy
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>Design Systems &amp; Accessibility:</strong> Figma · Material
-                    Design · MUI · Design Tokens · Component Lifecycle Management · WCAG
-                    2.2 / Section 508 · Trusted Tester Certified
+                    <strong>Design Systems &amp; Accessibility:</strong> Figma · Material Design · MUI · Design Tokens · Component Lifecycle Management · WCAG 2.2 / Section 508 · Trusted Tester Certified
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>AI-Enhanced Design Workflow:</strong> ChatGPT · Gemini · Figma
-                    AI · Replit · Generative AI for UX Writing &amp; Ideation · Low-Code /
-                    No-Code Prototyping
+                    <strong>AI-Enhanced Design Workflow:</strong> ChatGPT · Gemini · Figma AI · Replit · Generative AI for UX Writing &amp; Ideation · Low-Code / No-Code Prototyping
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>Technical Collaboration:</strong> HTML/CSS/JS (Responsive
-                    Prototyping) · Design Tokens Integration · Jira · Confluence
+                    <strong>Technical Collaboration:</strong> HTML/CSS/JS (Responsive Prototyping) · Design Tokens Integration · Jira · Confluence
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>Research &amp; UXOps:</strong> Information Architecture ·
-                    Usability Testing · Human-AI Interaction · Agile UX · UXOps Frameworks
+                    <strong>Research &amp; UXOps:</strong> Information Architecture · Usability Testing · Human-AI Interaction · Agile UX · UXOps Frameworks
                   </Typography>
                 </li>
               </Box>
@@ -262,109 +386,68 @@ export default function MyResumePage() {
                 color="text.secondary"
                 sx={{ mt: 1.5, maxWidth: "70ch" }}
               >
-                Directed UX strategy and product design for mission-critical enterprise
-                systems across justice, defense, and intelligence sectors. Built and
-                scaled UX teams, design systems, and accessibility frameworks that
-                improved delivery speed and user experience across secure environments.
+                Directed UX strategy and product design for mission-critical enterprise systems across justice, defense, and intelligence sectors. Built and scaled UX teams, design systems, and accessibility frameworks that improved delivery speed and user experience across secure environments.
               </Typography>
 
-              <Typography
-                variant="subtitle2"
-                sx={{ mt: 3, mb: 1 }}
-              >
+              <Typography variant="subtitle2" sx={{ mt: 3, mb: 1 }}>
                 Key achievements
               </Typography>
 
               <Box component="ul" sx={{ pl: 2.5, m: 0, maxWidth: "70ch" }}>
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>Enterprise UX Leadership:</strong> Directed end-to-end UX for
-                    multiple enterprise-scale systems, introducing self-service design
-                    frameworks that streamlined development handoffs and improved delivery
-                    velocity.
+                    <strong>Enterprise UX Leadership:</strong> Directed end-to-end UX for multiple enterprise-scale systems, introducing self-service design frameworks that streamlined development handoffs and improved delivery velocity.
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>Design Systems at Scale:</strong> Created reusable UI libraries
-                    adopted across more than a dozen enterprise applications, improving
-                    consistency, reducing UI rework, and accelerating time to delivery.
+                    <strong>Design Systems at Scale:</strong> Created reusable UI libraries adopted across more than a dozen enterprise applications, improving consistency, reducing UI rework, and accelerating time to delivery.
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>Accessibility Excellence:</strong> Championed accessibility
-                    compliance (WCAG 2.2 / Section 508), building agency-wide accessibility
-                    frameworks and training programs that became organizational best
-                    practices.
+                    <strong>Accessibility Excellence:</strong> Championed accessibility compliance (WCAG 2.2 / Section 508), building agency-wide accessibility frameworks and training programs that became organizational best practices.
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>Cross-Functional Collaboration:</strong> Partnered with
-                    engineering and product teams to embed iterative usability testing
-                    within agile cycles, increasing user alignment and minimizing
-                    post-release rework.
+                    <strong>Cross-Functional Collaboration:</strong> Partnered with engineering and product teams to embed iterative usability testing within agile cycles, increasing user alignment and minimizing post-release rework.
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>Mentorship &amp; UX Advocacy:</strong> Coached emerging
-                    designers and PMs in design thinking and accessibility standards,
-                    improving overall UX maturity and delivery quality.
+                    <strong>Mentorship &amp; UX Advocacy:</strong> Coached emerging designers and PMs in design thinking and accessibility standards, improving overall UX maturity and delivery quality.
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>AI &amp; Automation:</strong> Pioneered AI-assisted design and
-                    prototyping workflows using ChatGPT, Gemini, and Replit to accelerate
-                    ideation, improve design fidelity, and reduce prototyping overhead.
+                    <strong>AI &amp; Automation:</strong> Pioneered AI-assisted design and prototyping workflows using ChatGPT, Gemini, and Replit to accelerate ideation, improve design fidelity, and reduce prototyping overhead.
                   </Typography>
                 </li>
               </Box>
             </SectionBlock>
+
             {/* PROJECTS HIGHLIGHTS SECTION */}
             <SectionBlock id="projects" label="Projects highlights">
               <Box component="ul" sx={{ pl: 2.5, m: 0, maxWidth: "70ch" }}>
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>Enterprise Workflow Platform (2023–2025):</strong> Led UX
-                    design for low-code platform enabling form, workflow, and dashboard
-                    creation. Significantly reduced reliance on development teams by
-                    introducing self-service end-user workflows. Improved iteration speed
-                    and reduced developer handoffs through low-code UX architecture.
-                    Observed measurable efficiency gains across product teams after design
-                    system adoption.
+                    <strong>Enterprise Workflow Platform (2023–2025):</strong> Led UX design for low-code platform enabling form, workflow, and dashboard creation. Significantly reduced reliance on development teams by introducing self-service end-user workflows. Improved iteration speed and reduced developer handoffs through low-code UX architecture. Observed measurable efficiency gains across product teams after design system adoption.
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>Accessibility Modernization Program (2016–2019):</strong>{" "}
-                    Modernized 12 DOJ web applications for Section 508/WCAG compliance;
-                    established reusable component library. Drove measurable improvements
-                    in product adoption following usability testing and UX refinements.
-                    Improved adoption rates and reduced support requests based on
-                    post-launch feedback. Contributed to demonstrable improvements in usage
-                    and satisfaction across user groups.
+                    <strong>Accessibility Modernization Program (2016–2019):</strong> Modernized 12 DOJ web applications for Section 508/WCAG compliance; established reusable component library. Drove measurable improvements in product adoption following usability testing and UX refinements. Improved adoption rates and reduced support requests based on post-launch feedback. Contributed to demonstrable improvements in usage and satisfaction across user groups.
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>Multiple Intelligence Community Systems (2014–2018):</strong>{" "}
-                    Designed and implemented reusable UI components adopted across multiple
-                    enterprise applications to improve consistency and efficiency.
-                    Collaborated with 10+ cross-functional teams to define UX governance
-                    standards across the organization. Led accessibility compliance
-                    initiatives that became the reference model for other programs.
+                    <strong>Multiple Intelligence Community Systems (2014–2018):</strong> Designed and implemented reusable UI components adopted across multiple enterprise applications to improve consistency and efficiency. Collaborated with 10+ cross-functional teams to define UX governance standards across the organization. Led accessibility compliance initiatives that became the reference model for other programs.
                   </Typography>
                 </li>
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>AI-Driven Prototyping Pilot (2023):</strong> Internal project,
-                    implemented Figma AI and ChatGPT-assisted ideation workflows; proven to
-                    significantly reduce design cycle time. Validated how generative tools
-                    could reduce design iteration cycles and improve stakeholder engagement
-                    during concept reviews.
+                    <strong>AI-Driven Prototyping Pilot (2023):</strong> Internal project, implemented Figma AI and ChatGPT-assisted ideation workflows; proven to significantly reduce design cycle time. Validated how generative tools could reduce design iteration cycles and improve stakeholder engagement during concept reviews.
                   </Typography>
                 </li>
               </Box>
@@ -395,8 +478,7 @@ export default function MyResumePage() {
                 </li>
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>Trusted Tester</strong> – Office of Accessible Systems &amp;
-                    Technology (DHS)
+                    <strong>Trusted Tester</strong> – Office of Accessible Systems &amp; Technology (DHS)
                   </Typography>
                 </li>
                 <li>
@@ -441,7 +523,6 @@ export default function MyResumePage() {
                 </li>
               </Box>
             </SectionBlock>
-
 
             {/* You can add a Contact section later if you want it separate from the meta block */}
           </Stack>
@@ -524,7 +605,7 @@ function MetaRow({ icon, primary, secondary, href }) {
               underline: "hover",
               color: "inherit",
               target: href.startsWith("http") ? "_blank" : undefined,
-              rel: href.startsWith("http") ? "noreferrer" : undefined,
+              rel: href.startsWith("http") ? "noopener noreferrer" : undefined,
             }
             : {})}
           sx={{ display: "block", fontWeight: 500, fontSize: "0.9rem" }}
@@ -548,29 +629,64 @@ function MetaRow({ icon, primary, secondary, href }) {
 function SectionBlock({ id, label, children }) {
   const headingId = `${id}-heading`;
 
+  const handleCopyLink = () => {
+    try {
+      const url = `${window.location.origin}${window.location.pathname}#${id}`;
+      navigator.clipboard?.writeText(url);
+    } catch {
+      // fail silently if clipboard is unavailable
+    }
+  };
+
   return (
     <Box
       id={id}
       component="section"
       aria-labelledby={headingId}
-      sx={{ scrollMarginTop: 96 }} // helps when jumping via anchors/header
+      sx={{ scrollMarginTop: { xs: 96, md: 120 } }}
     >
-      <Typography
-        id={headingId}
-        variant="overline"
-        component="h2"
+      <Box
         sx={{
-          textTransform: "uppercase",
-          letterSpacing: "0.18em",
-          mb: 1,
-          opacity: 0.7,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 1,
         }}
       >
-        {label}
-      </Typography>
+        <Typography
+          id={headingId}
+          variant="overline"
+          component="h2"
+          sx={{
+            textTransform: "uppercase",
+            letterSpacing: "0.18em",
+            mb: 1,
+            opacity: 0.7,
+          }}
+        >
+          {label}
+        </Typography>
+
+        <MuiLink
+          component="button"
+          type="button"
+          onClick={handleCopyLink}
+          underline="none"
+          sx={{
+            mb: 1,
+            fontSize: 12,
+            opacity: 0.6,
+            fontFamily: "monospace",
+            "&:hover": { opacity: 1 },
+          }}
+          aria-label={`Copy link to ${label} section`}
+        >
+          §
+        </MuiLink>
+      </Box>
+
       <Divider sx={{ mb: 2 }} />
       {children}
     </Box>
   );
 }
-
