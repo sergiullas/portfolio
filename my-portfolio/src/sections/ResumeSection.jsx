@@ -5,6 +5,8 @@ import * as React from "react";
 import { Stack, Typography, Button } from "@mui/material";
 import Section from "../components/Section";
 
+import { Link as RouterLink } from "react-router-dom";
+
 export default function ResumeSection() {
   return (
     <Section id="resume" title="Resume" variant="white" layout="split">
@@ -17,7 +19,13 @@ export default function ResumeSection() {
         </Typography>
 
         <Stack direction="row" spacing={2}>
-          <Button variant="contained">View my resume</Button>
+          <Button
+            variant="contained"
+            component={RouterLink}
+            to="/resume"
+            aria-label="Open full resume page"
+          >
+            View my resume</Button>
           <Button variant="outlined">Download PDF version</Button>
         </Stack>
       </Stack>

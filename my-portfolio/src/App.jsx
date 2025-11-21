@@ -4,6 +4,7 @@ import { Routes, Route, useLocation } from "react-router-dom";
 
 import PortfolioPage from "./pages/Portfolio";
 import LayoutShell from "./components/LayoutShell.jsx";
+import MyResumePage from "./pages/MyResume.jsx";
 
 // Phase 2 section wrappers
 import HeroSection from "./sections/HeroSection";
@@ -37,6 +38,7 @@ export default function App({ mode, setMode }) {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
+        <Route path="/resume" element={<MyResumePage />} />
       </Routes>
     </LayoutShell>
   );
