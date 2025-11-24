@@ -159,14 +159,27 @@ export default function MyResumePage() {
             <Box id="resume-hero" ref={heroRef}>
               <Typography
                 variant="overline"
-                sx={{
+                sx={(t) => ({
                   textTransform: "uppercase",
                   letterSpacing: "0.18em",
-                  opacity: 0.7,
-                }}
+                  opacity: 0.85,
+                  color: t.palette.primary.main,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 0.75,
+                  "&::before": {
+                    content: '""',
+                    display: "inline-block",
+                    width: 8,
+                    height: 8,
+                    borderRadius: "999px",
+                    backgroundColor: t.palette.primary.main,
+                  },
+                })}
               >
                 Product & UX Design
               </Typography>
+
 
               <Box
                 sx={{
@@ -403,85 +416,331 @@ export default function MyResumePage() {
             {/* EXPERIENCE SECTION */}
             <SectionBlock id="experience" label="Experience">
               <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-                Booz Allen Hamilton — Senior Lead Technologist / UX Strategist
+                Booz Allen Hamilton — Washington, DC
               </Typography>
               <Typography
                 variant="body2"
                 color="text.secondary"
                 sx={{ mt: 0.5 }}
               >
-                Washington, DC | 2009 — 2025
+                2009 – Present
               </Typography>
 
-              <Typography
-                variant="body2"
-                color="text.secondary"
-                sx={{ mt: 1.5, maxWidth: "70ch" }}
-              >
-                Directed UX strategy and product design for mission-critical enterprise systems across justice, defense, and intelligence sectors. Built and scaled UX teams, design systems, and accessibility frameworks that improved delivery speed and user experience across secure environments.
-              </Typography>
+              {/* Era 1 — Foundations */}
+              <Box sx={{ mt: 2.5 }}>
+                <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
+                  Era 1 — Foundations (Web &amp; Early UX)
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mt: 0.5 }}
+                >
+                  <strong>Web Designer → Usability Specialist</strong>
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mt: 1, maxWidth: "70ch" }}
+                >
+                  Supported early federal systems as a designer focused on clean
+                  UI, usability, and basic UX practices. Learned how to work
+                  closely with engineering teams and deliver practical updates
+                  to mission-critical applications.
+                </Typography>
+                <Box
+                  component="ul"
+                  sx={{ pl: 2.5, m: 0, mt: 1, maxWidth: "70ch" }}
+                >
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Built interfaces and visual components for DHS and ODNI
+                      systems.
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Ran basic usability tests and documented improvements.
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Improved layouts, navigation, and early workflow patterns.
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Helped teams adopt more structured, user-centered
+                      thinking.
+                    </Typography>
+                  </li>
+                </Box>
+              </Box>
 
-              <Typography variant="subtitle2" sx={{ mt: 3, mb: 1 }}>
-                Key achievements
-              </Typography>
+              {/* Era 2 — Human Factors */}
+              <Box sx={{ mt: 3 }}>
+                <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
+                  Era 2 — Human Factors &amp; Applied Research
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mt: 0.5 }}
+                >
+                  <strong>
+                    Human Factors Specialist → Human Factors Scientist, Lead
+                  </strong>
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mt: 1, maxWidth: "70ch" }}
+                >
+                  Shifted into deeper UX research and human factors work,
+                  evaluating complex intelligence and defense systems. Brought a
+                  structured, analytical approach to improving high-risk
+                  interactions and system behavior.
+                </Typography>
+                <Box
+                  component="ul"
+                  sx={{ pl: 2.5, m: 0, mt: 1, maxWidth: "70ch" }}
+                >
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Conducted usability evaluations and human performance
+                      studies.
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Turned research insights into actionable UI
+                      recommendations.
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Improved workflows for intelligence and defense
+                      operations.
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Led human factors activities across multi-agency
+                      modernization efforts.
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Helped reduce cognitive load and error risk in secure
+                      environments.
+                    </Typography>
+                  </li>
+                </Box>
+              </Box>
 
-              <Box component="ul" sx={{ pl: 2.5, m: 0, maxWidth: "70ch" }}>
-                <li>
-                  <Typography variant="body2" color="text.secondary">
-                    <strong>Enterprise UX Leadership:</strong> Directed end-to-end UX for multiple enterprise-scale systems, introducing self-service design frameworks that streamlined development handoffs and improved delivery velocity.
-                  </Typography>
-                </li>
-                <li>
-                  <Typography variant="body2" color="text.secondary">
-                    <strong>Design Systems at Scale:</strong> Created reusable UI libraries adopted across more than a dozen enterprise applications, improving consistency, reducing UI rework, and accelerating time to delivery.
-                  </Typography>
-                </li>
-                <li>
-                  <Typography variant="body2" color="text.secondary">
-                    <strong>Accessibility Excellence:</strong> Championed accessibility compliance (WCAG 2.2 / Section 508), building agency-wide accessibility frameworks and training programs that became organizational best practices.
-                  </Typography>
-                </li>
-                <li>
-                  <Typography variant="body2" color="text.secondary">
-                    <strong>Cross-Functional Collaboration:</strong> Partnered with engineering and product teams to embed iterative usability testing within agile cycles, increasing user alignment and minimizing post-release rework.
-                  </Typography>
-                </li>
-                <li>
-                  <Typography variant="body2" color="text.secondary">
-                    <strong>Mentorship &amp; UX Advocacy:</strong> Coached emerging designers and PMs in design thinking and accessibility standards, improving overall UX maturity and delivery quality.
-                  </Typography>
-                </li>
-                <li>
-                  <Typography variant="body2" color="text.secondary">
-                    <strong>AI &amp; Automation:</strong> Pioneered AI-assisted design and prototyping workflows using ChatGPT, Gemini, and Replit to accelerate ideation, improve design fidelity, and reduce prototyping overhead.
-                  </Typography>
-                </li>
+              {/* Era 3 — UX Design & Execution */}
+              <Box sx={{ mt: 3 }}>
+                <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
+                  Era 3 — UX Design &amp; Product Execution
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mt: 0.5 }}
+                >
+                  <strong>UX Designer → UX Designer, Lead</strong>
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mt: 1, maxWidth: "70ch" }}
+                >
+                  Moved from research into hands-on product design, owning full
+                  UX execution for high-impact federal platforms. Focused on
+                  simplifying complexity, mapping workflows, and partnering with
+                  engineers to deliver scalable interface solutions.
+                </Typography>
+                <Box
+                  component="ul"
+                  sx={{ pl: 2.5, m: 0, mt: 1, maxWidth: "70ch" }}
+                >
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Designed complex, data-heavy interfaces for large federal
+                      systems.
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Worked across multiple engineering teams to ensure
+                      feasibility and alignment.
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Created early patterns that reduced UI rework across
+                      products.
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Clarified ambiguous requirements and turned them into
+                      practical designs.
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Mentored designers and helped raise UX standards across
+                      projects.
+                    </Typography>
+                  </li>
+                </Box>
+              </Box>
+
+              {/* Era 4 — Strategy & Systems */}
+              <Box sx={{ mt: 3 }}>
+                <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
+                  Era 4 — UX Strategy &amp; Systems Leadership
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mt: 0.5 }}
+                >
+                  <strong>UX Strategist, Lead</strong>
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="text.secondary"
+                  sx={{ mt: 1, maxWidth: "70ch" }}
+                >
+                  Shifted into strategy, systems thinking, and cross-functional
+                  leadership. Became the bridge between product intent,
+                  engineering constraints, and UX execution. Focused on
+                  frameworks, clarity, and scalable patterns.
+                </Typography>
+                <Box
+                  component="ul"
+                  sx={{ pl: 2.5, m: 0, mt: 1, maxWidth: "70ch" }}
+                >
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Defined UX frameworks used across major FBI and DOJ
+                      programs.
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Brought structure to ambiguous, multi-team environments.
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Translated business and mission needs into clear design
+                      direction.
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Partnered closely with engineering to shape system
+                      behavior and patterns.
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Provided guidance and mentorship to designers across
+                      multiple programs.
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      Led system-level UX efforts that improved consistency and
+                      delivery speed.
+                    </Typography>
+                  </li>
+                </Box>
+              </Box>
+
+              {/* Key Federal Programs */}
+              <Box sx={{ mt: 3 }}>
+                <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
+                  Key federal programs (selected)
+                </Typography>
+                <Box
+                  component="ul"
+                  sx={{ pl: 2.5, m: 0, mt: 1, maxWidth: "70ch" }}
+                >
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>Federal Bureau of Investigation (FBI):</strong>{" "}
+                      Chameleon, DELTA, NGNCP, EPAS
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>Department of Justice (DOJ):</strong> USTP
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>Defense Intelligence Agency (DIA):</strong> JIDO,
+                      OSCAR, COUGAR, Black Forest, CRATE
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>Department of Homeland Security (DHS):</strong>{" "}
+                      SEVIS II, ICE CMM, RAMP
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>U.S. EUCOM / Joint Analysis Center:</strong> IPAS
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>Director of National Intelligence (ODNI):</strong>{" "}
+                      DRAMRS
+                    </Typography>
+                  </li>
+                  <li>
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>Food and Drug Administration (FDA):</strong> CDRH
+                    </Typography>
+                  </li>
+                </Box>
               </Box>
             </SectionBlock>
 
             {/* PROJECTS HIGHLIGHTS SECTION */}
             <SectionBlock id="projects" label="Projects highlights">
               <Box component="ul" sx={{ pl: 2.5, m: 0, maxWidth: "70ch" }}>
+
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>Enterprise Workflow Platform (2023–2025):</strong> Led UX design for low-code platform enabling form, workflow, and dashboard creation. Significantly reduced reliance on development teams by introducing self-service end-user workflows. Improved iteration speed and reduced developer handoffs through low-code UX architecture. Observed measurable efficiency gains across product teams after design system adoption.
+                    <strong>Enterprise Workflow Platform (2023–2025):</strong> Designed the UX for a low-code platform used to build forms, workflows, and dashboards. Focused on clarity, reusable patterns, and reducing the amount of custom work engineering teams had to maintain. Helped teams move faster by giving them simple structures to start from.
                   </Typography>
                 </li>
+
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>Accessibility Modernization Program (2016–2019):</strong> Modernized 12 DOJ web applications for Section 508/WCAG compliance; established reusable component library. Drove measurable improvements in product adoption following usability testing and UX refinements. Improved adoption rates and reduced support requests based on post-launch feedback. Contributed to demonstrable improvements in usage and satisfaction across user groups.
+                    <strong>Accessibility Modernization Program (2016–2019):</strong> Improved usability and accessibility across 12 DOJ applications. Created shared components that teams could reuse instead of rebuilding from scratch. Supported testing and refinement work that reduced support issues and made the products easier to use.
                   </Typography>
                 </li>
+
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>Multiple Intelligence Community Systems (2014–2018):</strong> Designed and implemented reusable UI components adopted across multiple enterprise applications to improve consistency and efficiency. Collaborated with 10+ cross-functional teams to define UX governance standards across the organization. Led accessibility compliance initiatives that became the reference model for other programs.
+                    <strong>Intelligence Community Systems (2014–2018):</strong> Designed UI patterns and workflows for several intelligence and defense applications. Worked with multiple teams to bring consistency to large systems and improve how information was presented to analysts. Helped introduce accessibility and UX standards that other groups later adopted.
                   </Typography>
                 </li>
+
                 <li>
                   <Typography variant="body2" color="text.secondary">
-                    <strong>AI-Driven Prototyping Pilot (2023):</strong> Internal project, implemented Figma AI and ChatGPT-assisted ideation workflows; proven to significantly reduce design cycle time. Validated how generative tools could reduce design iteration cycles and improve stakeholder engagement during concept reviews.
+                    <strong>AI-Driven Prototyping Pilot (2023):</strong> Explored how tools like Figma AI and ChatGPT could speed up early design work. Proved out approaches that reduced manual prototyping and helped teams get ideas in front of stakeholders earlier.
                   </Typography>
                 </li>
+
               </Box>
             </SectionBlock>
 
@@ -623,11 +882,15 @@ function MetaRow({ icon, primary, secondary, href }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          border: `1px solid ${t.palette.divider}`,
+          backgroundColor:
+            t.palette.mode === "dark"
+              ? t.palette.grey[900]
+              : t.palette.action.hover,
         })}
       >
         {icon}
       </Box>
+
 
       <Box>
         <Wrapper
@@ -698,6 +961,7 @@ function SectionBlock({ id, label, children }) {
         >
           {label}
         </Typography>
+
 
         <MuiLink
           component="button"
