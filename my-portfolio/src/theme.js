@@ -5,18 +5,27 @@ export const getAppTheme = (mode = "light") =>
   createTheme({
     palette: {
       mode,
+
+      // 🌟 Updated Ox-career Teal palette
       primary: {
-        // ⭐ Required for visible focus ring
-        main: mode === "light" ? "#1a73e8" : "#8AB4FF",
+        main: mode === "light" ? "#4db6ac" : "#64ffda",  // Teal300 / Accent Teal for dark
+        light: mode === "light" ? "#82e9de" : "#9effff",
+        dark: mode === "light" ? "#00867d" : "#00b3a6",
       },
+
+      secondary: {
+        main: "#64ffda", // Teal accent (A200 vibe)
+      },
+
       background: {
         default: mode === "light" ? "#FFFFFF" : "#191917",
         paper: mode === "light" ? "#FFFFFF" : "#2C2C2C",
         soft: mode === "light" ? "#F3F3F3" : "#111111",
 
-        // ⭐ Add this — dedicated dark background for dark sections
+        // Dedicated “dark section” background
         dark: mode === "light" ? "#111111" : "#000000",
       },
+
       text: {
         primary: mode === "light" ? "#191917" : "#FFFFFF",
         secondary: mode === "light" ? "#555555" : "#C7C7C7",
@@ -63,7 +72,7 @@ export const getAppTheme = (mode = "light") =>
     spacing: 8,
 
     components: {
-      // ⭐ Global WCAG-compliant focus ring
+      // WCAG Focus Ring
       MuiButtonBase: {
         styleOverrides: {
           root: ({ theme }) => ({
@@ -74,16 +83,17 @@ export const getAppTheme = (mode = "light") =>
           }),
         },
       },
+
       MuiTypography: {
         styleOverrides: {
           root: ({ theme }) => ({
-            // Apply high contrast text only in dark sections
             '[data-section-variant="dark"] &': {
-              color: theme.palette.grey[200], // or theme.palette.text.primary
+              color: theme.palette.grey[200],
             },
           }),
         },
       },
+
       MuiContainer: {
         defaultProps: {
           maxWidth: "lg",

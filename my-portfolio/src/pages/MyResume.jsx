@@ -190,7 +190,9 @@ export default function MyResumePage() {
                     color="text.secondary"
                     sx={{ mt: 1, maxWidth: "40rem" }}
                   >
-                    Senior Product Designer & UX Leader | Design Systems • Accessibility • AI-UX | Led teams designing for 50+ developers & 1000s of users | Expert in transforming complex government & enterprise platforms into intuitive products.
+                    Product Designer · Systems Thinker · UX Strategist <br />
+
+                    I help teams turn business goals into clear, usable product systems. I work closely with engineering and product partners to translate ideas into scalable UX patterns and practical solutions. I bring structure to complex projects and help teams move from confusion to clarity.
                   </Typography>
                 </Box>
               </Box>
@@ -234,7 +236,11 @@ export default function MyResumePage() {
                     <MetaRow
                       icon={<AccessTimeIcon fontSize="small" />}
                       primary={localTime}
-                      secondary={`${computeTimeDiff()} — Eastern Time (ET)`}
+                      secondary={
+                        computeTimeDiff() === "Same time"
+                          ? `Same time — Eastern Time (ET)`
+                          : `${computeTimeDiff()} — Eastern Time (ET)`
+                      }
                     />
                   </Stack>
                 </Grid>
@@ -274,6 +280,7 @@ export default function MyResumePage() {
               component="nav"
               aria-label="Resume sections"
               sx={(t) => ({
+                display: { xs: "none", sm: "block" },   // 👈 hide on phones, show on tablet+
                 position: { xs: "static", md: "sticky" },
                 top: { md: 88 },
                 zIndex: 1,
@@ -283,11 +290,15 @@ export default function MyResumePage() {
                   xs: `1px solid ${t.palette.divider}`,
                   md: "none",
                 },
-                backgroundColor: t.palette.background.paper,
-                boxShadow: t.shadows[2],
+                backgroundColor:
+                  t.palette.mode === "dark"
+                    ? t.palette.grey[900]
+                    : t.palette.background.paper,
+                boxShadow: t.palette.mode === "dark" ? t.shadows[3] : t.shadows[1],
                 borderRadius: 1,
               })}
             >
+
               <Stack
                 direction="row"
                 justifyContent="center"
@@ -306,18 +317,39 @@ export default function MyResumePage() {
                       type="button"
                       onClick={() => handleNavClick(id)}
                       aria-current={isActive ? "true" : undefined}
-                      style={{
-                        border: "none",
-                        background: "transparent",
-                        padding: "4px 12px",
-                        borderRadius: 999,
-                        fontSize: "0.7rem",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.14em",
-                        cursor: "pointer",
-                        opacity: isActive ? 1 : 0.6,
-                        fontWeight: isActive ? 600 : 400,
-                        outlineOffset: 2,
+                      sx={(t) => {
+                        const isDark = t.palette.mode === "dark";
+                        const activeBg = isDark ? t.palette.grey[800] : t.palette.common.white;
+
+                        return {
+                          border: "none",
+                          backgroundColor: isActive ? activeBg : "transparent",
+                          padding: "6px 14px",
+                          borderRadius: 999,
+                          fontSize: "0.7rem",
+                          textTransform: "uppercase",
+                          letterSpacing: "0.14em",
+                          cursor: "pointer",
+                          outlineOffset: 2,
+                          transition:
+                            "background-color 150ms ease, box-shadow 150ms ease, opacity 150ms ease",
+                          opacity: isActive ? 1 : 0.85,
+                          fontWeight: isActive ? 600 : 400,
+                          color: isActive
+                            ? t.palette.getContrastText(activeBg) // solid white in dark mode
+                            : t.palette.text.secondary,
+                          ...(isActive
+                            ? {
+                              boxShadow: t.shadows[1],
+                            }
+                            : {
+                              "&:hover": {
+                                backgroundColor: isDark
+                                  ? t.palette.grey[800]
+                                  : t.palette.action.hover,
+                              },
+                            }),
+                        };
                       }}
                     >
                       {label}
@@ -329,11 +361,11 @@ export default function MyResumePage() {
 
             {/* SUMMARY SECTION */}
             <SectionBlock id="summary" label="Summary">
-              <Typography variant="body1" color="text.secondary">
-                Senior Product & UX Designer with 15+ years of experience designing data-driven, accessible, and secure enterprise platforms. Expert in transforming complex systems into intuitive, scalable, and human-centered products.
+              <Typography variant="body1" color="text.secondary" mb={2}>
+                Product Designer with 15+ years of experience working on large, complex platforms across government, enterprise, and secure environments. I focus on system-level thinking, design patterns, and bridging communication between product and engineering teams. I’m good at spotting patterns fast, simplifying complexity, and helping teams align around a shared direction.
               </Typography>
-              <Typography variant="body1" color="text.secondary">
-                Known for leading cross-functional design initiatives, establishing design systems, and advancing accessibility standards. Experienced in AI-assisted workflows and design system governance that improve usability and accelerate innovation.
+              <Typography variant="body1" color="text.secondary" >
+                Engineers often come to me to translate product ideas into UI structures. Junior designers come to me for guidance and career advice. I lead through clarity, consistency, and practical decision-making — not titles — and I am at my best in Principal, Staff, and Lead UX roles where strategy and hands-on work meet.
               </Typography>
             </SectionBlock>
 
