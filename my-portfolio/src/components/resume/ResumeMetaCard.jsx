@@ -1,6 +1,6 @@
 // src/components/resume/ResumeMetaCard.jsx
 import * as React from "react";
-import { Box, Grid, Stack } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import FlagIcon from "@mui/icons-material/Flag";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -14,8 +14,9 @@ import { useLocalTime } from "../../hooks/useLocalTime.js";
 import { computeTimeDiff } from "../../utils/timeZone.js";
 
 export default function ResumeMetaCard() {
-  const localTime = useLocalTime();
-  const timeDiff = React.useMemo(() => computeTimeDiff("America/New_York"), []);
+  const localTime = useLocalTime("America/New_York");
+  const timeDiff = computeTimeDiff("America/New_York");
+
   const timeSecondary =
     timeDiff === "Same time"
       ? "Same time — Eastern Time (ET)"
@@ -23,19 +24,46 @@ export default function ResumeMetaCard() {
 
   return (
     <Box
+      role="complementary"
+      aria-label="Current role and contact information"
       sx={(t) => ({
         borderRadius: 2,
         border: `1px solid ${t.palette.divider}`,
-        backgroundColor: t.palette.background.paper,
-        boxShadow: t.shadows[0],
+        backgroundColor:
+          t.palette.mode === "dark"
+            ? t.palette.background.paper
+            : t.palette.common.white,
+        boxShadow:
+          t.palette.mode === "dark" ? t.shadows[3] : "0 10px 30px rgba(0,0,0,0.04)",
         px: { xs: 2, md: 3 },
         py: { xs: 2, md: 2.5 },
       })}
     >
+      {/* Label row */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "baseline",
+          mb: 1.5,
+        }}
+      >
+        <Typography
+          variant="caption"
+          sx={{
+            letterSpacing: "0.16em",
+            textTransform: "uppercase",
+            opacity: 0.7,
+          }}
+        >
+          Current role & availability
+        </Typography>
+      </Box>
+
       <Grid
         container
         columnSpacing={{ xs: 2, md: 4 }}
-        rowSpacing={{ xs: 1.5, md: 1.5 }}
+        rowSpacing={{ xs: 1.75, md: 1.5 }}
       >
         {/* LEFT COLUMN */}
         <Grid item xs={12} md={6}>

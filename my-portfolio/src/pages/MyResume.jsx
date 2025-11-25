@@ -8,6 +8,7 @@ import ResumeMetaCard from "../components/resume/ResumeMetaCard.jsx";
 import ResumeSectionNav from "../components/resume/ResumeSectionNav.jsx";
 import ResumeSection from "../components/resume/ResumeSection.jsx";
 import ResumeExperience from "../components/resume/ResumeExperience.jsx";
+import ResumeRecruiterCard from "../components/resume/ResumeRecruiterCard.jsx";
 
 import {
   SECTION_ITEMS,
@@ -74,9 +75,8 @@ export default function MyResumePage() {
         <Box sx={{ maxWidth: 880, mx: "auto", px: { xs: 2, md: 6 } }}>
           <Stack spacing={4}>
             <ResumeHero ref={heroRef} />
-
-            <ResumeMetaCard />
-
+            
+            <ResumeRecruiterCard />
             <ResumeSectionNav
               items={SECTION_ITEMS}
               activeSection={activeSection}

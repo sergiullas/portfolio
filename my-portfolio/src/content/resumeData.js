@@ -23,6 +23,18 @@ export const SUMMARY = [
   "Engineers often come to me to translate product ideas into UI structures. Junior designers come to me for guidance and career advice. I lead through clarity, consistency, and practical decision-making — not titles — and I am at my best in Principal, Staff, and Lead UX roles where strategy and hands-on work meet.",
 ];
 
+export const RECRUITER_ESSENTIALS = {
+  email: "sergiullas@gmail.com",
+  phone: "571-482-8257",
+  location: "DC Area",
+  pronouns: "he / him",
+  timeZoneLabel: "Eastern Time (ET)",
+  citizenship: "US Citizen",
+  veteranStatus: "Not a veteran",
+  raceEthnicity: "Hispanic / Latino",
+  clearanceStatus: "Top Secret · SCI Eligibility",
+};
+
 export const SKILLS = [
   {
     title: "Design Leadership & Strategy",

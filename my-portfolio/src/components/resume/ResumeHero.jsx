@@ -1,6 +1,6 @@
 // src/components/resume/ResumeHero.jsx
 import * as React from "react";
-import { Box, Stack, Typography, Avatar } from "@mui/material";
+import { Box, Typography, Avatar } from "@mui/material";
 import NameWithPronunciation from "./shared/NameWithPronunciation.jsx";
 import { HERO } from "../../content/resumeData.js";
 import headshot from "../../assets/headshot-sergio.png";
@@ -31,23 +31,29 @@ const ResumeHero = React.forwardRef(function ResumeHero(_props, ref) {
         {HERO.roleTag}
       </Typography>
 
-      <Stack
-        direction="row"
-        spacing={2}
-        alignItems="center"
-        sx={{ mt: 1, flexWrap: "wrap" }}
+      {/* Avatar + name layout */}
+      <Box
+        sx={{
+          mt: 1,
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", md: "auto 1fr" },
+          columnGap: 2,
+          rowGap: 2,
+          alignItems: { xs: "flex-start", md: "center" },
+        }}
       >
         <Avatar
           alt={HERO.name}
           src={headshot}
-          sx={{ width: 150, height: 150 }}
+          sx={{
+            width: 150,
+            height: 150,
+            justifySelf: { xs: "flex-start", md: "flex-start" },
+          }}
         />
 
         <Box>
-          <NameWithPronunciation
-            name={HERO.name}
-            pronouns={HERO.pronouns}
-          />
+          <NameWithPronunciation name={HERO.name} pronouns={HERO.pronouns} />
 
           <Typography
             variant="body2"
@@ -59,7 +65,7 @@ const ResumeHero = React.forwardRef(function ResumeHero(_props, ref) {
             {HERO.blurb[1]}
           </Typography>
         </Box>
-      </Stack>
+      </Box>
     </Box>
   );
 });

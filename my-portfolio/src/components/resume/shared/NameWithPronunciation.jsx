@@ -1,52 +1,165 @@
-// src/components/resume/shared/NameWithPronunciation.jsx
 import * as React from "react";
-import { Box, Typography, IconButton, Tooltip } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Button,
+  Stack,
+  Tooltip,
+} from "@mui/material";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import { alpha } from "@mui/material/styles";
 
-const NAME_AUDIO_SRC = ""; // e.g. "/audio/sergio-antezana-name.mp3"
+const EN_AUDIO_SRC = "/audio/SergioAntezana-US.mp3";
+const ES_AUDIO_SRC = "/audio/SergioAntezana-BO.mp3";
+
+const US_FLAG_SRC = "/flags/us.svg";
+const BO_FLAG_SRC = "/flags/bo.svg";
 
 export default function NameWithPronunciation({ name, pronouns }) {
-  const audioRef = React.useRef(null);
+  const enRef = React.useRef(null);
+  const esRef = React.useRef(null);
+  const [playingId, setPlayingId] = React.useState(null);
 
-  const handlePlay = () => {
-    if (audioRef.current && NAME_AUDIO_SRC) {
-      audioRef.current.play().catch(() => {
-        // fail silently if playback blocked
-      });
-    }
+  const stopAll = () => {
+    [enRef.current, esRef.current].forEach((audio) => {
+      if (audio) {
+        audio.pause();
+        audio.currentTime = 0;
+      }
+    });
   };
 
+  const handleToggle = (id) => {
+    const ref = id === "en" ? enRef.current : esRef.current;
+    if (!ref) return;
+
+    if (playingId === id && !ref.paused) {
+      ref.pause();
+      ref.currentTime = 0;
+      setPlayingId(null);
+      return;
+    }
+
+    stopAll();
+
+    ref.play()
+      .then(() => setPlayingId(id))
+      .catch(() => {});
+  };
+
+  React.useEffect(() => {
+    const en = enRef.current;
+    const es = esRef.current;
+    if (!en && !es) return;
+
+    const handleEnded = () => setPlayingId(null);
+
+    en?.addEventListener("ended", handleEnded);
+    es?.addEventListener("ended", handleEnded);
+
+    return () => {
+      en?.removeEventListener("ended", handleEnded);
+      es?.removeEventListener("ended", handleEnded);
+    };
+  }, []);
+
+  const Flag = ({ src, alt }) => (
+    <Box
+      component="img"
+      src={src}
+      alt={alt}
+      sx={{
+        width: 18,
+        height: 12,
+        display: "block",
+        borderRadius: 0.5,
+        objectFit: "cover",
+        m: 0, // no margins
+      }}
+    />
+  );
+
+  const pillSx = (isActive) => (theme) => ({
+    minWidth: "auto",
+    padding: "2px 6px",
+    gap: 1,
+    borderRadius: 999,
+    lineHeight: 1,
+    display: "flex",
+    alignItems: "center",
+    "& .MuiSvgIcon-root": {
+      fontSize: "1.05rem",
+      margin: 0,
+    },
+    boxShadow: isActive
+      ? `0 0 0 3px ${alpha(theme.palette.primary.main, 0.2)}`
+      : "none",
+    transition: "box-shadow 160ms ease",
+  });
+
   return (
-    <Box sx={{ display: "flex", alignItems: "center", gap: 1.25 }}>
-      <Typography variant="h4" component="h1" sx={{ fontWeight: 600 }}>
-        {name}
-      </Typography>
-
-      <Tooltip title='Pronounced "SEHR-hee-oh an-teh-ZAH-nah"'>
-        <span>
-          <IconButton
-            size="small"
-            onClick={handlePlay}
-            aria-label={`Hear how to pronounce "${name}"`}
-          >
-            <VolumeUpIcon fontSize="small" />
-          </IconButton>
-        </span>
-      </Tooltip>
-
-      {pronouns && (
-        <Typography
-          variant="caption"
-          color="text.secondary"
-          sx={{ textTransform: "lowercase" }}
-        >
-          {pronouns}
+    <Box sx={{ display: "flex", flexDirection: "column", gap: 0.25 }}>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          flexWrap: "wrap",
+          columnGap: 1,
+          rowGap: 0.75,
+        }}
+      >
+        <Typography variant="h4" component="h1" sx={{ fontWeight: 600 }}>
+          {name}
         </Typography>
-      )}
 
-      {NAME_AUDIO_SRC && (
-        <audio ref={audioRef} src={NAME_AUDIO_SRC} preload="none" />
-      )}
+        <Stack direction="row" spacing={0.5}>
+          {/* ENGLISH */}
+          <Tooltip title='Hear English pronunciation'>
+            <span>
+              <Button
+                size="small"
+                variant={playingId === "en" ? "contained" : "outlined"}
+                onClick={() => handleToggle("en")}
+                aria-label="Play English pronunciation of Sergio Antezana"
+                sx={pillSx(playingId === "en")}
+              >
+                <Flag src={US_FLAG_SRC} alt="US flag" />
+                <VolumeUpIcon />
+              </Button>
+            </span>
+          </Tooltip>
+
+          {/* SPANISH */}
+          <Tooltip title='Escuchar pronunciación en español'>
+            <span>
+              <Button
+                size="small"
+                variant={playingId === "es" ? "contained" : "outlined"}
+                onClick={() => handleToggle("es")}
+                aria-label="Reproducir pronunciación en español de Sergio Antezana"
+                sx={pillSx(playingId === "es")}
+              >
+                <Flag src={BO_FLAG_SRC} alt="Bandera de Bolivia" />
+                <VolumeUpIcon />
+              </Button>
+            </span>
+          </Tooltip>
+        </Stack>
+
+        {pronouns && (
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ textTransform: "lowercase" }}
+          >
+            {pronouns}
+          </Typography>
+        )}
+      </Box>
+
+      {/* Audio elements */}
+      <audio ref={enRef} src={EN_AUDIO_SRC} preload="none" />
+      <audio ref={esRef} src={ES_AUDIO_SRC} preload="none" />
     </Box>
   );
 }
