@@ -15,7 +15,10 @@ import {
   Avatar,
   IconButton,
   Tooltip,
+  Chip, // ⬅️ added for Current era + tags
 } from "@mui/material";
+
+import { useTheme, alpha } from "@mui/material/styles"; // ⬅️ for timeline colors
 
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
@@ -81,11 +84,12 @@ export default function MyResumePage() {
   const [activeSection, setActiveSection] = React.useState("summary");
   const [localTime, setLocalTime] = React.useState("");
 
+  // ⬅️ Era 4 open by default, others closed
   const [openEras, setOpenEras] = React.useState({
-    era1: true,
+    era1: false,
     era2: false,
     era3: false,
-    era4: false,
+    era4: true,
   });
 
   const toggleEra = React.useCallback((id) => {
@@ -475,23 +479,39 @@ export default function MyResumePage() {
                 2009 – Present
               </Typography>
 
+              {/* Current era chip */}
+              <Box sx={{ mt: 1.5 }}>
+                <Chip
+                  label="Current era: UX Strategy & Systems Leadership"
+                  size="small"
+                  color="primary"
+                  variant="outlined"
+                />
+              </Box>
+
               <Box sx={{ mt: 2.5 }}>
+                {/* Era 1 */}
                 <EraItem
                   id="era1"
                   title="Era 1 — Foundations (Web & Early UX)"
                   subtitle="Web Designer → Usability Specialist"
                   open={openEras.era1}
                   onToggle={() => toggleEra("era1")}
+                  tags={[
+                    "Visual Design",
+                    "HTML/CSS",
+                    "Front-end Collaboration",
+                    "Usability Testing",
+                  ]}
                 >
                   <Typography
                     variant="body2"
                     color="text.secondary"
                     sx={{ mt: 1, maxWidth: "70ch" }}
                   >
-                    Supported early federal systems as a designer focused on
-                    clean UI, usability, and basic UX practices. Learned how to
-                    work closely with engineering teams and deliver practical
-                    updates to mission-critical applications.
+                    Started as a visual / web designer supporting early federal systems,
+                    focusing on clean layouts, basic UX practices, and learning how to
+                    ship production-ready UI in partnership with engineers.
                   </Typography>
                   <Box
                     component="ul"
@@ -499,47 +519,50 @@ export default function MyResumePage() {
                   >
                     <li>
                       <Typography variant="body2" color="text.secondary">
-                        Built interfaces and visual components for DHS and
-                        ODNI systems.
+                        Built and refined UI for DHS and ODNI applications, translating
+                        requirements into usable page layouts and navigation.
                       </Typography>
                     </li>
                     <li>
                       <Typography variant="body2" color="text.secondary">
-                        Ran basic usability tests and documented
-                        improvements.
+                        Ran basic usability reviews and worked with teams to fix common
+                        pain points such as unclear labels, cluttered layouts, and
+                        inconsistent flows.
                       </Typography>
                     </li>
                     <li>
                       <Typography variant="body2" color="text.secondary">
-                        Improved layouts, navigation, and early workflow
-                        patterns.
-                      </Typography>
-                    </li>
-                    <li>
-                      <Typography variant="body2" color="text.secondary">
-                        Helped teams adopt more structured, user-centered
-                        thinking.
+                        Helped standardize early UI patterns (buttons, tables, forms)
+                        that reduced ad-hoc “one-off” screens and made future changes
+                        easier to implement.
                       </Typography>
                     </li>
                   </Box>
                 </EraItem>
 
+                {/* Era 2 */}
                 <EraItem
                   id="era2"
                   title="Era 2 — Human Factors & Applied Research"
                   subtitle="Human Factors Specialist → Human Factors Scientist, Lead"
                   open={openEras.era2}
                   onToggle={() => toggleEra("era2")}
+                  tags={[
+                    "Human Factors",
+                    "Usability Studies",
+                    "Task Analysis",
+                    "Cognitive Load",
+                  ]}
                 >
                   <Typography
                     variant="body2"
                     color="text.secondary"
                     sx={{ mt: 1, maxWidth: "70ch" }}
                   >
-                    Shifted into deeper UX research and human factors work,
-                    evaluating complex intelligence and defense systems.
-                    Brought a structured, analytical approach to improving
-                    high-risk interactions and system behavior.
+                    Moved into human factors, bringing a more analytical, evidence-based
+                    lens to UX decisions for complex intelligence and defense systems.
+                    Work focused on making high-risk workflows safer, more efficient, and
+                    easier to learn.
                   </Typography>
                   <Box
                     component="ul"
@@ -547,54 +570,56 @@ export default function MyResumePage() {
                   >
                     <li>
                       <Typography variant="body2" color="text.secondary">
-                        Conducted usability evaluations and human performance
-                        studies.
+                        Led usability evaluations, task analyses, and performance studies
+                        to understand how analysts and operators actually used
+                        mission-critical tools.
                       </Typography>
                     </li>
                     <li>
                       <Typography variant="body2" color="text.secondary">
-                        Turned research insights into actionable UI
-                        recommendations.
+                        Turned research findings into clear, prioritized UX
+                        recommendations that guided roadmap decisions and design changes.
                       </Typography>
                     </li>
                     <li>
                       <Typography variant="body2" color="text.secondary">
-                        Improved workflows for intelligence and defense
-                        operations.
+                        Partnered with product and engineering leads to reduce cognitive
+                        load, streamline workflows, and mitigate error-prone interactions
+                        in secure environments.
                       </Typography>
                     </li>
                     <li>
                       <Typography variant="body2" color="text.secondary">
-                        Led human factors activities across multi-agency
-                        modernization efforts.
-                      </Typography>
-                    </li>
-                    <li>
-                      <Typography variant="body2" color="text.secondary">
-                        Helped reduce cognitive load and error risk in secure
-                        environments.
+                        Established repeatable research practices that teams could reuse
+                        instead of treating each study as a one-off effort.
                       </Typography>
                     </li>
                   </Box>
                 </EraItem>
 
+                {/* Era 3 */}
                 <EraItem
                   id="era3"
                   title="Era 3 — UX Design & Product Execution"
                   subtitle="UX Designer → UX Designer, Lead"
                   open={openEras.era3}
                   onToggle={() => toggleEra("era3")}
+                  tags={[
+                    "End-to-End UX",
+                    "Interaction Design",
+                    "Complex Systems",
+                    "Agile Delivery",
+                  ]}
                 >
                   <Typography
                     variant="body2"
                     color="text.secondary"
                     sx={{ mt: 1, maxWidth: "70ch" }}
                   >
-                    Moved from research into hands-on product design, owning
-                    full UX execution for high-impact federal platforms.
-                    Focused on simplifying complexity, mapping workflows, and
-                    partnering with engineers to deliver scalable interface
-                    solutions.
+                    Shifted into end-to-end product design, owning UX for large, data-heavy
+                    federal platforms. Acted as a bridge between product owners and
+                    multiple engineering teams to make complex workflows understandable and
+                    buildable.
                   </Typography>
                   <Box
                     component="ul"
@@ -602,37 +627,35 @@ export default function MyResumePage() {
                   >
                     <li>
                       <Typography variant="body2" color="text.secondary">
-                        Designed complex, data-heavy interfaces for large
-                        federal systems.
+                        Designed flows, wireframes, and detailed interaction patterns for
+                        complex search, workflow, and reporting tools used across
+                        multiple programs.
                       </Typography>
                     </li>
                     <li>
                       <Typography variant="body2" color="text.secondary">
-                        Worked across multiple engineering teams to ensure
-                        feasibility and alignment.
+                        Worked closely with tech leads to translate constraints into
+                        pragmatic UX decisions, ensuring designs were feasible and could
+                        be delivered incrementally in Agile environments.
                       </Typography>
                     </li>
                     <li>
                       <Typography variant="body2" color="text.secondary">
-                        Created early patterns that reduced UI rework across
-                        products.
+                        Introduced reusable patterns (tables, filters, detail views,
+                        error handling) that reduced design and engineering rework across
+                        related products.
                       </Typography>
                     </li>
                     <li>
                       <Typography variant="body2" color="text.secondary">
-                        Clarified ambiguous requirements and turned them into
-                        practical designs.
-                      </Typography>
-                    </li>
-                    <li>
-                      <Typography variant="body2" color="text.secondary">
-                        Mentored designers and helped raise UX standards across
-                        projects.
+                        Mentored designers on structuring problem spaces, documenting
+                        decisions, and communicating clearly with non-design partners.
                       </Typography>
                     </li>
                   </Box>
                 </EraItem>
 
+                {/* Era 4 */}
                 <EraItem
                   id="era4"
                   title="Era 4 — UX Strategy & Systems Leadership"
@@ -640,16 +663,22 @@ export default function MyResumePage() {
                   open={openEras.era4}
                   onToggle={() => toggleEra("era4")}
                   isLast
+                  tags={[
+                    "Design Strategy",
+                    "Design Systems",
+                    "Org-level UX",
+                    "Cross-functional Leadership",
+                  ]}
                 >
                   <Typography
                     variant="body2"
                     color="text.secondary"
                     sx={{ mt: 1, maxWidth: "70ch" }}
                   >
-                    Shifted into strategy, systems thinking, and
-                    cross-functional leadership. Became the bridge between
-                    product intent, engineering constraints, and UX execution.
-                    Focused on frameworks, clarity, and scalable patterns.
+                    Operating as a systems-oriented UX leader for multi-year, multi-team
+                    programs. Focused on bringing structure to ambiguity, aligning
+                    stakeholders, and scaling UX practices in ways that feel practical to
+                    engineering and product partners.
                   </Typography>
                   <Box
                     component="ul"
@@ -657,45 +686,43 @@ export default function MyResumePage() {
                   >
                     <li>
                       <Typography variant="body2" color="text.secondary">
-                        Defined UX frameworks used across major FBI and DOJ
-                        programs.
+                        Defined UX frameworks and guidelines used across major FBI and
+                        DOJ programs, giving teams shared patterns instead of starting
+                        from scratch on every screen.
                       </Typography>
                     </li>
                     <li>
                       <Typography variant="body2" color="text.secondary">
-                        Brought structure to ambiguous, multi-team
-                        environments.
+                        Partnered with product leads to turn high-level mission and
+                        business goals into clear UX objectives, roadmaps, and design
+                        priorities for delivery teams.
                       </Typography>
                     </li>
                     <li>
                       <Typography variant="body2" color="text.secondary">
-                        Translated business and mission needs into clear design
-                        direction.
+                        Influenced system and API decisions by framing trade-offs in terms
+                        of user impact, operational risk, and long-term maintainability.
                       </Typography>
                     </li>
                     <li>
                       <Typography variant="body2" color="text.secondary">
-                        Partnered closely with engineering to shape system
-                        behavior and patterns.
+                        Provided coaching and design direction to UX practitioners across
+                        programs, helping them deliver consistent experiences while still
+                        supporting team autonomy.
                       </Typography>
                     </li>
                     <li>
                       <Typography variant="body2" color="text.secondary">
-                        Provided guidance and mentorship to designers across
-                        multiple programs.
-                      </Typography>
-                    </li>
-                    <li>
-                      <Typography variant="body2" color="text.secondary">
-                        Led system-level UX efforts that improved consistency
-                        and delivery speed.
+                        Helped move teams toward design-system thinking: shared tokens,
+                        components, and interaction patterns that made it easier to ship
+                        accessible, consistent interfaces.
                       </Typography>
                     </li>
                   </Box>
                 </EraItem>
               </Box>
 
-              {/* Key Federal Programs */}
+              {/* Key Federal Programs (unchanged) */}
               <Box sx={{ mt: 3 }}>
                 <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
                   Key federal programs (selected)
@@ -706,8 +733,8 @@ export default function MyResumePage() {
                 >
                   <li>
                     <Typography variant="body2" color="text.secondary">
-                      <strong>Federal Bureau of Investigation (FBI):</strong>{" "}
-                      Chameleon, DELTA, NGNCP, EPAS
+                      <strong>Federal Bureau of Investigation (FBI):</strong> Chameleon,
+                      DELTA, NGNCP, EPAS
                     </Typography>
                   </li>
                   <li>
@@ -717,14 +744,14 @@ export default function MyResumePage() {
                   </li>
                   <li>
                     <Typography variant="body2" color="text.secondary">
-                      <strong>Defense Intelligence Agency (DIA):</strong> JIDO,
-                      OSCAR, COUGAR, Black Forest, CRATE
+                      <strong>Defense Intelligence Agency (DIA):</strong> JIDO, OSCAR,
+                      COUGAR, Black Forest, CRATE
                     </Typography>
                   </li>
                   <li>
                     <Typography variant="body2" color="text.secondary">
-                      <strong>Department of Homeland Security (DHS):</strong>{" "}
-                      SEVIS II, ICE CMM, RAMP
+                      <strong>Department of Homeland Security (DHS):</strong> SEVIS II,
+                      ICE CMM, RAMP
                     </Typography>
                   </li>
                   <li>
@@ -734,8 +761,7 @@ export default function MyResumePage() {
                   </li>
                   <li>
                     <Typography variant="body2" color="text.secondary">
-                      <strong>Director of National Intelligence (ODNI):</strong>{" "}
-                      DRAMRS
+                      <strong>Director of National Intelligence (ODNI):</strong> DRAMRS
                     </Typography>
                   </li>
                   <li>
@@ -746,6 +772,7 @@ export default function MyResumePage() {
                 </Box>
               </Box>
             </SectionBlock>
+
 
             {/* PROJECTS HIGHLIGHTS SECTION */}
             <SectionBlock id="projects" label="Projects highlights">
@@ -982,57 +1009,78 @@ function MetaRow({ icon, primary, secondary, href }) {
   );
 }
 
-function EraItem({ id, title, subtitle, open, onToggle, isLast = false, children }) {
+// ⬇️ Updated EraItem only, to match screenshot + ARIA
+
+function EraItem({
+  id,
+  title,
+  subtitle,
+  open,
+  onToggle,
+  isLast = false,
+  tags = [],
+  children,
+}) {
+  const theme = useTheme();
+  const activeColor = theme.palette.primary.main;
+  const inactiveColor = theme.palette.divider;
+
   return (
     <Box
       sx={{
         display: "flex",
-        // FIX 1: Force columns to stretch to the same height
-        // This allows the line to grow to match the text content
-        alignItems: "stretch", 
+        alignItems: "stretch",
         gap: 2,
-        // FIX 2: Use Padding Bottom (pb) instead of Margin Bottom.
-        // This keeps the "gap" inside the box so the line can draw through it.
-        pb: isLast ? 0 : 3, 
+        pb: isLast ? 0 : 3,
         position: "relative",
+        "&:hover .era-icon-box": {
+          borderColor: open ? activeColor : theme.palette.text.primary,
+          transform: "scale(1.05)",
+        },
       }}
     >
       {/* Left Column: Icon + Line */}
-      <Box 
-        sx={{ 
-          display: "flex", 
-          flexDirection: "column", 
-          alignItems: "center", 
-          flexShrink: 0, 
-          width: 32, 
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          flexShrink: 0,
+          width: 32,
         }}
       >
-        {/* The Icon */}
+        {/* Icon */}
         <Box
-          sx={(t) => ({
+          className="era-icon-box"
+          sx={{
             width: 32,
             height: 32,
             borderRadius: "50%",
-            border: `1px solid ${t.palette.divider}`,
+            border: "2px solid",
+            borderColor: open ? activeColor : inactiveColor,
+            color: open ? activeColor : theme.palette.text.secondary,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: t.palette.background.paper,
-            zIndex: 1, // Ensures icon sits on top of the line
-          })}
+            backgroundColor: theme.palette.background.paper,
+            zIndex: 1,
+            transition: "all 0.25s ease-out",
+            boxShadow: open ? `0 0 0 4px ${alpha(activeColor, 0.16)}` : "none",
+          }}
         >
-          <WorkOutlineIcon sx={{ fontSize: "1.1rem", color: "text.secondary" }} />
+          <WorkOutlineIcon sx={{ fontSize: "1.1rem" }} />
         </Box>
 
-        {/* The Line */}
+        {/* Vertical line */}
         {!isLast && (
           <Box
-            sx={(t) => ({
-              width: "1px",
-              bgcolor: t.palette.divider,
-              // FIX 3: Flex-grow now has space to grow into because of 'alignItems: stretch'
-              flexGrow: 1, 
-            })}
+            sx={{
+              width: 2,
+              bgcolor: open ? alpha(activeColor, 0.4) : inactiveColor,
+              flexGrow: 1,
+              mt: -0.5,
+              transition: "background-color 0.25s ease-out",
+            }}
           />
         )}
       </Box>
@@ -1045,6 +1093,7 @@ function EraItem({ id, title, subtitle, open, onToggle, isLast = false, children
           onClick={onToggle}
           aria-expanded={open}
           aria-controls={`${id}-content`}
+          aria-label={`${title} details`}
           sx={{
             width: "100%",
             border: "none",
@@ -1061,7 +1110,13 @@ function EraItem({ id, title, subtitle, open, onToggle, isLast = false, children
           <Box>
             <Typography
               variant="subtitle1"
-              sx={{ fontWeight: 600, lineHeight: 1.2 }}
+              component="h3"
+              sx={{
+                fontWeight: 600,
+                lineHeight: 1.2,
+                color: open ? activeColor : "text.primary",
+                transition: "color 0.2s ease-out",
+              }}
             >
               {title}
             </Typography>
@@ -1073,14 +1128,37 @@ function EraItem({ id, title, subtitle, open, onToggle, isLast = false, children
               {subtitle}
             </Typography>
           </Box>
-          
-          <Box sx={{ color: "text.secondary" }}>
+
+          <Box sx={{ color: "text.secondary", mt: 0.25 }}>
             {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </Box>
         </Box>
 
         <Collapse in={open}>
-          <Box id={`${id}-content`}>{children}</Box>
+          <Box id={`${id}-content`}>
+            {children}
+
+            {tags.length > 0 && (
+              <Stack
+                direction="row"
+                spacing={1}
+                sx={{ mt: 1.75, flexWrap: "wrap", gap: 1 }}
+              >
+                {tags.map((tag) => (
+                  <Chip
+                    key={tag}
+                    label={tag}
+                    size="small"
+                    variant="outlined"
+                    sx={{
+                      borderRadius: 1,
+                      fontSize: "0.75rem",
+                    }}
+                  />
+                ))}
+              </Stack>
+            )}
+          </Box>
         </Collapse>
       </Box>
     </Box>
