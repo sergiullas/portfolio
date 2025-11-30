@@ -14,6 +14,7 @@
 // - Inject new props (e.g., feature flags) to test variants without rewriting.
 // -----------------------------------------------------------------------------
 import * as React from "react";
+import { Helmet } from "react-helmet-async";
 import {
   Box,
   Typography,
@@ -37,6 +38,16 @@ export default function PortfolioPage() {
     return window.localStorage.getItem("portfolio-unlocked") === "true";
   });
 
+  const pageHelmet = (
+    <Helmet>
+      <title>Portfolio — Sergio Antezana</title>
+      <meta
+        name="description"
+        content="Selected UX and product design work, including systems design, workflow simplification, and interaction patterns."
+      />
+    </Helmet>
+  );
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (input === CASE_STUDY_PASSWORD) {
@@ -54,6 +65,8 @@ export default function PortfolioPage() {
   if (!unlocked) {
     return (
       <Section variant="white" layout="stack" fullHeight>
+        {pageHelmet}
+
         <Box
           sx={{
             maxWidth: "sm",
@@ -108,6 +121,8 @@ export default function PortfolioPage() {
       title="Case studies (clearance-safe)"
       titleComponent="h1"
     >
+      {pageHelmet}
+
       <Box sx={{ width: "100%", maxWidth: 900, mx: "auto" }}>
         <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
           These examples describe my work at a process and outcomes level, with
