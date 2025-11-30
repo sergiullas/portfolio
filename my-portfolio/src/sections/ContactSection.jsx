@@ -2,25 +2,100 @@
 // Wrapper around <Section> for the "Contact" content on the home page.
 
 import * as React from "react";
-import { Stack, Typography } from "@mui/material";
+import { Stack, Typography, Box, Link } from "@mui/material";
 import Section from "../components/Section";
 
 export default function ContactSection() {
   return (
     <Section id="contact" title="Contact" variant="dark" layout="split">
-      <Stack spacing={4} alignItems="flex-start">
-        <Typography variant="body1" color="text.secondary">
-          I'm always up for good design conversations—whether that's debating
-          design system architecture, talking through a UX challenge you're
-          facing, or exploring what's next for both of us. Fellow designers,
-          recruiters, hiring managers, or anyone curious about human-centered
-          design: let's connect. Virtual coffee or the real thing, I'm in.
-        </Typography>
+      {/* Add this INSIDE your existing Contact section container,
+    AFTER your current contact paragraph text */}
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", md: "1.3fr 1fr" },
+          gap: { xs: 3, md: 8 },
+          mt: { xs: 4, md: 6 },
+        }}
+      >
+        {/* LEFT COLUMN – “How to get in touch” */}
+        <Stack spacing={3}>
+          <Box>
+            <Typography
+              variant="h6"
+              sx={{ fontWeight: 600, mb: 0.75 }}
+            >
+              How to get in touch
+            </Typography>
+            <Typography variant="body2" sx={{ opacity: 0.9 }}>
+              Send over an email or message me on social media.
+            </Typography>
+          </Box>
 
-        <Typography variant="caption" color="text.secondary" sx={{ mt: 8 }}>
-          © {new Date().getFullYear()} Sergio Antezana
-        </Typography>
-      </Stack>
+          <Box>
+            <Typography
+              variant="subtitle1"
+              sx={{ fontWeight: 600, mb: 0.5 }}
+            >
+              Email
+            </Typography>
+            <Link
+              href="mailto:youremail@example.com"
+              underline="hover"
+              color="inherit"
+              sx={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 1,
+                fontWeight: 500,
+              }}
+            >
+              {/* you can add an icon here if you want */}
+              <span>youremail@example.com</span>
+            </Link>
+          </Box>
+
+          <Box>
+            <Typography
+              variant="subtitle1"
+              sx={{ fontWeight: 600, mb: 0.5 }}
+            >
+              LinkedIn
+            </Typography>
+            <Link
+              href="https://www.linkedin.com/in/your-profile"
+              target="_blank"
+              rel="noreferrer"
+              underline="hover"
+              color="inherit"
+              sx={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 1,
+                fontWeight: 500,
+              }}
+            >
+              {/* LinkedIn icon here if you like */}
+              <span>Go to LinkedIn profile</span>
+            </Link>
+          </Box>
+        </Stack>
+
+        {/* RIGHT COLUMN – “Let us talk” */}
+        <Stack spacing={1.5}>
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: 600 }}
+          >
+            Let us talk
+          </Typography>
+          <Typography variant="body2" sx={{ opacity: 0.9 }}>
+            Whether you are exploring a new product idea, want feedback on a UX
+            challenge, or just want to connect, I am always open to a conversation.
+          </Typography>
+        </Stack>
+      </Box>
+
     </Section>
   );
 }

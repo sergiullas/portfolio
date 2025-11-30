@@ -3,12 +3,14 @@ import * as React from "react";
 import {
   Box,
   Container,
-  Grid,
   Typography,
-  Button,
-  Link as MuiLink,
   useTheme,
+  Grid,
+  Link as MuiLink,
 } from "@mui/material";
+
+import portfolioHero from "../assets/portfolio-hero.png";
+import uxKatarzisHero from "../assets/ux-katarzis-hero.png";
 
 export default function WhatImWorkingOn() {
   const theme = useTheme();
@@ -17,160 +19,188 @@ export default function WhatImWorkingOn() {
     <Box
       component="main"
       sx={{
-        minHeight: "100vh",
+        // ⬅️ match the header background so it feels like one block
         bgcolor: theme.palette.background.default,
-        py: { xs: 6, md: 10 },
+        minHeight: "100vh",
       }}
     >
-      <Container maxWidth="lg">
-        {/* Section heading */}
-        <Typography
-          variant="h3"
-          component="h1"
-          sx={{
-            fontWeight: 600,
-            mb: { xs: 4, md: 6 },
-          }}
-        >
-          What I&apos;m working on.
-        </Typography>
+      {/* Header / title band – same bg as header */}
+      <Box
+        sx={{
+          pt: { xs: 8, md: 8},
+          pb: { xs: 4, md: 6 },
+        }}
+      >
+        <Container maxWidth="md">
+          <Typography
+            variant="h4"
+            component="h1"
+            align="center"
+            sx={{ fontWeight: 600 }}
+          >
+            What I&apos;m working on.
+          </Typography>
+        </Container>
+      </Box>
 
-        {/* Two-card layout */}
-        <Grid
-          container
-          spacing={{ xs: 3, md: 4 }}
-          alignItems="stretch"
-        >
-          {/* Card 1 – Portfolio */}
-          <Grid item xs={12} md={6}>
-            <TileCard
-              eyebrow="Now"
-              title="SergioAntezana.com"
-              subtitle="A portfolio built with React, MUI, Figma, GitHub, and AI as a design partner."
-              body={[
-                "I’m experimenting with a portfolio that shows how I think, not just what the UI looks like.",
-                "The goal is a simple, honest site that’s easy to maintain and reflects real system-level UX work.",
-              ]}
-              linkHref="https://sergioantezana.com"
-              linkLabel="Visit site"
-            />
-          </Grid>
+      {/* Sections – each one brings in the soft gray band */}
+      <FullBleedSection
+        eyebrow="Now"
+        title="SergioAntezana.com — my portfolio"
+        paragraphs={[
+          "I’m not a big fan of traditional UX portfolios. They tend to over-emphasize visuals and under-represent the real work: system-level thinking, decisions, and how you work with teams.",
+          "Since the industry still expects one, I decided to build a portfolio that reflects how I actually think — and to build it myself with a small, modern tech stack: React, MUI, Figma, GitHub, and AI as a writing and thinking partner.",
+          "The goal is a simple, honest site that’s easy to maintain and explains the work clearly instead of putting on a case-study show.",
+        ]}
+        linkHref="https://sergioantezana.com"
+        linkLabel="Visit sergioantezana.com"
+        image={portfolioHero}
+        imageAlt="Sergio Antezana portfolio preview"
+        imageLeft
+      />
 
-          {/* Card 2 – UX Katarzis */}
-          <Grid item xs={12} md={6}>
-            <TileCard
-              eyebrow="In progress"
-              title="UX Katarzis (GPT)"
-              subtitle="A UX companion for both new and experienced designers."
-              body={[
-                "Built from the patterns I use when solving UX and product problems.",
-                "Helps structure thinking around goals, workflows, and patterns instead of jumping straight to screens.",
-              ]}
-              linkHref="https://chatgpt.com/g/g-U8o9KZ3e3-ux-katarzis"
-              linkLabel="Try UX Katarzis"
-            />
-          </Grid>
-        </Grid>
-      </Container>
+      <FullBleedSection
+        eyebrow="In progress"
+        title="UX Katarzis — my UX-focused GPT"
+        paragraphs={[
+          "I’ve been using ChatGPT since the very beginning and noticed that my prompts for UX and product work became very patterned — especially around goals, workflows, and systems thinking.",
+          "UX Katarzis is built from those patterns. It’s meant to be a companion for both new and experienced designers, helping them frame problems, reduce cognitive load, and build clearer flows and structures.",
+          "I’m treating it as a living tool: something I refine as I learn more about how designers actually use AI in real projects.",
+        ]}
+        linkHref="https://chatgpt.com/g/g-U8o9KZ3e3-ux-katarzis"
+        linkLabel="Try UX Katarzis"
+        image={uxKatarzisHero}
+        imageAlt="UX Katarzis GPT preview"
+        imageLeft={false}
+      />
     </Box>
   );
 }
 
-function TileCard({ eyebrow, title, subtitle, body, linkHref, linkLabel }) {
+
+/**
+ * Full-width Microsoft-style band:
+ * big image + text on the same row (never stacked on desktop).
+ */
+function FullBleedSection({
+  eyebrow,
+  title,
+  paragraphs,
+  linkHref,
+  linkLabel,
+  image,
+  imageAlt,
+  imageLeft = true,
+}) {
   const theme = useTheme();
+  const isLight = theme.palette.mode === "light";
 
   return (
     <Box
       sx={{
-        height: "100%",
-        borderRadius: 4,
-        bgcolor:
-          theme.palette.mode === "light"
-            ? theme.palette.common.white
-            : theme.palette.background.paper,
-        boxShadow:
-          theme.palette.mode === "light"
-            ? "0 18px 30px rgba(0,0,0,0.06)"
-            : "0 18px 30px rgba(0,0,0,0.4)",
-        overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
+        py: { xs: 6, md: 10 },
+        backgroundColor: isLight ? "#f5f5f7" : theme.palette.background.default,
       }}
     >
-      {/* Top visual placeholder – replace with image/illustration later */}
-      <Box
+      <Container
+        maxWidth="xl"
         sx={{
-          minHeight: 180,
-          bgcolor:
-            theme.palette.mode === "light"
-              ? theme.palette.grey[100]
-              : theme.palette.grey[900],
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          px: { xs: 2, sm: 4, md: 8 },
         }}
       >
-        <Typography
-          variant="overline"
+        <Grid
+          container
+          spacing={{ xs: 4, md: 8 }}
+          alignItems="center"
           sx={{
-            letterSpacing: "0.16em",
-            textTransform: "uppercase",
-            opacity: 0.7,
+            flexDirection: {
+              xs: "column",
+              md: imageLeft ? "row" : "row-reverse",
+            },
           }}
         >
-          {eyebrow}
-        </Typography>
-      </Box>
+          {/* IMAGE SIDE */}
+          <Grid item xs={12} md={7}>
+            <Box
+              sx={{
+                position: "relative",
+                overflow: "hidden",
+                borderRadius: 3,
+                boxShadow: isLight
+                  ? "0 40px 80px rgba(0,0,0,.18)"
+                  : "0 40px 80px rgba(0,0,0,.7)",
+                height: { xs: 260, sm: 320, md: 420 },
+              }}
+            >
+              <Box
+                component="img"
+                src={image}
+                alt={imageAlt}
+                loading="lazy"
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                }}
+              />
+            </Box>
+          </Grid>
 
-      {/* Text block */}
-      <Box sx={{ px: { xs: 3, md: 4 }, py: { xs: 3, md: 4 } }}>
-        <Typography
-          variant="h5"
-          component="h2"
-          sx={{ fontWeight: 600, mb: 1 }}
-        >
-          {title}
-        </Typography>
-
-        <Typography
-          variant="body1"
-          color="text.secondary"
-          sx={{ mb: 2 }}
-        >
-          {subtitle}
-        </Typography>
-
-        {body?.map((p) => (
-          <Typography
-            key={p.slice(0, 20)}
-            variant="body2"
-            color="text.secondary"
-            sx={{ mb: 1.25 }}
-          >
-            {p}
-          </Typography>
-        ))}
-
-        <MuiLink
-          href={linkHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          underline="none"
-          sx={{ display: "inline-flex", mt: 1 }}
-        >
-          <Button
-            variant="text"
-            size="small"
+          {/* TEXT SIDE */}
+          <Grid
+            item
+            xs={12}
+            md={5}
             sx={{
-              px: 0,
-              fontWeight: 500,
-              textTransform: "none",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
             }}
           >
-            {linkLabel} &nbsp;›
-          </Button>
-        </MuiLink>
-      </Box>
+            {eyebrow && (
+              <Typography
+                variant="overline"
+                sx={{
+                  letterSpacing: "0.18em",
+                  textTransform: "uppercase",
+                  opacity: 0.7,
+                  mb: 1,
+                }}
+              >
+                {eyebrow}
+              </Typography>
+            )}
+
+            <Typography variant="h5" sx={{ fontWeight: 600, mb: 2 }}>
+              {title}
+            </Typography>
+
+            {paragraphs?.map((p) => (
+              <Typography
+                key={p.slice(0, 30)}
+                variant="body1"
+                color="text.secondary"
+                sx={{ mb: 1.5, maxWidth: 480 }}
+              >
+                {p}
+              </Typography>
+            ))}
+
+            {linkHref && (
+              <MuiLink
+                href={linkHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                underline="hover"
+                sx={{ mt: 2, fontSize: "0.95rem" }}
+              >
+                {linkLabel}
+              </MuiLink>
+            )}
+          </Grid>
+        </Grid>
+      </Container>
     </Box>
   );
 }

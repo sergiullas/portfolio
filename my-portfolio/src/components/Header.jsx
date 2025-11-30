@@ -1,4 +1,4 @@
-// Updated: 2025-11-20 · 18:55 ET  // 6:55 PM · Thursday, November 20, 2025
+// Updated: 2025-11-29 ·  // Saturday, November 29, 2025
 
 // src/components/Header.jsx
 import * as React from "react";
@@ -18,7 +18,11 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { Link as RouterLink } from "react-router-dom";
+import {
+  Link as RouterLink,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { useHeaderNameVisibility } from "../context/HeaderNameContext.jsx";
 
 const PRIMARY_SECTIONS = [
@@ -35,6 +39,8 @@ export default function Header({ mode, setMode }) {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const { showName } = useHeaderNameVisibility();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   // scroll shadow/blur
   React.useEffect(() => {
@@ -49,13 +55,38 @@ export default function Header({ mode, setMode }) {
 
   const isMenuOpen = Boolean(menuAnchor);
 
-  // clicking the name → scroll to top of page
-  const handleNameClick = (event) => {
-    event.preventDefault(); // always prevent route change
+  const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
     });
+  };
+
+  // clicking the name → scroll to top of current page
+  const handleNameClick = (event) => {
+    event.preventDefault(); // always prevent route change
+    scrollToTop();
+  };
+
+  // handle primary nav clicks
+  const handlePrimaryClick = (event, item) => {
+    if (item.id === "about") {
+      // About should always take user to "/" and scroll to top
+      event.preventDefault();
+
+      const doScroll = () => {
+        // allow React to finish navigation/render first
+        setTimeout(scrollToTop, 0);
+      };
+
+      if (location.pathname !== "/") {
+        navigate("/");
+        doScroll();
+      } else {
+        scrollToTop();
+      }
+    }
+    // other items use normal RouterLink navigation
   };
 
   return (
@@ -120,6 +151,7 @@ export default function Header({ mode, setMode }) {
                 })}
                 component={RouterLink}
                 to={item.to}
+                onClick={(event) => handlePrimaryClick(event, item)}
               >
                 {item.label}
               </Button>
@@ -216,7 +248,10 @@ export default function Header({ mode, setMode }) {
               key={item.id}
               component={RouterLink}
               to={item.to}
-              onClick={() => setMenuAnchor(null)}
+              onClick={(event) => {
+                setMenuAnchor(null);
+                handlePrimaryClick(event, item);
+              }}
             >
               <Typography
                 textTransform="uppercase"
@@ -226,18 +261,6 @@ export default function Header({ mode, setMode }) {
               </Typography>
             </MenuItem>
           ))}
-          <MenuItem
-            component={RouterLink}
-            to="/portfolio"
-            onClick={() => setMenuAnchor(null)}
-          >
-            <Typography
-              textTransform="uppercase"
-              sx={{ letterSpacing: "0.12em", fontSize: "0.8rem" }}
-            >
-              Portfolio
-            </Typography>
-          </MenuItem>
         </Menu>
       )}
     </AppBar>
