@@ -19,12 +19,12 @@
 // -----------------------------------------------------------------------------
 
 import * as React from "react";
-import { Helmet } from "react-helmet-async";
 import { Routes, Route, useLocation } from "react-router-dom";
 
 import PortfolioPage from "./pages/Portfolio";
 import LayoutShell from "./components/LayoutShell.jsx";
 import MyResumePage from "./pages/MyResume.jsx";
+import { usePageMeta } from "./hooks/usePageMeta";
 
 // Phase 2 section wrappers
 import HeroSection from "./sections/HeroSection";
@@ -65,14 +65,6 @@ export default function App({ mode, setMode }) {
 
   return (
     <LayoutShell mode={mode} setMode={setMode} scrollToId={scrollToId}>
-      <Helmet>
-        <title>Sergio Antezana — UX &amp; Product Design</title>
-        <meta
-          name="description"
-          content="UX and Product Designer specializing in systems thinking, workflow simplification, design leadership, and scalable UX architecture."
-        />
-      </Helmet>
-
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
@@ -86,16 +78,14 @@ export default function App({ mode, setMode }) {
 // ---------------- HOME PAGE ----------------
 
 function HomePage() {
+  usePageMeta({
+    title: "Sergio Antezana — UX Leader & Product Designer",
+    description:
+      "Principal-level UX and Product Designer helping teams build clearer workflows, scalable systems, and human-centered products.",
+  });
+
   return (
     <>
-      <Helmet>
-        <title>Sergio Antezana — UX Leader &amp; Product Designer</title>
-        <meta
-          name="description"
-          content="Principal-level UX and Product Designer helping teams build clearer workflows, scalable systems, and human-centered products."
-        />
-      </Helmet>
-
       {/* HERO SECTION */}
       <HeroSection />
 

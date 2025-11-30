@@ -15,7 +15,6 @@
 // - Adjust which resume components render (e.g., hide navigation on print views).
 // -----------------------------------------------------------------------------
 import * as React from "react";
-import { Helmet } from "react-helmet-async";
 import { Box, Container, Stack, Typography } from "@mui/material";
 
 import { useHeaderNameVisibility } from "../context/HeaderNameContext.jsx";
@@ -34,6 +33,7 @@ import {
 } from "../content/resumeData.js";
 
 import { useActiveSection } from "../hooks/useActiveSection.js";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function MyResumePage() {
   const { setShowName } = useHeaderNameVisibility();
@@ -75,6 +75,12 @@ export default function MyResumePage() {
     window.scrollTo({ top, behavior: "smooth" });
   }, []);
 
+  usePageMeta({
+    title: "Resume — Sergio Antezana",
+    description:
+      "Experience, skills, and leadership as a Principal UX & Product Designer. Over 15 years designing scalable systems for enterprise and federal programs.",
+  });
+
   return (
     <Box
       component="main"
@@ -86,14 +92,6 @@ export default function MyResumePage() {
         py: { xs: 4, md: 8 },
       })}
     >
-      <Helmet>
-        <title>Resume — Sergio Antezana</title>
-        <meta
-          name="description"
-          content="Experience, skills, and leadership as a Principal UX &amp; Product Designer. Over 15 years designing scalable systems for enterprise and federal programs."
-        />
-      </Helmet>
-
       <Container maxWidth="md">
         <Box sx={{ maxWidth: 880, mx: "auto", px: { xs: 2, md: 6 } }}>
           <Stack spacing={4}>
