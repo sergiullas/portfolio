@@ -9,8 +9,10 @@ import MyResumePage from "./pages/MyResume.jsx";
 // Phase 2 section wrappers
 import HeroSection from "./sections/HeroSection";
 import AboutSection from "./sections/AboutSection";
-import ResumeSection from "./sections/ResumeSection";
 import ContactSection from "./sections/ContactSection";
+import PhilosophySection from "./sections/PhilosophySection.jsx";
+import HowIWork from "./sections/HowIWork.jsx";
+import WhatImWorkingOn from "./pages/WhatImWorkingOn.jsx";
 
 
 // App receives mode + setMode from main.jsx
@@ -39,6 +41,7 @@ export default function App({ mode, setMode }) {
         <Route path="/" element={<HomePage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
         <Route path="/resume" element={<MyResumePage />} />
+        <Route path="/wip" element={<WhatImWorkingOn />} />
       </Routes>
     </LayoutShell>
   );
@@ -55,8 +58,11 @@ function HomePage() {
       {/* ABOUT SECTION */}
       <AboutSection />
 
-      {/* RESUME SECTION */}
-      <ResumeSection />
+      {/* PHILOSOPHY SECTION */}
+      <PhilosophySection />
+
+      {/* HOW I WORK SECTION */}
+      <HowIWork />
 
       {/* CONTACT SECTION */}
       <ContactSection />

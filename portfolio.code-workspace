@@ -4,7 +4,7 @@
 			"path": "."
 		},
 		{
-			"path": "my-portfolio/"
+			"path": "my-portfolio/dist"
 		}
 	],
 	"settings": {}

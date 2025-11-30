@@ -4,7 +4,6 @@ import { Box, Container, Stack, Typography } from "@mui/material";
 
 import { useHeaderNameVisibility } from "../context/HeaderNameContext.jsx";
 import ResumeHero from "../components/resume/ResumeHero.jsx";
-import ResumeMetaCard from "../components/resume/ResumeMetaCard.jsx";
 import ResumeSectionNav from "../components/resume/ResumeSectionNav.jsx";
 import ResumeSection from "../components/resume/ResumeSection.jsx";
 import ResumeExperience from "../components/resume/ResumeExperience.jsx";

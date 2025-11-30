@@ -116,15 +116,15 @@ export default function EditorialHero({
             color="primary"
             size="medium"
             component={RouterLink}
-            to="/portfolio"
+            to="/resume"
           >
-            View my work
+            View my resume
           </Button>
           <Button
             variant="outlined"
             color="primary"
             component={RouterLink}
-            to="/#contact"
+            to="/wip"
           >
             What I'm working on
           </Button>

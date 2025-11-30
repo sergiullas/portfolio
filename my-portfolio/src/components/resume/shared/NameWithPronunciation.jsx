@@ -15,7 +15,7 @@ const ES_AUDIO_SRC = "/audio/SergioAntezana-BO.mp3";
 const US_FLAG_SRC = "/flags/us.svg";
 const BO_FLAG_SRC = "/flags/bo.svg";
 
-export default function NameWithPronunciation({ name, pronouns }) {
+export default function NameWithPronunciation({ name }) {
   const enRef = React.useRef(null);
   const esRef = React.useRef(null);
   const [playingId, setPlayingId] = React.useState(null);
@@ -145,16 +145,6 @@ export default function NameWithPronunciation({ name, pronouns }) {
             </span>
           </Tooltip>
         </Stack>
-
-        {pronouns && (
-          <Typography
-            variant="caption"
-            color="text.secondary"
-            sx={{ textTransform: "lowercase" }}
-          >
-            {pronouns}
-          </Typography>
-        )}
       </Box>
 
       {/* Audio elements */}

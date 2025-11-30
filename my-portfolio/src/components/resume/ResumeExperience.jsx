@@ -1,12 +1,9 @@
 // src/components/resume/ResumeExperience.jsx
 import * as React from "react";
-import {
-  Box,
-  Typography,
-  Chip,
-  Collapse,
-  Stack,
-} from "@mui/material";
+import { Box, Stack, Typography, Collapse, IconButton, Chip } from "@mui/material";
+
+
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useTheme, alpha } from "@mui/material/styles";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 
@@ -16,6 +13,7 @@ function EraItem({ era, open, onToggle, isLast }) {
   const theme = useTheme();
   const activeColor = theme.palette.primary.main;
   const inactiveColor = theme.palette.divider;
+
 
   return (
     <Box
@@ -173,6 +171,7 @@ function EraItem({ era, open, onToggle, isLast }) {
   );
 }
 
+
 export default function ResumeExperience() {
   const [openEras, setOpenEras] = React.useState(() => {
     const initial = {};
@@ -182,6 +181,7 @@ export default function ResumeExperience() {
     return initial;
   });
 
+  const [showFederalPrograms, setShowFederalPrograms] = React.useState(false);
   const toggleEra = (id) => {
     setOpenEras((prev) => ({ ...prev, [id]: !prev[id] }));
   };
@@ -217,22 +217,118 @@ export default function ResumeExperience() {
       </Box>
 
       <Box sx={{ mt: 3 }}>
-        <Typography variant="subtitle2" sx={{ fontWeight: 600 }}>
-          Key federal programs (selected)
-        </Typography>
-        <Box
-          component="ul"
-          sx={{ pl: 2.5, m: 0, mt: 1, maxWidth: "70ch" }}
-        >
-          {EXPERIENCE.keyPrograms.map((item) => (
-            <li key={item.org}>
-              <Typography variant="body2" color="text.secondary">
-                <strong>{item.org}:</strong> {item.programs}
+        <Box sx={{ mt: 2 }}>
+          {/* Header row: label + toggle icon */}
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              cursor: "pointer",
+            }}
+            onClick={() => setShowFederalPrograms((prev) => !prev)}
+            aria-expanded={showFederalPrograms ? "true" : "false"}
+            aria-controls="federal-programs-panel"
+          >
+            <Typography variant="subtitle2">
+              Federal programs experience
+            </Typography>
+
+            <IconButton
+              size="small"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowFederalPrograms((prev) => !prev);
+              }}
+              aria-label={
+                showFederalPrograms
+                  ? "Collapse federal programs experience"
+                  : "Expand federal programs experience"
+              }
+              sx={{
+                transform: showFederalPrograms ? "rotate(180deg)" : "rotate(0deg)",
+                transition: "transform 150ms ease",
+              }}
+            >
+              <ExpandMoreIcon fontSize="small" />
+            </IconButton>
+          </Box>
+
+          {/* Short summary line always visible */}
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ mt: 0.5 }}
+          >
+            18+ federal programs across FBI, DoD, DHS, DOJ, FDA, DIA, ODNI, and more.
+          </Typography>
+
+          {/* Collapsible content */}
+          <Collapse in={showFederalPrograms} timeout="auto">
+            <Stack
+              id="federal-programs-panel"
+              spacing={0.5}
+              sx={{ mt: 1, pl: 0.5 }}
+            >
+              <Typography variant="body2">
+                08/2023 – Current — Chameleon Project — Federal Bureau of Investigation (FBI)
               </Typography>
-            </li>
-          ))}
+              <Typography variant="body2">
+                09/2022 – 07/2023 — DELTA Project — Federal Bureau of Investigation (FBI)
+              </Typography>
+              <Typography variant="body2">
+                01/2021 – 09/2022 — NGNCP Project — Federal Bureau of Investigation (FBI)
+              </Typography>
+              <Typography variant="body2">
+                02/2021 – 11/2021 — IPAS Project — U.S. EUCOM and Joint Analysis Center (JAC)
+              </Typography>
+              <Typography variant="body2">
+                10/2020 – 03/2021 — CDRH Project — Food and Drug Administration (FDA)
+              </Typography>
+              <Typography variant="body2">
+                08/2019 – 10/2020 — EPAS Project — Federal Bureau of Investigation (FBI)
+              </Typography>
+              <Typography variant="body2">
+                05/2016 – 07/2019 — USTP Project — Department of Justice (DoJ)
+              </Typography>
+              <Typography variant="body2">
+                09/2017 – 07/2018 — JIDO Project — Department of Defense (DoD)
+              </Typography>
+              <Typography variant="body2">
+                01/2016 – 09/2016 — D3 Project — Defense Intelligence Agency (DIA)
+              </Typography>
+              <Typography variant="body2">
+                04/2015 – 10/2015 — SEVIS Project — Department of Homeland Security (DHS)
+              </Typography>
+              <Typography variant="body2">
+                09/2013 – 10/2015 — OSCAR Project — Defense Intelligence Agency (DIA)
+              </Typography>
+              <Typography variant="body2">
+                04/2014 – 10/2014 — COUGAR Project — Defense Intelligence Agency (DIA)
+              </Typography>
+              <Typography variant="body2">
+                10/2013 – 03/2014 — Black Forest Project — Defense Intelligence Agency (DIA)
+              </Typography>
+              <Typography variant="body2">
+                02/2013 – 08/2013 — CRATE Project — Defense Intelligence Agency (DIA)
+              </Typography>
+              <Typography variant="body2">
+                08/2012 – 02/2013 — ICE CMM Project — Department of Homeland Security (DHS)
+              </Typography>
+              <Typography variant="body2">
+                06/2010 – 08/2012 — DRAMRS Project — Director of National Intelligence (ODNI)
+              </Typography>
+              <Typography variant="body2">
+                09/2009 – 06/2010 — ICE SEVIS II Project — Department of Homeland Security (DHS)
+              </Typography>
+              <Typography variant="body2">
+                11/2008 – 09/2010 — RAMP Project — Department of Homeland Security (DHS)
+              </Typography>
+            </Stack>
+          </Collapse>
         </Box>
       </Box>
+
     </>
   );
 }

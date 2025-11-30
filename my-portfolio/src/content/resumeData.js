@@ -9,18 +9,18 @@ export const SECTION_ITEMS = [
 ];
 
 export const HERO = {
-  roleTag: "Product & UX Design",
+  roleTag: "Principal Product & UX Design",
   name: "Sergio Antezana",
-  pronouns: "he / him",
   blurb: [
-    "Product Designer · Systems Thinker · UX Strategist",
-    "I help teams turn business goals into clear, usable product systems. I work closely with engineering and product partners to translate ideas into scalable UX patterns and practical solutions. I bring structure to complex projects and help teams move from confusion to clarity.",
+    "Product Designer & UX Architect · Systems & Strategy · Multi-team UX Leadership",
+    "I help teams make complex systems feel simple. I focus on the structure beneath the UI—patterns, models, workflows—so teams can ship tools that work the way people think",
   ],
 };
 
 export const SUMMARY = [
-  "Product Designer with 15+ years of experience working on large, complex platforms across government, enterprise, and secure environments. I focus on system-level thinking, design patterns, and bridging communication between product and engineering teams. I’m good at spotting patterns fast, simplifying complexity, and helping teams align around a shared direction.",
-  "Engineers often come to me to translate product ideas into UI structures. Junior designers come to me for guidance and career advice. I lead through clarity, consistency, and practical decision-making — not titles — and I am at my best in Principal, Staff, and Lead UX roles where strategy and hands-on work meet.",
+  "Principal-level Product & UX Designer with 15+ years leading UX strategy, design systems, and research-driven improvements across large, complex federal and enterprise platforms. I focus on system-level UX, reusable patterns, and the org structures that make good design repeatable instead of one-off.",
+
+  "I lead cross-functional work where product, engineering, and UX intersect: clarifying problems, defining UX roadmaps, and turning constraints into scalable interaction patterns. I’m at my best in Principal, Staff, and Lead roles where I can both set direction and ship hands-on design that teams can build.",
 ];
 
 export const RECRUITER_ESSENTIALS = {
@@ -135,7 +135,7 @@ export const EXPERIENCE = {
     {
       id: "era4",
       title: "Era 4 — UX Strategy & Systems Leadership",
-      subtitle: "UX Strategist, Lead",
+      subtitle: "UX Strategist, Lead (Principal-scope)",
       tags: [
         "Design Strategy",
         "Design Systems",
@@ -143,13 +143,13 @@ export const EXPERIENCE = {
         "Cross-functional Leadership",
       ],
       intro:
-        "Operating as a systems-oriented UX leader for multi-year, multi-team programs. Focused on bringing structure to ambiguity, aligning stakeholders, and scaling UX practices in ways that feel practical to engineering and product partners.",
+        "Serving as the principal-designer UX leader for multi-year, multi-team programs, owning UX strategy, design systems, and cross-program UX standards. I bring structure to ambiguous portfolios, align product and engineering leaders around shared UX direction, and scale practices that make good design repeatable across teams.",
       bullets: [
-        "Defined UX frameworks and guidelines used across major FBI and DOJ programs, giving teams shared patterns instead of starting from scratch on every screen.",
+        "Defined and rolled out UX frameworks and guidelines used across major FBI and DOJ programs, giving N+ teams shared patterns instead of designing from scratch for each screen.",
+        "Led the shift toward design-system thinking (tokens, shared components, interaction patterns), reducing UX/engineering rework and making it easier to ship accessible, consistent interfaces.",
         "Partnered with product leads to turn high-level mission and business goals into clear UX objectives, roadmaps, and design priorities for delivery teams.",
-        "Influenced system and API decisions by framing trade-offs in terms of user impact, operational risk, and long-term maintainability.",
+        "Influenced major system and API decisions by framing trade-offs in terms of analyst workflows, operational risk, and long-term maintainability, not just short-term feature delivery.",
         "Provided coaching and design direction to UX practitioners across programs, helping them deliver consistent experiences while still supporting team autonomy.",
-        "Helped move teams toward design-system thinking: shared tokens, components, and interaction patterns that made it easier to ship accessible, consistent interfaces.",
       ],
     },
   ],

@@ -22,9 +22,9 @@ import { Link as RouterLink } from "react-router-dom";
 import { useHeaderNameVisibility } from "../context/HeaderNameContext.jsx";
 
 const PRIMARY_SECTIONS = [
+  { id: "about", label: "About", to: "/" },
+  { id: "resume", label: "Resume", to: "/resume" },
   { id: "portfolio", label: "Portfolio", to: "/portfolio" },
-  { id: "about", label: "About", to: "/#about" },
-  { id: "resume", label: "Resume", to: "/#resume" },
   { id: "contact", label: "Contact", to: "/#contact" },
 ];
 
