@@ -1,4 +1,19 @@
-// src/theme.js
+// -----------------------------------------------------------------------------
+// theme.js
+// Builds the MUI theme object used across the app.
+//
+// - Exposes getAppTheme(mode) to generate a palette/typography system for light
+//   or dark modes.
+// - Central place to manage spacing, fonts, and component overrides.
+//
+// Accessibility
+// - Palette choices should meet contrast ratios; adjust here to fix violations.
+// - Typography scale and weights can be tuned to improve readability.
+//
+// How to customize
+// - Extend the theme with custom components or design tokens.
+// - Add shape, z-index, or breakpoint overrides to match a new design system.
+// -----------------------------------------------------------------------------
 import { createTheme } from "@mui/material/styles";
 
 export const getAppTheme = (mode = "light") =>

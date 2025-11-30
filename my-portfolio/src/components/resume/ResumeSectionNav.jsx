@@ -1,4 +1,18 @@
-// src/components/resume/ResumeSectionNav.jsx
+// -----------------------------------------------------------------------------
+// components/resume/ResumeSectionNav.jsx
+// Side or top navigation for jumping between resume sections.
+//
+// - Receives list of sections and active section id; highlights the active link.
+// - Uses click/scroll handlers passed from parent to manage navigation state.
+//
+// Accessibility
+// - Uses nav + list semantics; links are keyboard focusable with visible outlines.
+// - Consider moving focus to target section headings when clicking nav items.
+//
+// How to customize
+// - Add tooltips, icons, or progress indicators to nav items.
+// - Support vertical/horizontal layouts based on available space.
+// -----------------------------------------------------------------------------
 import * as React from "react";
 import { Box, Stack } from "@mui/material";
 

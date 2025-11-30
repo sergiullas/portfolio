@@ -1,4 +1,18 @@
-// src/sections/ContactSection.jsx
+// -----------------------------------------------------------------------------
+// sections/ContactSection.jsx
+// Contact/CTA block for outreach.
+//
+// - Renders contact channels (email, socials) and possibly a contact form/CTA.
+// - Stateless beyond click handlers; data passed from parent or constants.
+//
+// Accessibility
+// - Use a clear heading and descriptive link text; ensure tap targets are large.
+// - Provide aria-labels for icon-only links and respect focus outlines.
+//
+// How to customize
+// - Add calendars, forms, or availability widgets; wire submissions to services.
+// - Rearrange channels to prioritize preferred contact methods.
+// -----------------------------------------------------------------------------
 // Wrapper around <Section> for the "Contact" content on the home page.
 
 import * as React from "react";

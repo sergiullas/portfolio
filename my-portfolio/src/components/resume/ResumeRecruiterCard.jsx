@@ -1,4 +1,18 @@
-// src/components/resume/ResumeRecruiterCard.jsx
+// -----------------------------------------------------------------------------
+// components/resume/ResumeRecruiterCard.jsx
+// Card aimed at recruiters with quick highlights.
+//
+// - Consumes resumeData to present availability, role interests, or key metrics.
+// - Stateless; interactions (email/links) bubble via anchor elements.
+//
+// Accessibility
+// - Structured with headings and lists so screen readers can skim quickly.
+// - Maintain sufficient contrast on badges/labels.
+//
+// How to customize
+// - Swap highlighted fields to target different audiences.
+// - Add CTA buttons (book a call) with clear aria-labels.
+// -----------------------------------------------------------------------------
 import * as React from "react";
 import {
   Box,

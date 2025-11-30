@@ -1,4 +1,19 @@
-// src/hooks/useActiveSection.js
+// -----------------------------------------------------------------------------
+// hooks/useActiveSection.js
+// Tracks which page section is currently active in the viewport.
+//
+// - Uses IntersectionObserver or scroll listeners to set active section ID/state.
+// - Exposes the active section and callbacks so nav elements can highlight links.
+//
+// Accessibility
+// - Helps keep skip links and navigation in sync with visible content for keyboard
+//   and screen-reader users.
+// - Ensure focus handling complements the visual active state.
+//
+// How to customize
+// - Tune thresholds/margins for when a section becomes “active.”
+// - Extend return values to include scrollTo helpers or focus management.
+// -----------------------------------------------------------------------------
 import * as React from "react";
 
 export function useActiveSection(sectionIds, offset = 120) {

@@ -1,4 +1,18 @@
-// src/pages/WhatImWorkingOn.jsx
+// -----------------------------------------------------------------------------
+// pages/WhatImWorkingOn.jsx
+// Dedicated page showcasing current work streams.
+//
+// - Receives data (projects/initiatives) and renders them as cards/sections.
+// - Mostly presentational; relies on parent routing and shared layout wrappers.
+//
+// Accessibility
+// - Uses semantic headings and lists for projects; ensure link text is descriptive.
+// - Respect keyboard navigation order when adding new cards or CTAs.
+//
+// How to customize
+// - Swap in different data sources or filters to highlight specific work.
+// - Adjust layout components (grid/stack) for more or fewer columns responsively.
+// -----------------------------------------------------------------------------
 import * as React from "react";
 import {
   Box,

@@ -1,4 +1,18 @@
-// src/sections/PhilosophySection.jsx
+// -----------------------------------------------------------------------------
+// sections/PhilosophySection.jsx
+// Explains design philosophy or principles.
+//
+// - Maps over principle data to render cards/rows; minimal internal state.
+// - Data usually passed as props or imported constants.
+//
+// Accessibility
+// - Use lists/headings for principles; keep contrast and focus states consistent.
+// - Support reduced motion if animations are added to principle cards.
+//
+// How to customize
+// - Add metrics or examples per principle; adjust layout for more columns.
+// - Localize principle titles/descriptions for different audiences.
+// -----------------------------------------------------------------------------
 
 import * as React from "react";
 import { Stack, Typography } from "@mui/material";

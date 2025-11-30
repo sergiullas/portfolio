@@ -1,3 +1,19 @@
+// -----------------------------------------------------------------------------
+// components/resume/shared/NameWithPronunciation.jsx
+// Displays the candidate’s name with pronunciation guidance.
+//
+// - Accepts name text and optional pronunciation link/audio cue.
+// - Stateless; simply formats text and auxiliary info from props.
+//
+// Accessibility
+// - Provide aria-labels for pronunciation links or audio controls.
+// - Ensure pronunciation text is readable and distinguishable from the name.
+//
+// How to customize
+// - Add audio playback controls or IPA notation.
+// - Swap layout (inline vs. stacked) to fit different hero designs.
+// -----------------------------------------------------------------------------
+
 import * as React from "react";
 import {
   Box,

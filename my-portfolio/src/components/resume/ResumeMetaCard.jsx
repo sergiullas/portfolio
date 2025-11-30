@@ -1,4 +1,18 @@
-// src/components/resume/ResumeMetaCard.jsx
+// -----------------------------------------------------------------------------
+// components/resume/ResumeMetaCard.jsx
+// Compact card for meta information (location, timezone, contact).
+//
+// - Receives structured props from resumeData and renders labeled rows.
+// - Stateless; purely presentational with optional action links.
+//
+// Accessibility
+// - Use semantic lists/definition lists for label/value pairs.
+// - Keep link text descriptive; ensure icons include aria-labels if clickable.
+//
+// How to customize
+// - Add new meta fields (visa status, languages) by extending props/data.
+// - Provide layout variants for sidebars vs. inline blocks.
+// -----------------------------------------------------------------------------
 import * as React from "react";
 import { Box, Grid, Stack, Typography } from "@mui/material";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";

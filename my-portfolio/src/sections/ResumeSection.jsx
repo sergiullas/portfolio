@@ -1,4 +1,18 @@
-// src/sections/ResumeSection.jsx
+// -----------------------------------------------------------------------------
+// sections/ResumeSection.jsx
+// Embedded resume preview on the landing page.
+//
+// - Imports resumeData and feeds it into condensed resume components.
+// - No heavy state; selections or filters are handled by child components if any.
+//
+// Accessibility
+// - Presents content with semantic headings and lists; keep link text meaningful.
+// - Coordinate with navigation so keyboard users can reach all resume entries.
+//
+// How to customize
+// - Choose which resume slices to surface (experience, meta, education).
+// - Add toggles (e.g., show more/less) by introducing local state here.
+// -----------------------------------------------------------------------------
 // Wrapper around <Section> for the "Resume" content on the home page.
 
 import * as React from "react";
