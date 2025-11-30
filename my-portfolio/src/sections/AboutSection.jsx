@@ -1,4 +1,18 @@
-// src/sections/AboutSection.jsx
+// -----------------------------------------------------------------------------
+// sections/AboutSection.jsx
+// “About me” content block.
+//
+// - Renders narrative copy and supporting details from props or static content.
+// - Typically stateless; any interactions (links, buttons) bubble to parents.
+//
+// Accessibility
+// - Semantic <section> with headings and paragraphs; keep lists marked up properly.
+// - Ensure any inline links have clear, specific labels.
+//
+// How to customize
+// - Replace copy or add sub-sections (values, timeline) while keeping hierarchy.
+// - Introduce illustrative media with alt text for screen readers.
+// -----------------------------------------------------------------------------
 // Wrapper around <Section> for the "About me" content on the home page.
 
 import * as React from "react";

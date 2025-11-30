@@ -1,4 +1,20 @@
+// -----------------------------------------------------------------------------
 // utils/timeZone.js
+// Helper for presenting local time zones.
+//
+// - Exposes pure functions (e.g., formatting or offset helpers) with no React
+//   state.
+// - Consumed by components that show availability or current time.
+//
+// Accessibility
+// - Keeps time strings human-readable; pair with <time> elements for better SR
+//   support.
+// - Ensure formatted values include time zone abbreviations to avoid ambiguity.
+//
+// How to customize
+// - Extend with more formats or locale-aware options.
+// - Swap in Intl APIs for richer translations without changing callers.
+// -----------------------------------------------------------------------------
 export function computeTimeDiff(targetTZ = "America/New_York") {
   try {
     const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;

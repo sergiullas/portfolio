@@ -1,6 +1,23 @@
 // Updated: 2025-11-29 ·  // Saturday, November 29, 2025
 
-// src/components/Header.jsx
+// -----------------------------------------------------------------------------
+// components/Header.jsx
+// Site header with navigation and theme controls.
+//
+// - Receives `mode`, `setMode`, active section info, and scroll handlers from
+//   LayoutShell/App.
+// - Manages small local state for menus or responsive toggles (e.g., drawer).
+//
+// Accessibility
+// - Uses nav landmarks and lists for links; ensures focusable elements for menu
+//   toggles.
+// - Theme switch and nav links include aria-labels and keyboard support.
+//
+// How to customize
+// - Add nav items, social links, or secondary actions.
+// - Swap menu patterns (mega menu, dropdown) while keeping aria-expanded/controls
+//   wired correctly.
+// -----------------------------------------------------------------------------
 import * as React from "react";
 import {
   AppBar,

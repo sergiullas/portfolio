@@ -1,4 +1,19 @@
-// src/components/EditorialHero.jsx
+// -----------------------------------------------------------------------------
+// components/EditorialHero.jsx
+// Hero component used for editorial-style intros.
+//
+// - Accepts title, subtitle, and action props; lays them out with typography
+//   emphasis and optional media.
+// - Stateless; actions bubble up through onClick/links.
+//
+// Accessibility
+// - Uses heading hierarchy with supporting text; ensures buttons/links are labeled.
+// - Maintain alt text for any accompanying imagery or icons.
+//
+// How to customize
+// - Swap typography scale, background treatment, or CTA arrangement.
+// - Add slot props for illustrations or metrics without changing consumers.
+// -----------------------------------------------------------------------------
 // Cleaned, structured hero layout with editorial grid, accessible headings,
 // consistent spacing, and improved image container behavior.
 

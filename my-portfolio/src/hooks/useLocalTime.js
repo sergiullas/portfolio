@@ -1,4 +1,18 @@
-// src/hooks/useLocalTime.js
+// -----------------------------------------------------------------------------
+// hooks/useLocalTime.js
+// Custom hook for deriving local time info.
+//
+// - Manages internal state for current time and updates on an interval.
+// - Returns formatted strings/objects to display availability or greetings.
+//
+// Accessibility
+// - Avoid overly frequent updates to prevent screen reader churn.
+// - Consumers should render times inside semantic <time> elements.
+//
+// How to customize
+// - Accept options for update frequency, time zones, or formatting styles.
+// - Memoize heavy computations if you add locale-sensitive logic.
+// -----------------------------------------------------------------------------
 import * as React from "react";
 
 export function useLocalTime(timeZone) {

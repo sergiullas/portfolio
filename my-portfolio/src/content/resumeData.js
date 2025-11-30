@@ -1,4 +1,21 @@
-// src/content/resumeData.js
+// -----------------------------------------------------------------------------
+// content/resumeData.js
+// Structured data that powers resume pages/sections.
+//
+// - Exports JSON-like objects/arrays for experience, projects, education, and
+//   meta details consumed by resume components.
+// - No internal state: React components read and render this data directly.
+//
+// Accessibility
+// - Keeping data structured enables semantic rendering (lists, headings, dl/dt).
+// - Ensure strings include meaningful labels (e.g., role, timeframe) for screen
+//   readers.
+//
+// How to customize
+// - Add fields (e.g., metrics, links) and update renderers to display them.
+// - Localize strings or swap datasets for different audiences/markets.
+// -----------------------------------------------------------------------------
+
 
 export const SECTION_ITEMS = [
   { id: "summary", label: "Summary" },

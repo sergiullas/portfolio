@@ -1,4 +1,19 @@
-// src/components/resume/shared/MetaRow.jsx
+// -----------------------------------------------------------------------------
+// components/resume/shared/MetaRow.jsx
+// Shared row component for label/value pairs in resume cards.
+//
+// - Receives label, value, and optional icon; renders a single row consistently.
+// - Stateless; styling controlled by parent/resume theme.
+//
+// Accessibility
+// - Use semantic markup (e.g., <div role="listitem"> or dl/dt/dd patterns) to
+//   convey relationships.
+// - Icons should be aria-hidden unless they convey meaning.
+//
+// How to customize
+// - Add tooltip/supporting text props or allow custom render functions.
+// - Adjust spacing/alignment to match new card designs.
+// -----------------------------------------------------------------------------
 import * as React from "react";
 import { Box, Stack, Typography, Link as MuiLink } from "@mui/material";
 

@@ -1,3 +1,20 @@
+/* -----------------------------------------------------------------------------
+   index.css
+   Base resets and typography tokens.
+
+   - Normalizes margins, box sizing, and font stacks for the entire app.
+   - Defines root-level variables for colors/spacing that pair with the MUI theme.
+   - Provides body-level backgrounds and link styles.
+
+   Accessibility
+   - Targets sufficient contrast for text and links; keep vars aligned with WCAG.
+   - Leaves focus outlines visible so keyboard users can track focus.
+
+   How to customize
+   - Update :root variables to rebrand quickly.
+   - Add global motion preferences (prefers-reduced-motion) or high-contrast tweaks.
+   ----------------------------------------------------------------------------- */
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;

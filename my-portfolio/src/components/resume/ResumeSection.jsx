@@ -1,4 +1,18 @@
-// src/components/resume/ResumeSection.jsx
+// -----------------------------------------------------------------------------
+// components/resume/ResumeSection.jsx
+// Container for resume sub-sections (experience, education, skills).
+//
+// - Accepts title/id and children; coordinates spacing and anchors for navigation.
+// - Stateless; any filtering/pagination happens in child components.
+//
+// Accessibility
+// - Renders as <section> with proper heading levels to maintain hierarchy.
+// - Provides ids for skip links and side navigation targeting.
+//
+// How to customize
+// - Add props for variant styling or collapsible behavior.
+// - Include optional description text or metadata near the heading.
+// -----------------------------------------------------------------------------
 import * as React from "react";
 import { Box, Divider, Typography, Link as MuiLink, Tooltip } from "@mui/material";
 

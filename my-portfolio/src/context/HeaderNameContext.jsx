@@ -1,5 +1,24 @@
-// src/context/HeaderNameContext.jsx
-// Context for controlling whether the Header should show the name chip.
+// -----------------------------------------------------------------------------
+// context/HeaderNameContext.jsx
+// Context provider for whether the header should display the name chip.
+//
+// - Holds `showName` state in a React context so header components can read or
+//   toggle the visibility flag.
+// - Exposes `HeaderNameVisibilityProvider` to wrap layouts and
+//   `useHeaderNameVisibility` to consume the state.
+//
+// Accessibility
+// - Centralizing the visibility flag prevents surprising layout shifts as users
+//   navigate or scroll.
+// - Hook consumers can coordinate focus management when the name chip appears or
+//   hides.
+//
+// How to customize
+// - Add more metadata to the context (e.g., current section) if header behavior
+//   expands.
+// - Wire in persistence (localStorage) or thresholds if you tie visibility to
+//   scroll cues.
+// -----------------------------------------------------------------------------
 
 import * as React from "react";
 

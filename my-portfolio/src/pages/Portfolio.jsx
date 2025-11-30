@@ -1,4 +1,18 @@
-// src/pages/Portfolio.jsx
+// -----------------------------------------------------------------------------
+// pages/Portfolio.jsx
+// Portfolio landing page aggregating hero and core sections.
+//
+// - Composes shared sections (hero, about, philosophy, work, contact) into a page.
+// - Receives nav helpers/props from App to enable smooth scroll or mode toggles.
+//
+// Accessibility
+// - Each section renders semantic landmarks; keep heading hierarchy consistent.
+// - Ensure in-page navigation moves focus when treating sections like pages.
+//
+// How to customize
+// - Reorder or replace sections to create alternate landing experiences.
+// - Inject new props (e.g., feature flags) to test variants without rewriting.
+// -----------------------------------------------------------------------------
 import * as React from "react";
 import {
   Box,

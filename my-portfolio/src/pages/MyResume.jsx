@@ -1,4 +1,19 @@
-// src/pages/MyResume.jsx
+// -----------------------------------------------------------------------------
+// pages/MyResume.jsx
+// Standalone resume page using structured resumeData.
+//
+// - Pulls content from content/resumeData.js and passes it into resume components
+//   (meta, experience, navigation).
+// - Minimal local state; relies on child components for interactions.
+//
+// Accessibility
+// - Sections render semantic headings and lists; navigation supports clear labeling.
+// - Keep tab order logical and ensure anchors have visible focus styles.
+//
+// How to customize
+// - Swap data objects to create role-specific resumes.
+// - Adjust which resume components render (e.g., hide navigation on print views).
+// -----------------------------------------------------------------------------
 import * as React from "react";
 import { Box, Container, Stack, Typography } from "@mui/material";
 

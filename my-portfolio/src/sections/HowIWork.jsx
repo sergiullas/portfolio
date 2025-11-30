@@ -1,4 +1,18 @@
-// src/sections/HowIWork.jsx
+// -----------------------------------------------------------------------------
+// sections/HowIWork.jsx
+// Walkthrough of process or working style.
+//
+// - Iterates over step data to render timeline/process cards.
+// - Stateless aside from any optional hover/focus UI handled inline.
+//
+// Accessibility
+// - Prefer ordered lists for process steps and maintain heading hierarchy.
+// - Include clear labels for links/downloads and ensure focus visibility.
+//
+// How to customize
+// - Swap steps or add visuals (icons, illustrations) with descriptive alt text.
+// - Adjust spacing/breakpoints to keep steps readable on small screens.
+// -----------------------------------------------------------------------------
 
 import * as React from "react";
 import { Stack, Typography, Button } from "@mui/material";

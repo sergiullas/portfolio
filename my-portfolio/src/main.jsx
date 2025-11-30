@@ -1,4 +1,25 @@
-// src/main.jsx
+// -----------------------------------------------------------------------------
+// main.jsx
+// Application entry point that mounts the React app.
+//
+// - Decides the initial color mode (saved preference → system preference → light)
+//   and keeps it in state; persists updates to localStorage.
+// - Creates the MUI theme via getAppTheme(mode) and provides it through ThemeProvider,
+//   alongside CssBaseline and BrowserRouter for routing.
+// - Passes `mode` and `setMode` into <App> so all pages can toggle themes.
+//
+// Accessibility
+// - Router + Theme providers live here to keep the tree consistent for focus/scroll
+//   management and predictable color contrast across the app.
+// - Ensure the root element in index.html has a `lang` attribute and logical title,
+//   since this is the hydration point.
+//
+// How to customize
+// - Add global providers (analytics, i18n, feature flags) around <App>.
+// - Swap BrowserRouter for a different router or hydration entry when needed.
+// - Extend getInitialMode to support more schemes (high-contrast, sepia).
+// -----------------------------------------------------------------------------
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";

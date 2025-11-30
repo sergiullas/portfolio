@@ -1,3 +1,21 @@
+/* -----------------------------------------------------------------------------
+   App.css
+   Global application styles layered atop MUI defaults.
+
+   - Sets base layout spacing, typography tweaks, and section padding.
+   - Provides responsive utilities for the landing page sections and shared
+     components.
+   - Coordinates with index.css to avoid style duplication.
+
+   Accessibility
+   - Uses readable line heights, generous spacing, and contrast-friendly colors.
+   - Respects prefers-reduced-motion where animations/transitions are defined.
+
+   How to customize
+   - Adjust section padding, max-widths, and breakpoints to fit new content.
+   - Add theme-aware CSS variables to keep light/dark parity without inline styles.
+   ----------------------------------------------------------------------------- */
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
