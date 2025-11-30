@@ -12,8 +12,8 @@ import {
 import Section from "../components/Section";
 import CaseStudyCard from "../components/CaseStudyCard";
 
-// ❗ change this to whatever password you want (remember: not truly secure)
-const CASE_STUDY_PASSWORD = "Youarehired!";
+const CASE_STUDY_PASSWORD =
+  import.meta.env.VITE_CASE_STUDY_PASSWORD || "Youarehired!";
 
 export default function PortfolioPage() {
   const [input, setInput] = React.useState("");
@@ -32,7 +32,7 @@ export default function PortfolioPage() {
         window.localStorage.setItem("portfolio-unlocked", "true");
       }
     } else {
-      setError("Incorrect password. Please try again.");
+      setError("Check the password and try again.");
     }
   };
 
