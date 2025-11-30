@@ -25,7 +25,6 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { ThemeProvider, CssBaseline } from "@mui/material";
 import { BrowserRouter } from "react-router-dom";
-import { HelmetProvider } from "react-helmet-async";
 import { getAppTheme } from "./theme.js";
 // if you already had: import "./index.css"; you can keep it
 
@@ -65,13 +64,11 @@ function Root() {
 
   return (
     <BrowserRouter>
-      <HelmetProvider>
-        <ThemeProvider theme={appTheme}>
-          <CssBaseline />
-          <App mode={mode} setMode={setMode} />
-          {/* 👆 We pass theme state DOWN to App */}
-        </ThemeProvider>
-      </HelmetProvider>
+      <ThemeProvider theme={appTheme}>
+        <CssBaseline />
+        <App mode={mode} setMode={setMode} />
+        {/* 👆 We pass theme state DOWN to App */}
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

@@ -14,7 +14,6 @@
 // - Adjust layout components (grid/stack) for more or fewer columns responsively.
 // -----------------------------------------------------------------------------
 import * as React from "react";
-import { Helmet } from "react-helmet-async";
 import {
   Box,
   Container,
@@ -26,9 +25,16 @@ import {
 
 import portfolioHero from "../assets/portfolio-hero.png";
 import uxKatarzisHero from "../assets/ux-katarzis-hero.png";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 export default function WhatImWorkingOn() {
   const theme = useTheme();
+
+  usePageMeta({
+    title: "What I'm working on — Sergio Antezana",
+    description:
+      "A look at my current projects, including SergioAntezana.com and UX Katarzis — my UX-focused GPT.",
+  });
 
   return (
     <Box
@@ -39,14 +45,6 @@ export default function WhatImWorkingOn() {
         minHeight: "100vh",
       }}
     >
-      <Helmet>
-        <title>What I&apos;m working on — Sergio Antezana</title>
-        <meta
-          name="description"
-          content="A look at my current projects, including SergioAntezana.com and UX Katarzis — my UX-focused GPT."
-        />
-      </Helmet>
-
       {/* Header / title band – same bg as header */}
       <Box
         sx={{
