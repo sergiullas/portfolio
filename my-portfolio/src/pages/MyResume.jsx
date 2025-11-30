@@ -15,6 +15,7 @@
 // - Adjust which resume components render (e.g., hide navigation on print views).
 // -----------------------------------------------------------------------------
 import * as React from "react";
+import { Helmet } from "react-helmet-async";
 import { Box, Container, Stack, Typography } from "@mui/material";
 
 import { useHeaderNameVisibility } from "../context/HeaderNameContext.jsx";
@@ -85,6 +86,14 @@ export default function MyResumePage() {
         py: { xs: 4, md: 8 },
       })}
     >
+      <Helmet>
+        <title>Resume — Sergio Antezana</title>
+        <meta
+          name="description"
+          content="Experience, skills, and leadership as a Principal UX &amp; Product Designer. Over 15 years designing scalable systems for enterprise and federal programs."
+        />
+      </Helmet>
+
       <Container maxWidth="md">
         <Box sx={{ maxWidth: 880, mx: "auto", px: { xs: 2, md: 6 } }}>
           <Stack spacing={4}>
