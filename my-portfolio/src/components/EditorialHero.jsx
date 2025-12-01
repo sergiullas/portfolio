@@ -126,13 +126,22 @@ export default function EditorialHero({
             justifyContent: "flex-start",
           }}
         >
-          <Stack direction="row" spacing={2} sx={{ mt: 1, flexWrap: "wrap" }}>
+          <Stack
+            direction={{ xs: "column", sm: "row" }}
+            spacing={2}
+            sx={{
+              mt: 1,
+              width: "100%",
+              alignItems: { xs: "stretch", sm: "flex-start" },
+            }}
+          >
             <Button
               variant="contained"
               color="primary"
               size="medium"
               component={RouterLink}
               to="/resume"
+              sx={{ width: { xs: "100%", sm: "auto" } }}
             >
               View my resume
             </Button>
@@ -141,6 +150,7 @@ export default function EditorialHero({
               color="primary"
               component={RouterLink}
               to="/wip"
+              sx={{ width: { xs: "100%", sm: "auto" } }}
             >
               What I'm working on
             </Button>
