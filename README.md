@@ -1,10 +1,6 @@
 # 📁 **sergio-portfolio**
 
 ### A modern, accessible, fully responsive UX portfolio built with React + MUI
-
-![Hero Screenshot Placeholder](./docs/hero.png)
-![Resume Screenshot Placeholder](./docs/resume.png)
-
 ---
 
 ## ✨ Overview
