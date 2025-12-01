@@ -133,6 +133,7 @@ export default function EditorialHero({
               size="medium"
               component={RouterLink}
               to="/resume"
+              sx={{ width: { xs: "100%", sm: "auto" } }}
             >
               View my resume
             </Button>
@@ -141,6 +142,7 @@ export default function EditorialHero({
               color="primary"
               component={RouterLink}
               to="/wip"
+              sx={{ width: { xs: "100%", sm: "auto" } }}
             >
               What I'm working on
             </Button>
