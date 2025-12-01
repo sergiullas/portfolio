@@ -73,10 +73,15 @@ const ResumeHero = React.forwardRef(function ResumeHero(_props, ref) {
           <Typography
             variant="body2"
             color="text.secondary"
-            sx={{ mt: 1, maxWidth: "40rem" }}
+            sx={{ mt: 1, maxWidth: "40rem",  fontWeight: 600  }}
           >
             {HERO.blurb[0]}
-            <br />
+          </Typography>  
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ mt: 1, maxWidth: "40rem" }}
+          >
             {HERO.blurb[1]}
           </Typography>
         </Box>
