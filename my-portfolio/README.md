@@ -1,10 +1,6 @@
 # 📁 **sergio-portfolio**
 
 ### A modern, accessible, fully responsive UX portfolio built with React + MUI
-
-![Hero Screenshot Placeholder](./docs/hero.png)
-![Resume Screenshot Placeholder](./docs/resume.png)
-
 ---
 
 ## ✨ Overview
@@ -192,13 +188,6 @@ This project is licensed under the **MIT License** — meaning:
 
 * You're free to copy, modify, and build on it
 * You must keep the original license included
-
----
-
-## ⭐ Acknowledgements
-
-* Inspired by federal UX, design systems, and enterprise-grade UI
-* Built with love, clarity, and intention for the UX community
 
 ---
 
