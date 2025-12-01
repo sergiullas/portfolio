@@ -1,18 +1,8 @@
 // -----------------------------------------------------------------------------
 // pages/WhatImWorkingOn.jsx
 // Dedicated page showcasing current work streams.
-//
-// - Receives data (projects/initiatives) and renders them as cards/sections.
-// - Mostly presentational; relies on parent routing and shared layout wrappers.
-//
-// Accessibility
-// - Uses semantic headings and lists for projects; ensure link text is descriptive.
-// - Respect keyboard navigation order when adding new cards or CTAs.
-//
-// How to customize
-// - Swap in different data sources or filters to highlight specific work.
-// - Adjust layout components (grid/stack) for more or fewer columns responsively.
 // -----------------------------------------------------------------------------
+
 import * as React from "react";
 import {
   Box,
@@ -20,7 +10,7 @@ import {
   Typography,
   useTheme,
   Grid,
-  Link as MuiLink,
+  Button,
 } from "@mui/material";
 
 import portfolioHero from "../assets/portfolio-hero.png";
@@ -40,7 +30,6 @@ export default function WhatImWorkingOn() {
     <Box
       component="div"
       sx={{
-        // ⬅️ match the header background so it feels like one block
         bgcolor: theme.palette.background.default,
         minHeight: "100vh",
       }}
@@ -48,7 +37,7 @@ export default function WhatImWorkingOn() {
       {/* Header / title band – same bg as header */}
       <Box
         sx={{
-          pt: { xs: 8, md: 8},
+          pt: { xs: 8, md: 8 },
           pb: { xs: 4, md: 6 },
         }}
       >
@@ -69,12 +58,12 @@ export default function WhatImWorkingOn() {
         eyebrow="Now"
         title="SergioAntezana.com — my portfolio"
         paragraphs={[
-          "I’m not a big fan of traditional UX portfolios. They tend to over-emphasize visuals and under-represent the real work: system-level thinking, decisions, and how you work with teams.",
+          "I am not a big fan of traditional UX portfolios. They tend to over-emphasize visuals and under-represent the real work: system-level thinking, decisions, and how you work with teams.",
           "Since the industry still expects one, I decided to build a portfolio that reflects how I actually think — and to build it myself with a small, modern tech stack: React, MUI, Figma, GitHub, and AI as a writing and thinking partner.",
-          "The goal is a simple, honest site that’s easy to maintain and explains the work clearly instead of putting on a case-study show.",
+          "The goal is a simple, honest site that is easy to maintain and explains the work clearly instead of putting on a case-study show.",
         ]}
         linkHref="https://sergioantezana.com"
-        linkLabel="Visit sergioantezana.com"
+        linkLabel="See the portfolio I’m building"
         image={portfolioHero}
         imageAlt="Sergio Antezana portfolio preview"
         imageLeft
@@ -84,12 +73,12 @@ export default function WhatImWorkingOn() {
         eyebrow="In progress"
         title="UX Katarzis — my UX-focused GPT"
         paragraphs={[
-          "I’ve been using ChatGPT since the very beginning and noticed that my prompts for UX and product work became very patterned — especially around goals, workflows, and systems thinking.",
-          "UX Katarzis is built from those patterns. It’s meant to be a companion for both new and experienced designers, helping them frame problems, reduce cognitive load, and build clearer flows and structures.",
-          "I’m treating it as a living tool: something I refine as I learn more about how designers actually use AI in real projects.",
+          "I have been using ChatGPT since the very beginning and noticed that my prompts for UX and product work became very patterned — especially around goals, workflows, and systems thinking.",
+          "UX Katarzis is built from those patterns. It is meant to be a companion for both new and experienced designers, helping them frame problems, reduce cognitive load, and build clearer flows and structures.",
+          "I treat it as a living tool: something I refine as I learn more about how designers actually use AI in real projects.",
         ]}
         linkHref="https://chatgpt.com/g/g-U8o9KZ3e3-ux-katarzis"
-        linkLabel="Try UX Katarzis"
+        linkLabel="Use UX Katarzis as your design companion"
         image={uxKatarzisHero}
         imageAlt="UX Katarzis GPT preview"
         imageLeft={false}
@@ -97,7 +86,6 @@ export default function WhatImWorkingOn() {
     </Box>
   );
 }
-
 
 /**
  * Full-width Microsoft-style band:
@@ -209,15 +197,54 @@ function FullBleedSection({
             ))}
 
             {linkHref && (
-              <MuiLink
+              <Button
+                component="a"
                 href={linkHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                underline="hover"
-                sx={{ mt: 2, fontSize: "0.95rem" }}
+                variant="outlined"
+                size="medium"
+                sx={{
+                  mt: 3,
+                  px: 2.75,
+                  borderRadius: 999,
+                  textTransform: "none",
+                  fontWeight: 500,
+                  display: "inline-flex",
+                  alignItems: "center",
+                  backgroundColor: isLight ? "#ffffff" : "#000000",
+                  color: isLight
+                    ? theme.palette.primary.main
+                    : theme.palette.primary.light,
+                  borderColor: isLight
+                    ? theme.palette.primary.main
+                    : theme.palette.primary.light,
+                  "&:hover": {
+                    backgroundColor: isLight
+                      ? "rgba(255,255,255,0.9)"
+                      : "rgba(0,0,0,0.9)",
+                    borderColor: isLight
+                      ? theme.palette.primary.dark
+                      : theme.palette.primary.main,
+                  },
+                  "& .cta-arrow": {
+                    transition: "transform 150ms ease-out",
+                  },
+                  "&:hover .cta-arrow": {
+                    transform: "translateX(3px)",
+                  },
+                }}
               >
-                {linkLabel}
-              </MuiLink>
+                <span>{linkLabel}</span>
+                <Box
+                  component="span"
+                  className="cta-arrow"
+                  aria-hidden="true"
+                  sx={{ ml: 0.75 }}
+                >
+                  →
+                </Box>
+              </Button>
             )}
           </Grid>
         </Grid>

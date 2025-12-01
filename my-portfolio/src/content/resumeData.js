@@ -47,7 +47,7 @@ export const SUMMARY = [
 ];
 
 export const RECRUITER_ESSENTIALS = {
-  email: "sergiullas@gmail.com",
+  email: "santezana@nayas.com",
   phone: "571-482-8257",
   location: "DC Area",
   pronouns: "he / him",

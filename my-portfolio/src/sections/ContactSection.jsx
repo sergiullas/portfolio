@@ -42,7 +42,7 @@ export default function ContactSection() {
               How to get in touch
             </Typography>
             <Typography variant="body2" sx={{ opacity: 0.9 }}>
-              Send over an email or message me on social media.
+              Send over an email or message me on LinkedIn.
             </Typography>
           </Box>
 
@@ -54,7 +54,7 @@ export default function ContactSection() {
               Email
             </Typography>
             <Link
-              href="mailto:youremail@example.com"
+              href="mailto:santezana@nayas.com"
               underline="hover"
               color="inherit"
               sx={{
@@ -65,7 +65,7 @@ export default function ContactSection() {
               }}
             >
               {/* you can add an icon here if you want */}
-              <span>youremail@example.com</span>
+              <span>santezana@nayas.com</span>
             </Link>
           </Box>
 
@@ -77,7 +77,7 @@ export default function ContactSection() {
               LinkedIn
             </Typography>
             <Link
-              href="https://www.linkedin.com/in/your-profile"
+              href="https://www.linkedin.com/in/santezana/"
               target="_blank"
               rel="noreferrer"
               underline="hover"
@@ -90,7 +90,7 @@ export default function ContactSection() {
               }}
             >
               {/* LinkedIn icon here if you like */}
-              <span>Go to LinkedIn profile</span>
+              <span>@santezana</span>
             </Link>
           </Box>
         </Stack>
@@ -104,8 +104,7 @@ export default function ContactSection() {
             Let us talk
           </Typography>
           <Typography variant="body2" sx={{ opacity: 0.9 }}>
-            Whether you are exploring a new product idea, want feedback on a UX
-            challenge, or just want to connect, I am always open to a conversation.
+          I am open to discussing new product ideas, UX challenges, or interesting opportunities. Feel free to reach out.
           </Typography>
         </Stack>
       </Box>
