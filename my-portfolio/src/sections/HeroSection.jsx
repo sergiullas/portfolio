@@ -20,6 +20,7 @@
 import * as React from "react";
 import Section from "../components/Section";
 import EditorialHero from "../components/EditorialHero";
+import { ScrollIndicator } from "../components/common/ScrollIndicator";
 
 export default function HeroSection() {
   return (
@@ -32,6 +33,7 @@ export default function HeroSection() {
       align="left"
     >
       <EditorialHero />
+      <ScrollIndicator targetId="about" />
     </Section>
   );
 }
