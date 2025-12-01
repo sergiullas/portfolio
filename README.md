@@ -191,13 +191,6 @@ This project is licensed under the **MIT License** — meaning:
 
 ---
 
-## ⭐ Acknowledgements
-
-* Inspired by federal UX, design systems, and enterprise-grade UI
-* Built with love, clarity, and intention for the UX community
-
----
-
 ## 🙌 Final Note
 
 If this project helps you create your own portfolio, **star the repo** ⭐
