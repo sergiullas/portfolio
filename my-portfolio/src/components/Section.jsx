@@ -63,14 +63,15 @@ export default function Section({
       component={as}
       data-section-variant={variant}
       aria-labelledby={headingId}
-      sx={(theme) => ({
+      sx={{
         bgcolor: BG_MAP[variant] ?? "transparent",
         color: "inherit",
         minHeight: fullHeight ? "100vh" : "auto",
         display: "flex",
         alignItems: fullHeight ? "center" : "flex-start",
         overflow: "visible",
-      })}
+        position: "relative",
+      }}
     >
       <Container
         maxWidth="lg"
@@ -80,18 +81,18 @@ export default function Section({
           flexDirection: "column",
         }}
       >
-        {layout === "split" ? (
-          <Box
-            sx={(theme) => ({
-              display: "grid",
-              gridTemplateColumns: {
-                xs: "1fr",
-                md: "minmax(12rem, 16rem) minmax(0, 1fr)",
-              },
-              columnGap: { xs: 4, md: 8 },
-              rowGap: { xs: 4, md: 0 },
-            })}
-          >
+          {layout === "split" ? (
+            <Box
+              sx={{
+                display: "grid",
+                gridTemplateColumns: {
+                  xs: "1fr",
+                  md: "minmax(12rem, 16rem) minmax(0, 1fr)",
+                },
+                columnGap: { xs: 4, md: 8 },
+                rowGap: { xs: 4, md: 0 },
+              }}
+            >
             {/* LEFT: sticky title column */}
             <Box
               sx={(theme) => ({
