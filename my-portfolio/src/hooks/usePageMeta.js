@@ -1,6 +1,9 @@
 // src/hooks/usePageMeta.js
 import { useEffect } from "react";
 
+const DEFAULT_DESCRIPTION =
+  "Sergio Antezana is a Principal Product & UX Designer specializing in systems-level UX, design operations, and accessibility for complex products.";
+
 /**
  * Simple per-page meta management:
  * - Updates document.title
@@ -12,19 +15,19 @@ export function usePageMeta({ title, description }) {
       document.title = title;
     }
 
-    if (description) {
-      let meta =
-        document.querySelector('meta[name="description"]') ||
-        createDescriptionMeta();
+    const nextContent = description || DEFAULT_DESCRIPTION;
 
-      const previous = meta.getAttribute("content") || "";
-      meta.setAttribute("content", description);
+    let meta =
+      document.querySelector('meta[name="description"]') ||
+      createDescriptionMeta();
 
-      // Optional: restore previous on unmount
-      return () => {
-        meta.setAttribute("content", previous);
-      };
-    }
+    const previous = meta.getAttribute("content") || "";
+    meta.setAttribute("content", nextContent);
+
+    // Optional: restore previous on unmount
+    return () => {
+      meta.setAttribute("content", previous);
+    };
   }, [title, description]);
 }
 

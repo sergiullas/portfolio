@@ -39,9 +39,9 @@ export default function PortfolioPage() {
   });
 
   usePageMeta({
-    title: "Portfolio — Sergio Antezana",
+    title: "Portfolio – Sergio Antezana | UX Systems & Design Ops",
     description:
-      "Selected UX and product design work, including systems design, workflow simplification, and interaction patterns.",
+      "Selected UX and product design work by Sergio Antezana, focusing on systems-level UX, design systems, and design operations for high-stakes, complex products.",
   });
 
   const handleSubmit = (e) => {

@@ -79,9 +79,9 @@ export default function App({ mode, setMode }) {
 
 function HomePage() {
   usePageMeta({
-    title: "Sergio Antezana — UX Leader & Product Designer",
+    title: "Sergio Antezana – Principal Product & UX Designer",
     description:
-      "Principal-level UX and Product Designer helping teams build clearer workflows, scalable systems, and human-centered products.",
+      "Principal Product & UX Designer focused on systems-level UX, design operations, and accessibility for complex federal programs and enterprise tools.",
   });
 
   return (

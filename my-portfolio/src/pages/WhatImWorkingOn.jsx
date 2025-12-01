@@ -31,14 +31,14 @@ export default function WhatImWorkingOn() {
   const theme = useTheme();
 
   usePageMeta({
-    title: "What I'm working on — Sergio Antezana",
+    title: "What I’m working on – Sergio Antezana | UX Experiments & UX Katarzis",
     description:
-      "A look at my current projects, including SergioAntezana.com and UX Katarzis — my UX-focused GPT.",
+      "Current projects from Sergio Antezana, including his React + MUI portfolio build and UX Katarzis, a UX-focused GPT companion for product and UX designers.",
   });
 
   return (
     <Box
-      component="main"
+      component="div"
       sx={{
         // ⬅️ match the header background so it feels like one block
         bgcolor: theme.palette.background.default,
