@@ -29,7 +29,7 @@ export function ScrollIndicator({ targetId = "about" }) {
       aria-label="Scroll down to learn more"
       sx={{
         position: "absolute",
-        bottom: { xs: 16, sm: 24 },
+        bottom: { xs: 16, sm: 36 },
         left: "50%",
         transform: "translateX(-50%)",
         display: "flex",
@@ -38,8 +38,8 @@ export function ScrollIndicator({ targetId = "about" }) {
         width: 44,
         height: 44,
         borderRadius: "999px",
-        border: "1px solid",
-        borderColor: "text.primary",
+        border: "none",
+        borderColor: "text.secondary",
         backgroundColor: "background.paper",
         color: "text.primary",
         cursor: "pointer",
