@@ -38,7 +38,7 @@ export default function WhatImWorkingOn() {
 
   return (
     <Box
-      component="main"
+      component="div"
       sx={{
         // ⬅️ match the header background so it feels like one block
         bgcolor: theme.palette.background.default,
