@@ -23,6 +23,7 @@ import ResumeSectionNav from "../components/resume/ResumeSectionNav.jsx";
 import ResumeSection from "../components/resume/ResumeSection.jsx";
 import ResumeExperience from "../components/resume/ResumeExperience.jsx";
 import ResumeRecruiterCard from "../components/resume/ResumeRecruiterCard.jsx";
+import ContactSection from "../sections/ContactSection";
 
 import {
   SECTION_ITEMS,
@@ -82,87 +83,92 @@ export default function MyResumePage() {
   });
 
   return (
-    <Box
-      component="div"
-      sx={(t) => ({
-        minHeight: "100vh",
-        bgcolor: t.palette.background.default,
-        color: t.palette.text.primary,
-        py: { xs: 4, md: 8 },
-      })}
-    >
-      <Container maxWidth="md">
-        <Box sx={{ maxWidth: 880, mx: "auto", px: { xs: 2, md: 6 } }}>
-          <Stack spacing={4}>
-            <ResumeHero ref={heroRef} />
-            
-            <ResumeRecruiterCard />
-            <ResumeSectionNav
-              items={SECTION_ITEMS}
-              activeSection={activeSection}
-              onNavClick={handleNavClick}
-            />
+    <>
+      <Box
+        component="main"
+        sx={(t) => ({
+          minHeight: "100vh",
+          bgcolor: t.palette.background.default,
+          color: t.palette.text.primary,
+          py: { xs: 4, md: 8 },
+        })}
+      >
+        <Container maxWidth="md">
+          <Box sx={{ maxWidth: 880, mx: "auto", px: { xs: 2, md: 6 } }}>
+            <Stack spacing={4}>
+              <ResumeHero ref={heroRef} />
 
-            {/* SUMMARY */}
-            <ResumeSection id="summary" label="Summary">
-              {SUMMARY.map((paragraph) => (
-                <Typography
-                  key={paragraph.slice(0, 24)}
-                  variant="body1"
-                  color="text.secondary"
-                  sx={{ mb: 2 }}
-                >
-                  {paragraph}
-                </Typography>
-              ))}
-            </ResumeSection>
+              <ResumeRecruiterCard />
+              <ResumeSectionNav
+                items={SECTION_ITEMS}
+                activeSection={activeSection}
+                onNavClick={handleNavClick}
+              />
 
-            {/* SKILLS */}
-            <ResumeSection id="skills" label="Core skills & expertise">
-              <Box component="ul" sx={{ pl: 2.5, m: 0, maxWidth: "70ch" }}>
-                {SKILLS.map((skill) => (
-                  <li key={skill.title}>
-                    <Typography variant="body2" color="text.secondary">
-                      <strong>{skill.title}:</strong> {skill.text}
-                    </Typography>
-                  </li>
+              {/* SUMMARY */}
+              <ResumeSection id="summary" label="Summary">
+                {SUMMARY.map((paragraph) => (
+                  <Typography
+                    key={paragraph.slice(0, 24)}
+                    variant="body1"
+                    color="text.secondary"
+                    sx={{ mb: 2 }}
+                  >
+                    {paragraph}
+                  </Typography>
                 ))}
-              </Box>
-            </ResumeSection>
+              </ResumeSection>
 
-            {/* EXPERIENCE */}
-            <ResumeSection id="experience" label="Experience">
-              <ResumeExperience />
-            </ResumeSection>
+              {/* SKILLS */}
+              <ResumeSection id="skills" label="Core skills & expertise">
+                <Box component="ul" sx={{ pl: 2.5, m: 0, maxWidth: "70ch" }}>
+                  {SKILLS.map((skill) => (
+                    <li key={skill.title}>
+                      <Typography variant="body2" color="text.secondary">
+                        <strong>{skill.title}:</strong> {skill.text}
+                      </Typography>
+                    </li>
+                  ))}
+                </Box>
+              </ResumeSection>
 
-            {/* PROJECTS */}
-            <ResumeSection id="projects" label="Projects highlights">
-              <Box component="ul" sx={{ pl: 2.5, m: 0, maxWidth: "70ch" }}>
-                {PROJECTS.map((project) => (
-                  <li key={project.title}>
-                    <Typography variant="body2" color="text.secondary">
-                      <strong>{project.title}:</strong> {project.description}
-                    </Typography>
-                  </li>
-                ))}
-              </Box>
-            </ResumeSection>
+              {/* EXPERIENCE */}
+              <ResumeSection id="experience" label="Experience">
+                <ResumeExperience />
+              </ResumeSection>
 
-            {/* EDUCATION */}
-            <ResumeSection id="education" label="Education & certifications">
-              <Box component="ul" sx={{ pl: 2.5, m: 0, maxWidth: "70ch" }}>
-                {EDUCATION.map((item) => (
-                  <li key={item}>
-                    <Typography variant="body2" color="text.secondary">
-                      <strong>{item}</strong>
-                    </Typography>
-                  </li>
-                ))}
-              </Box>
-            </ResumeSection>
-          </Stack>
-        </Box>
-      </Container>
-    </Box>
+              {/* PROJECTS */}
+              <ResumeSection id="projects" label="Projects highlights">
+                <Box component="ul" sx={{ pl: 2.5, m: 0, maxWidth: "70ch" }}>
+                  {PROJECTS.map((project) => (
+                    <li key={project.title}>
+                      <Typography variant="body2" color="text.secondary">
+                        <strong>{project.title}:</strong> {project.description}
+                      </Typography>
+                    </li>
+                  ))}
+                </Box>
+              </ResumeSection>
+
+              {/* EDUCATION */}
+              <ResumeSection id="education" label="Education & certifications">
+                <Box component="ul" sx={{ pl: 2.5, m: 0, maxWidth: "70ch" }}>
+                  {EDUCATION.map((item) => (
+                    <li key={item}>
+                      <Typography variant="body2" color="text.secondary">
+                        <strong>{item}</strong>
+                      </Typography>
+                    </li>
+                  ))}
+                </Box>
+              </ResumeSection>
+            </Stack>
+          </Box>
+        </Container>
+      </Box>
+
+      {/* Resume footer: re-use the same contact block as the home page */}
+      <ContactSection />
+    </>
   );
 }
