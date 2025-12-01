@@ -76,9 +76,9 @@ export default function MyResumePage() {
   }, []);
 
   usePageMeta({
-    title: "Resume — Sergio Antezana",
+    title: "Resume – Sergio Antezana | Principal Product & UX Designer",
     description:
-      "Experience, skills, and leadership as a Principal UX & Product Designer. Over 15 years designing scalable systems for enterprise and federal programs.",
+      "Resume of Sergio Antezana, a Principal Product & UX Designer with 15+ years leading UX strategy, design systems, and accessibility for complex federal and enterprise platforms.",
   });
 
   return (
