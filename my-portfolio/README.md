@@ -1,7 +1,7 @@
 # 📁 **sergio-portfolio**
 
 ### A modern, accessible, fully responsive UX portfolio built with React + MUI
-### [http](https://sergioantezana.com/)
+### [SergioAntezana.com](https://sergioantezana.com/)
 ---
 
 ## ✨ Overview
