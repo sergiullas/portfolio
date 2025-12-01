@@ -17,6 +17,13 @@
 // -----------------------------------------------------------------------------
 
 
+// -----------------------------------------------------------------------------
+// content/resumeData.js
+// Structured data that powers resume pages/sections.
+// -----------------------------------------------------------------------------
+
+// src/content/resumeData.js
+
 export const SECTION_ITEMS = [
   { id: "summary", label: "Summary" },
   { id: "skills", label: "Skills" },
@@ -30,14 +37,13 @@ export const HERO = {
   name: "Sergio Antezana",
   blurb: [
     "Product Designer & UX Architect · Systems & Strategy · Multi-team UX Leadership",
-    "I help teams make complex systems feel simple. I focus on the structure beneath the UI—patterns, models, workflows—so teams can ship tools that work the way people think",
+    "I lead UX strategy, design systems, and cross-team patterns that raise UX maturity and make multi-team delivery more predictable. I work at the seams between product, engineering, and operations so teams can ship intuitive tools instead of one-off screens.",
   ],
 };
 
 export const SUMMARY = [
-  "Principal-level Product & UX Designer with 15+ years leading UX strategy, design systems, and research-driven improvements across large, complex federal and enterprise platforms. I focus on system-level UX, reusable patterns, and the org structures that make good design repeatable instead of one-off.",
-
-  "I lead cross-functional work where product, engineering, and UX intersect: clarifying problems, defining UX roadmaps, and turning constraints into scalable interaction patterns. I’m at my best in Principal, Staff, and Lead roles where I can both set direction and ship hands-on design that teams can build.",
+  "Principal-level Product Designer and UX Architect with 15+ years leading UX strategy, design systems, and research-driven improvements across large, complex federal and enterprise platforms. I focus on system-level UX, reusable patterns, and the organizational structures that make good design repeatable instead of one-off efforts.",
+  "I lead cross-functional work where product, engineering, and UX intersect: clarifying problems, defining UX roadmaps, and turning constraints into scalable interaction patterns. I am at my best in Principal, Staff, and Lead environments where I can both set direction and ship hands-on design that delivery teams can build, extend, and maintain.",
 ];
 
 export const RECRUITER_ESSENTIALS = {
@@ -55,7 +61,7 @@ export const RECRUITER_ESSENTIALS = {
 export const SKILLS = [
   {
     title: "Design Leadership & Strategy",
-    text: "Vision & Roadmapping · UX Governance · Mentorship · Cross-Functional Alignment · Accessibility Advocacy",
+    text: "Vision and Roadmapping · Portfolio UX Direction · UX Governance · Mentorship and Coaching · Cross-Functional Alignment · Accessibility Advocacy",
   },
   {
     title: "Design Systems & Accessibility",
@@ -63,7 +69,7 @@ export const SKILLS = [
   },
   {
     title: "AI-Enhanced Design Workflow",
-    text: "ChatGPT · Gemini · Figma AI · Replit · Generative AI for UX Writing & Ideation · Low-Code / No-Code Prototyping",
+    text: "ChatGPT · Gemini · Figma AI · Replit · Generative AI for UX Writing and Ideation · Low-Code / No-Code Prototyping",
   },
   {
     title: "Technical Collaboration",
@@ -76,9 +82,9 @@ export const SKILLS = [
 ];
 
 export const META = {
-  title: "Senior Product & UX Designer",
-  subtitle: "Systems, design ops, accessibility",
-  openTo: "Open to senior/lead roles",
+  title: "Product Designer & UX Architect",
+  subtitle: "Systems, UX strategy, design ops, accessibility",
+  openTo: "Open to Principal, Staff, and Lead Product / UX roles",
   location: "Washington, DC metro (remote-first)",
   email: "santezana@nayas.com",
   linkedin: "https://www.linkedin.com/in/santezana/",
@@ -104,11 +110,11 @@ export const EXPERIENCE = {
         "Usability Testing",
       ],
       intro:
-        "Started as a visual / web designer supporting early federal systems, focusing on clean layouts, basic UX practices, and learning how to ship production-ready UI in partnership with engineers.",
+        "Started as a visual and web designer supporting early federal systems, focusing on clean layouts, foundational UX practices, and learning how to ship production-ready UI in partnership with engineers.",
       bullets: [
         "Built and refined UI for DHS and ODNI applications, translating requirements into usable page layouts and navigation.",
-        "Ran basic usability reviews and worked with teams to fix common pain points such as unclear labels, cluttered layouts, and inconsistent flows.",
-        "Helped standardize early UI patterns (buttons, tables, forms) that reduced ad-hoc “one-off” screens and made future changes easier to implement.",
+        "Ran usability reviews and worked with teams to fix pain points such as unclear labels, cluttered layouts, and inconsistent flows.",
+        "Helped standardize early UI patterns (buttons, tables, forms) that reduced ad-hoc one-off screens and made future changes easier to implement.",
       ],
     },
     {
@@ -144,7 +150,7 @@ export const EXPERIENCE = {
         "Shifted into end-to-end product design, owning UX for large, data-heavy federal platforms. Acted as a bridge between product owners and multiple engineering teams to make complex workflows understandable and buildable.",
       bullets: [
         "Designed flows, wireframes, and detailed interaction patterns for complex search, workflow, and reporting tools used across multiple programs.",
-        "Worked closely with tech leads to translate constraints into pragmatic UX decisions, ensuring designs were feasible and could be delivered incrementally in Agile environments.",
+        "Worked closely with technical leads to translate constraints into pragmatic UX decisions, ensuring designs were feasible and could be delivered incrementally in Agile environments.",
         "Introduced reusable patterns (tables, filters, detail views, error handling) that reduced design and engineering rework across related products.",
         "Mentored designers on structuring problem spaces, documenting decisions, and communicating clearly with non-design partners.",
       ],
@@ -160,12 +166,12 @@ export const EXPERIENCE = {
         "Cross-functional Leadership",
       ],
       intro:
-        "Serving as the principal-designer UX leader for multi-year, multi-team programs, owning UX strategy, design systems, and cross-program UX standards. I bring structure to ambiguous portfolios, align product and engineering leaders around shared UX direction, and scale practices that make good design repeatable across teams.",
+        "Currently serve as the principal UX leader for multi-year, multi-team programs, owning UX strategy, design systems, and cross-program UX standards. Bring structure to ambiguous portfolios, align product and engineering leaders around shared UX direction, and scale practices that make good design repeatable across teams.",
       bullets: [
-        "Defined and rolled out UX frameworks and guidelines used across major FBI and DOJ programs, giving N+ teams shared patterns instead of designing from scratch for each screen.",
-        "Led the shift toward design-system thinking (tokens, shared components, interaction patterns), reducing UX/engineering rework and making it easier to ship accessible, consistent interfaces.",
+        "Defined and rolled out UX frameworks and guidelines used across major FBI and DOJ programs, giving teams across multiple programs shared patterns instead of designing from scratch for each screen.",
+        "Led the shift toward design-system thinking (tokens, shared components, interaction patterns), reducing UX and engineering rework and making it easier to ship accessible, consistent interfaces.",
         "Partnered with product leads to turn high-level mission and business goals into clear UX objectives, roadmaps, and design priorities for delivery teams.",
-        "Influenced major system and API decisions by framing trade-offs in terms of analyst workflows, operational risk, and long-term maintainability, not just short-term feature delivery.",
+        "Influenced major system and API decisions by framing trade-offs in terms of analyst workflows, operational risk, and long-term maintainability, not only short-term feature delivery.",
         "Provided coaching and design direction to UX practitioners across programs, helping them deliver consistent experiences while still supporting team autonomy.",
       ],
     },
@@ -206,22 +212,22 @@ export const PROJECTS = [
   {
     title: "Enterprise Workflow Platform (2023–2025)",
     description:
-      "Designed the UX for a low-code platform used to build forms, workflows, and dashboards. Focused on clarity, reusable patterns, and reducing the amount of custom work engineering teams had to maintain. Helped teams move faster by giving them simple structures to start from.",
+      "Designed the UX for a low-code platform used to build forms, workflows, and dashboards. Focused on clarity, reusable patterns, and reducing the amount of custom work engineering teams had to maintain, helping teams move faster by giving them simple, proven structures to start from.",
   },
   {
     title: "Accessibility Modernization Program (2016–2019)",
     description:
-      "Improved usability and accessibility across 12 DOJ applications. Created shared components that teams could reuse instead of rebuilding from scratch. Supported testing and refinement work that reduced support issues and made the products easier to use.",
+      "Improved usability and accessibility across 12 DOJ applications. Created shared components that teams could reuse instead of rebuilding from scratch, and supported testing and refinement work that reduced support issues and made the products easier to use.",
   },
   {
     title: "Intelligence Community Systems (2014–2018)",
     description:
-      "Designed UI patterns and workflows for several intelligence and defense applications. Worked with multiple teams to bring consistency to large systems and improve how information was presented to analysts. Helped introduce accessibility and UX standards that other groups later adopted.",
+      "Designed UI patterns and workflows for several intelligence and defense applications. Worked with multiple teams to bring consistency to large systems and improve how information was presented to analysts, and helped introduce accessibility and UX standards that other groups later adopted.",
   },
   {
     title: "AI-Driven Prototyping Pilot (2023)",
     description:
-      "Explored how tools like Figma AI and ChatGPT could speed up early design work. Proved out approaches that reduced manual prototyping and helped teams get ideas in front of stakeholders earlier.",
+      "Explored how tools such as Figma AI and ChatGPT could speed up early design work. Proved out approaches that reduced manual prototyping effort and helped teams get ideas in front of stakeholders earlier.",
   },
 ];
 
