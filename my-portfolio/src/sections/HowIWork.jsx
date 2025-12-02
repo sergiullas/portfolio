@@ -22,7 +22,7 @@ import { Link as RouterLink } from "react-router-dom";
 
 export default function HowIWork() {
   return (
-    <Section id="resume" title="How I Work" variant="soft" layout="split">
+    <Section id="how_work" title="How I Work" variant="soft" layout="split">
       <Stack spacing={3} alignItems="flex-start">
         <Typography variant="h3" color="text.secondary">
           I start with the user’s goal.
