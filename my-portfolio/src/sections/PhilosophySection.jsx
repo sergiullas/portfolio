@@ -20,7 +20,7 @@ import Section from "../components/Section";
 
 export default function PhilosophySection() {
   return (
-    <Section id="resume" title="Philosophy" variant="white" layout="split">
+    <Section id="philosophy" title="Philosophy" variant="white" layout="split">
       <Stack spacing={3} alignItems="flex-start">
         <Typography variant="h3" color="text.secondary">
           Direction is more important than speed.
