@@ -85,7 +85,6 @@ export default function MyResumePage() {
   return (
     <>
       <Box
-        component="main"
         sx={(t) => ({
           minHeight: "100vh",
           bgcolor: t.palette.background.default,

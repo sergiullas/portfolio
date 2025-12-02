@@ -71,6 +71,7 @@ export default function Header({ mode, setMode }) {
   };
 
   const isMenuOpen = Boolean(menuAnchor);
+  const mobileMenuId = "primary-navigation-menu";
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -242,7 +243,9 @@ export default function Header({ mode, setMode }) {
           {!isDesktop && (
             <IconButton
               color="inherit"
-              aria-label="Open navigation"
+              aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
+              aria-expanded={isMenuOpen}
+              aria-controls={isMenuOpen ? mobileMenuId : undefined}
               onClick={(e) => setMenuAnchor(e.currentTarget)}
             >
               <MenuIcon />
@@ -255,6 +258,7 @@ export default function Header({ mode, setMode }) {
       {!isDesktop && (
         <Menu
           anchorEl={menuAnchor}
+          id={mobileMenuId}
           open={isMenuOpen}
           onClose={() => setMenuAnchor(null)}
           anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
