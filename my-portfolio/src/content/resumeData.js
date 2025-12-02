@@ -29,7 +29,7 @@ export const SECTION_ITEMS = [
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
-  { id: "education", label: "Education" },
+  { id: "education-certifications", label: "Education & Certifications" },
 ];
 
 export const HERO = {
@@ -229,20 +229,4 @@ export const PROJECTS = [
     description:
       "Explored how tools such as Figma AI and ChatGPT could speed up early design work. Proved out approaches that reduced manual prototyping effort and helped teams get ideas in front of stakeholders earlier.",
   },
-];
-
-export const EDUCATION = [
-  "Bachelor in Business Administration (UMSS – Bolivia)",
-  "Artificial Intelligence Foundational (Booz Allen)",
-  "Artificial Intelligence, Enablement (Booz Allen)",
-  "Certified Usability Analyst (Human Factors International)",
-  "Trusted Tester – Office of Accessible Systems & Technology (DHS)",
-  "Interaction Design (Nielsen Norman Group)",
-  "UX Management (Nielsen Norman Group)",
-  "UX Master Certification (Nielsen Norman Group)",
-  "Human Systems Integration (Georgia Tech)",
-  "Certified Scrum Master (Scrum Alliance)",
-  "Certified Agile Professional (IC Agile)",
-  "Certified Team Facilitator (IC Agile)",
-  "Certified Team Coach (IC Agile)",
 ];

@@ -1,0 +1,115 @@
+// src/content/educationData.js
+// Education and certification data for the resume.
+// Updated: 2025-12-01
+
+export const EDUCATION = [
+  {
+    id: "bba-umss",
+    degree: "Bachelor in Business Administration",
+    field: "",
+    institution: "Universidad Mayor de San Simón (UMSS)",
+    location: "Cochabamba, Bolivia",
+    startYear: "",
+    endYear: "",
+    notes: "",
+  },
+];
+
+export const CERTIFICATIONS = [
+  {
+    id: "ai-foundational-booz-allen",
+    title: "Artificial Intelligence Foundational",
+    issuer: "Booz Allen",
+    year: "",
+    logo: "/logos/booz-allen.png",
+    href: "",
+  },
+  {
+    id: "ai-enablement-booz-allen",
+    title: "Artificial Intelligence, Enablement",
+    issuer: "Booz Allen",
+    year: "",
+    logo: "/logos/booz-allen.png",
+    href: "",
+  },
+  {
+    id: "cua-hfi",
+    title: "Certified Usability Analyst",
+    issuer: "Human Factors International",
+    year: "",
+    logo: "/logos/hfi.png",
+    href: "",
+  },
+  {
+    id: "trusted-tester-dhs",
+    title: "Trusted Tester",
+    issuer: "Office of Accessible Systems & Technology (DHS)",
+    year: "",
+    logo: "/logos/dhs-tt.png",
+    href: "",
+  },
+  {
+    id: "interaction-design-nng",
+    title: "Interaction Design",
+    issuer: "Nielsen Norman Group",
+    year: "",
+    logo: "/logos/nng.png",
+    href: "",
+  },
+  {
+    id: "ux-management-nng",
+    title: "UX Management",
+    issuer: "Nielsen Norman Group",
+    year: "",
+    logo: "/logos/nng.png",
+    href: "",
+  },
+  {
+    id: "ux-master-certification-nng",
+    title: "UX Master Certification",
+    issuer: "Nielsen Norman Group",
+    year: "",
+    logo: "/logos/nng.png",
+    href: "",
+  },
+  {
+    id: "human-systems-integration-gatech",
+    title: "Human Systems Integration",
+    issuer: "Georgia Tech",
+    year: "",
+    logo: "/logos/georgia-tech.png",
+    href: "",
+  },
+  {
+    id: "csm-scrum-alliance",
+    title: "Certified Scrum Master",
+    issuer: "Scrum Alliance",
+    year: "",
+    logo: "/logos/scrum-alliance.png",
+    href: "",
+  },
+  {
+    id: "icp-agile-professional",
+    title: "Certified Agile Professional",
+    issuer: "ICAgile",
+    year: "",
+    logo: "/logos/ic-agile.png",
+    href: "",
+  },
+  {
+    id: "icp-atf-team-facilitator",
+    title: "Certified Team Facilitator",
+    issuer: "ICAgile",
+    year: "",
+    logo: "/logos/ic-agile.png",
+    href: "",
+  },
+  {
+    id: "icp-acc-team-coach",
+    title: "Certified Team Coach",
+    issuer: "ICAgile",
+    year: "",
+    logo: "/logos/ic-agile.png",
+    href: "",
+  },
+];

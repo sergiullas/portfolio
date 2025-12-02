@@ -24,13 +24,13 @@ import ResumeSection from "../components/resume/ResumeSection.jsx";
 import ResumeExperience from "../components/resume/ResumeExperience.jsx";
 import ResumeRecruiterCard from "../components/resume/ResumeRecruiterCard.jsx";
 import ContactSection from "../sections/ContactSection";
+import EducationAndCertifications from "../components/resume/EducationAndCertifications.jsx";
 
 import {
   SECTION_ITEMS,
   SUMMARY,
   SKILLS,
   PROJECTS,
-  EDUCATION,
 } from "../content/resumeData.js";
 
 import { useActiveSection } from "../hooks/useActiveSection.js";
@@ -149,17 +149,11 @@ export default function MyResumePage() {
                 </Box>
               </ResumeSection>
 
-              {/* EDUCATION */}
-              <ResumeSection id="education" label="Education & certifications">
-                <Box component="ul" sx={{ pl: 2.5, m: 0, maxWidth: "70ch" }}>
-                  {EDUCATION.map((item) => (
-                    <li key={item}>
-                      <Typography variant="body2" color="text.secondary">
-                        <strong>{item}</strong>
-                      </Typography>
-                    </li>
-                  ))}
-                </Box>
+              <ResumeSection
+                id="education-certifications"
+                label="Education & Certifications"
+              >
+                <EducationAndCertifications />
               </ResumeSection>
             </Stack>
           </Box>
