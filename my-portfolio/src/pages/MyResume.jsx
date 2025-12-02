@@ -149,7 +149,12 @@ export default function MyResumePage() {
                 </Box>
               </ResumeSection>
 
-              <EducationAndCertifications />
+              <ResumeSection
+                id="education-certifications"
+                label="Education & Certifications"
+              >
+                <EducationAndCertifications />
+              </ResumeSection>
             </Stack>
           </Box>
         </Container>
