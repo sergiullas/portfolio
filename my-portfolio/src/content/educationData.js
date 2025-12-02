@@ -15,6 +15,7 @@ export const EDUCATION = [
   },
 ];
 
+// Add category fields to CERTIFICATIONS inside educationData.js
 export const CERTIFICATIONS = [
   {
     id: "ai-foundational-booz-allen",
@@ -22,7 +23,7 @@ export const CERTIFICATIONS = [
     issuer: "Booz Allen",
     year: "",
     logo: "/logos/booz-allen.png",
-    href: "",
+    category: "AI",
   },
   {
     id: "ai-enablement-booz-allen",
@@ -30,7 +31,7 @@ export const CERTIFICATIONS = [
     issuer: "Booz Allen",
     year: "",
     logo: "/logos/booz-allen.png",
-    href: "",
+    category: "AI",
   },
   {
     id: "cua-hfi",
@@ -38,7 +39,7 @@ export const CERTIFICATIONS = [
     issuer: "Human Factors International",
     year: "",
     logo: "/logos/hfi.png",
-    href: "",
+    category: "UX",
   },
   {
     id: "trusted-tester-dhs",
@@ -54,7 +55,7 @@ export const CERTIFICATIONS = [
     issuer: "Nielsen Norman Group",
     year: "",
     logo: "/logos/nng.png",
-    href: "",
+    category: "UX",
   },
   {
     id: "ux-management-nng",
@@ -62,7 +63,7 @@ export const CERTIFICATIONS = [
     issuer: "Nielsen Norman Group",
     year: "",
     logo: "/logos/nng.png",
-    href: "",
+    category: "UX",
   },
   {
     id: "ux-master-certification-nng",
@@ -70,7 +71,7 @@ export const CERTIFICATIONS = [
     issuer: "Nielsen Norman Group",
     year: "",
     logo: "/logos/nng.png",
-    href: "",
+    category: "UX",
   },
   {
     id: "human-systems-integration-gatech",
@@ -78,7 +79,7 @@ export const CERTIFICATIONS = [
     issuer: "Georgia Tech",
     year: "",
     logo: "/logos/georgia-tech.png",
-    href: "",
+    category: "Human Factors",
   },
   {
     id: "csm-scrum-alliance",
@@ -86,7 +87,7 @@ export const CERTIFICATIONS = [
     issuer: "Scrum Alliance",
     year: "",
     logo: "/logos/scrum-alliance.png",
-    href: "",
+    category: "Agile",
   },
   {
     id: "icp-agile-professional",
@@ -94,7 +95,7 @@ export const CERTIFICATIONS = [
     issuer: "ICAgile",
     year: "",
     logo: "/logos/ic-agile.png",
-    href: "",
+    category: "Agile",
   },
   {
     id: "icp-atf-team-facilitator",
@@ -102,7 +103,7 @@ export const CERTIFICATIONS = [
     issuer: "ICAgile",
     year: "",
     logo: "/logos/ic-agile.png",
-    href: "",
+    category: "Agile",
   },
   {
     id: "icp-acc-team-coach",
@@ -110,6 +111,6 @@ export const CERTIFICATIONS = [
     issuer: "ICAgile",
     year: "",
     logo: "/logos/ic-agile.png",
-    href: "",
+    category: "Agile",
   },
 ];
