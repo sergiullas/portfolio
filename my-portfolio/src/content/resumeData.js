@@ -29,7 +29,7 @@ export const SECTION_ITEMS = [
   { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
-  { id: "education-certifications", label: "Education & Certifications" },
+  { id: "education-certifications", label: "Education" },
 ];
 
 export const HERO = {

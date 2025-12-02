@@ -1,37 +1,36 @@
 // src/components/resume/CertificationCard.jsx
-// Small responsive card for a single certification.
 
 import * as React from "react";
 import { Card, Box, Stack, Typography, Link as MuiLink } from "@mui/material";
 
 export default function CertificationCard({ title, issuer, year, logo, href, category }) {
-  const content = (
+  const core = (
     <Card
       elevation={0}
       sx={{
+        width: "100%",          // ⬅️ force full width of Grid item
+        boxSizing: "border-box",
         p: 2,
-        borderRadius: 3,
+        borderRadius: 2,
         border: "1px solid",
-        borderColor: category === "AI" ? "primary.main" : "divider",
-        backgroundColor: category === "AI" ? "primary.main + 10%" : "transparent",
+        borderColor: "divider",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
         gap: 2,
       }}
     >
-      <Stack spacing={0.5}>
+      <Stack spacing={0}>
         <Typography variant="subtitle1" fontWeight={600}>
           {title}
         </Typography>
-
         <Typography variant="body2" color="text.secondary">
           {issuer}
           {year ? ` · ${year}` : null}
         </Typography>
       </Stack>
 
-      {logo ? (
+      {logo && (
         <Box
           component="img"
           src={logo}
@@ -43,7 +42,7 @@ export default function CertificationCard({ title, issuer, year, logo, href, cat
             objectFit: "contain",
           }}
         />
-      ) : null}
+      )}
     </Card>
   );
 
@@ -54,12 +53,12 @@ export default function CertificationCard({ title, issuer, year, logo, href, cat
         target="_blank"
         rel="noopener noreferrer"
         underline="none"
-        sx={{ display: "block" }}
+        sx={{ display: "block", width: "100%" }}
       >
-        {content}
+        {core}
       </MuiLink>
     );
   }
 
-  return content;
+  return core;
 }
