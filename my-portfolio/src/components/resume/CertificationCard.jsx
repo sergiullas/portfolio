@@ -4,7 +4,7 @@
 import * as React from "react";
 import { Card, Box, Stack, Typography, Link as MuiLink } from "@mui/material";
 
-export default function CertificationCard({ title, issuer, year, logo, href }) {
+export default function CertificationCard({ title, issuer, year, logo, href, category }) {
   const content = (
     <Card
       elevation={0}
@@ -12,7 +12,8 @@ export default function CertificationCard({ title, issuer, year, logo, href }) {
         p: 2,
         borderRadius: 3,
         border: "1px solid",
-        borderColor: "divider",
+        borderColor: category === "AI" ? "primary.main" : "divider",
+        backgroundColor: category === "AI" ? "primary.main + 10%" : "transparent",
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
