@@ -45,7 +45,7 @@ export const CERTIFICATIONS = [
     title: "Trusted Tester",
     issuer: "Office of Accessible Systems & Technology (DHS)",
     year: "",
-    logo: "/logos/dhs-tt.png",
+    logo: "/logos/trusted-tester-dhs.png",
     href: "",
   },
   {

@@ -18,11 +18,6 @@ export default function EducationAndCertifications() {
 
   return (
     <Stack spacing={3} sx={{ mt: 1 }}>
-      <Typography variant="body2" color="text.secondary" sx={{ maxWidth: "72ch" }}>
-        Selected formal education and professional credentials relevant to product, UX, and systems
-        work.
-      </Typography>
-
       {/* Education */}
       {hasEducation && (
         <Stack spacing={1.5}>
