@@ -55,7 +55,6 @@ export default function CaseStudyCard({
       component={RouterLink}
       to={to}
       aria-label={`Read case study: ${title}`}
-      aria-labelledby={titleId}
       aria-describedby={descriptionId}
       sx={{ ...baseStyles, ...sx }}
     >
