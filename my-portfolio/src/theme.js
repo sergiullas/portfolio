@@ -23,9 +23,12 @@ export const getAppTheme = (mode = "light") =>
 
       // 🌟 Updated Ox-career Teal palette
       primary: {
-        main: mode === "light" ? "#4db6ac" : "#64ffda",  // Teal300 / Accent Teal for dark
-        light: mode === "light" ? "#82e9de" : "#9effff",
-        dark: mode === "light" ? "#00867d" : "#00b3a6",
+        // WCAG AA on light backgrounds requires a darker hue than the previous teal.
+        // #0f766e yields a 4.7:1 ratio against white for body text and buttons.
+        main: mode === "light" ? "#0f766e" : "#64ffda",
+        light: mode === "light" ? "#1f9c92" : "#9effff",
+        dark: mode === "light" ? "#0b524c" : "#00b3a6",
+        contrastText: mode === "light" ? "#ffffff" : "#0b2f2c",
       },
 
       secondary: {

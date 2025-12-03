@@ -31,6 +31,24 @@ const ES_AUDIO_SRC = "/audio/SergioAntezana-BO.mp3";
 const US_FLAG_SRC = "/flags/us.svg";
 const BO_FLAG_SRC = "/flags/bo.svg";
 
+function Flag({ src, alt }) {
+  return (
+    <Box
+      component="img"
+      src={src}
+      alt={alt}
+      sx={{
+        width: 18,
+        height: 12,
+        display: "block",
+        borderRadius: 0.5,
+        objectFit: "cover",
+        m: 0, // no margins
+      }}
+    />
+  );
+}
+
 export default function NameWithPronunciation({ name }) {
   const enRef = React.useRef(null);
   const esRef = React.useRef(null);
@@ -78,22 +96,6 @@ export default function NameWithPronunciation({ name }) {
       es?.removeEventListener("ended", handleEnded);
     };
   }, []);
-
-  const Flag = ({ src, alt }) => (
-    <Box
-      component="img"
-      src={src}
-      alt={alt}
-      sx={{
-        width: 18,
-        height: 12,
-        display: "block",
-        borderRadius: 0.5,
-        objectFit: "cover",
-        m: 0, // no margins
-      }}
-    />
-  );
 
   const pillSx = (isActive) => (theme) => ({
     minWidth: "auto",

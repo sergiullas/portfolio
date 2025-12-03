@@ -14,6 +14,8 @@ export default function CaseStudyCard({
   sx = {},          // ⬅️ allow layout overrides
 }) {
   const theme = useTheme();
+  const titleId = React.useId();
+  const descriptionId = React.useId();
 
   const baseStyles = {
     display: "block",
@@ -33,6 +35,12 @@ export default function CaseStudyCard({
       boxShadow: theme.shadows[4],
       borderColor: theme.palette.primary.main,
     },
+    "&:focus-visible": {
+      outline: `3px solid ${theme.palette.primary.main}`,
+      outlineOffset: theme.spacing(1),
+      transform: "translateY(-2px)",
+      boxShadow: theme.shadows[6],
+    },
     "@media (prefers-reduced-motion: reduce)": {
       transition: "none",
       "&:hover": {
@@ -43,13 +51,30 @@ export default function CaseStudyCard({
   };
 
   return (
-    <Card component={RouterLink} to={to} sx={{ ...baseStyles, ...sx }}>
-      <CardContent sx={{ p: 3 }}>
-        <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 1 }}>
+    <Card
+      component={RouterLink}
+      to={to}
+      aria-label={`Read case study: ${title}`}
+      aria-labelledby={titleId}
+      aria-describedby={descriptionId}
+      sx={{ ...baseStyles, ...sx }}
+    >
+      <CardContent component="div" sx={{ p: 3 }}>
+        <Typography
+          variant="h5"
+          component="h3"
+          id={titleId}
+          sx={{ fontWeight: 600, mb: 1 }}
+        >
           {title}
         </Typography>
 
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+        <Typography
+          id={descriptionId}
+          variant="body2"
+          color="text.secondary"
+          sx={{ mb: 2 }}
+        >
           {problem}
         </Typography>
 

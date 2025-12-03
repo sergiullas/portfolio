@@ -1,4 +1,5 @@
 // -----------------------------------------------------------------------------
+/* eslint-disable react-refresh/only-export-components */
 // context/HeaderNameContext.jsx
 // Context provider for whether the header should display the name chip.
 //
