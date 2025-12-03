@@ -26,7 +26,7 @@ export default function ResumeSection({ id, label, children }) {
       await navigator.clipboard.writeText(url);
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
-    } catch (err) {
+    } catch {
       // fail silently
     }
   };

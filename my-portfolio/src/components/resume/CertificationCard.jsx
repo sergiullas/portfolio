@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Card, Box, Stack, Typography, Link as MuiLink } from "@mui/material";
 
-export default function CertificationCard({ title, issuer, year, logo, href, category }) {
+export default function CertificationCard({ title, issuer, year, logo, href }) {
   const core = (
     <Card
       elevation={0}
