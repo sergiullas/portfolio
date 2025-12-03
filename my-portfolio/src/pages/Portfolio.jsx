@@ -1,17 +1,9 @@
 // -----------------------------------------------------------------------------
-// pages/Portfolio.jsx
+// src/pages/Portfolio.jsx
 // Portfolio landing page aggregating hero and core sections.
 //
-// - Composes shared sections (hero, about, philosophy, work, contact) into a page.
-// - Receives nav helpers/props from App to enable smooth scroll or mode toggles.
-//
-// Accessibility
-// - Each section renders semantic landmarks; keep heading hierarchy consistent.
-// - Ensure in-page navigation moves focus when treating sections like pages.
-//
-// How to customize
-// - Reorder or replace sections to create alternate landing experiences.
-// - Inject new props (e.g., feature flags) to test variants without rewriting.
+// - Acts as the "case study hub" once unlocked.
+// - Uses CaseStudyCard for a concise, clearance-safe overview of each story.
 // -----------------------------------------------------------------------------
 import * as React from "react";
 import {
@@ -20,7 +12,6 @@ import {
   TextField,
   Button,
   Stack,
-  Grid,
 } from "@mui/material";
 
 import Section from "../components/Section";
@@ -72,14 +63,14 @@ export default function PortfolioPage() {
           </Typography>
 
           <Typography variant="body1" color="text.secondary" sx={{ mb: 2 }}>
-            These case studies are restricted and require a password to view.
-            If you received a password in a recruiting email or conversation,
-            enter it below to unlock a view of my work.
+            These case studies are restricted and require a password to view. If
+            you received a password in a recruiting email or conversation, enter
+            it below to unlock a view of my work.
           </Typography>
 
           <Typography variant="body2" color="text.secondary" sx={{ mb: 4 }}>
-            Don&apos;t have a password yet? Feel free to reach out via email or
-            LinkedIn on the homepage and I&apos;ll share more context when
+            Do not have a password yet? Feel free to reach out via email or
+            LinkedIn on the homepage and I will share more context when
             appropriate.
           </Typography>
 
@@ -108,64 +99,148 @@ export default function PortfolioPage() {
     );
   }
 
-  // 🔓 Unlocked view – reuse your CaseStudy cards
+  // 🔓 Unlocked view – hero + 2×2 bento grid
   return (
-    <Section
-      variant="white"
-      title="Case studies (clearance-safe)"
-      titleComponent="h1"
-    >
-      <Box sx={{ width: "100%", maxWidth: 900, mx: "auto" }}>
-        <Typography variant="body1" color="text.secondary" sx={{ mb: 4 }}>
-          These examples describe my work at a process and outcomes level, with
-          all sensitive details removed or generalized. They illustrate how I
-          approach complex, high-stakes problems, collaborate with teams, and
-          measure impact.
-        </Typography>
+    <Section variant="white" titleComponent="h1">
+      <Box sx={{ width: "100%", maxWidth: 1200, mx: "auto" }}>
+        {/* Hero */}
+        <Box
+          sx={{
+            mb: 6,
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+          }}
+        >
+          <Typography
+            variant="overline"
+            sx={{
+              textTransform: "none",
+              letterSpacing: 1.5,
+              color: "text.secondary",
+            }}
+          >
+           When users ask for simplicity, they want things to be clear, predictable, and empowering... not necessarily minimal.
+          </Typography>
 
-        <Grid container spacing={3}>
-          <Grid item xs={12}>
-            <CaseStudyCard
-              title="Modernizing a mission-critical review workflow"
-              problem="Fragmented tools, manual handoffs, and legacy workflows created operational risk and slowed decision-making."
-              role="Lead UX Designer · Systems Thinker · Accessibility Lead"
-              outcomes={[
-                "Reduced workflow steps and ambiguity",
-                "Improved clarity and collaboration between roles",
-                "Reduced errors and redundant work",
-                "Raised accessibility compliance across the workflow",
-              ]}
-            />
-          </Grid>
+          <Typography
+            variant="h2"
+            component="h1"
+            sx={{
+              fontWeight: 700,
+              lineHeight: 1.1,
+              maxWidth: 720,
+            }}
+          >
+            Systems-level UX for complex, high-stakes work.
+          </Typography>
 
-          <Grid item xs={12}>
-            <CaseStudyCard
-              title="Reimagining an internal intelligence platform"
-              problem="Critical insights were buried across multiple tools, making it hard for busy stakeholders to get a confident picture quickly."
-              role="Lead Product Designer · Research Partner"
-              outcomes={[
-                "Unified key workflows and views into a single experience",
-                "Improved time-to-insight for core tasks",
-                "Increased stakeholder confidence in data and decisions",
-                "Enabled roadmap for future automation and integrations",
-              ]}
-            />
-          </Grid>
+          <Typography
+            variant="body1"
+            color="text.secondary"
+            sx={{ maxWidth: 720 }}
+          >
+            These case studies describe my work at a process and outcomes level,
+            with sensitive details abstracted or generalized. They focus on how
+            I shape systems, reduce operational friction, and help teams ship
+            products that scale.
+          </Typography>
+          <Typography
+            variant="Caption"
+            sx={{
+              textTransform: "none",
+              letterSpacing: 1.5,
+              color: "text.secondary",
+            }}
+          >
+            Some Projects Under Non-Disclosure Agreement <br />
+            Details might be vague to protect client info.
+          </Typography>
+        </Box>
 
-          <Grid item xs={12}>
-            <CaseStudyCard
-              title="Improving decision-making in a high-stakes analytical tool"
-              problem="Analysts struggled with cognitive overload due to cluttered interfaces and fragmented information."
-              role="Lead UX Researcher · Interaction Designer · Service Designer"
-              outcomes={[
-                "Improved task success on critical workflows",
-                "Reduced cognitive load for expert users",
-                "Streamlined triage and comparison flows",
-                "Enabled faster, more confident decision-making",
-              ]}
-            />
-          </Grid>
-        </Grid>
+        {/* Bento grid: 
+            Row 1: [wide][narrow]
+            Row 2: [narrow][wide]
+        */}
+        <Box
+          sx={{
+            display: "grid",
+            gap: 3,
+            gridTemplateColumns: {
+              xs: "1fr",
+              md: "repeat(6, 1fr)",
+            },
+            pb: 4,
+          }}
+        >
+          {/* Row 1 – wide left */}
+          <CaseStudyCard
+            title="Designing a low-code case management platform"
+            problem="Led the end-to-end design of a low-code/no-code platform that empowers users to independently build and manage dynamic forms, workfl ows, user roles, organizational structures, dashboards, and modular widgets. This flexible system significantly reduced development dependency, enabling faster iteration cycles and improving operational efficiency across enterprise teams."
+            outcomes={[
+              "Enabled non-technical teams to configure workflows without code",
+              "Reduced configuration time for new workflows by 30–50%",
+              "Improved platform consistency, accessibility, and governance",
+              "Created a scalable foundation for future programs and use cases",
+            ]}
+            to="/case-studies/low-code-case-management"
+            sx={{
+              gridColumn: { xs: "1 / -1", md: "1 / span 4" },
+            }}
+          />
+
+          {/* Row 1 – narrow right */}
+          <CaseStudyCard
+            title="Designing my portfolio and résumé system"
+            problem="My previous portfolio and résumé no longer reflected my systems-level work or leadership, and traditional UX portfolios over-emphasize visuals instead of decisions."
+            role="Principal UX Designer · Systems & Narrative"
+            outcomes={[
+              "Rebuilt résumé and portfolio as a modular, data-driven system",
+              "Created narrative-first, NDA-safe case study templates",
+              "Designed an editorial, typography-led experience that reflects how I actually think",
+              "Established a reusable foundation for all future case studies",
+            ]}
+            to="/case-studies/portfolio-and-resume-system"
+            sx={{
+              gridColumn: { xs: "1 / -1", md: "5 / span 2" },   // ⬅️ TOP RIGHT
+            }}
+          />
+
+
+          {/* Row 2 – narrow left */}
+          <CaseStudyCard
+            title="Reimagining an internal intelligence platform"
+            problem="Critical insights were buried across multiple tools, making it hard for busy stakeholders to get a confident picture quickly."
+            role="Lead Product Designer · Research Partner"
+            outcomes={[
+              "Unified key workflows and views into a single experience",
+              "Improved time-to-insight for core tasks",
+              "Increased stakeholder confidence in data and decisions",
+              "Enabled roadmap for future automation and integrations",
+            ]}
+            to="#coming-soon"
+            sx={{
+              gridColumn: { xs: "1 / -1", md: "1 / span 2" },
+            }}
+          />
+
+          {/* Row 2 – wide right */}
+          <CaseStudyCard
+            title="Improving decision-making in a high-stakes analytical tool"
+            problem="Analysts struggled with cognitive overload due to cluttered interfaces and fragmented information."
+            role="Lead UX Researcher · Interaction Designer · Service Designer"
+            outcomes={[
+              "Improved task success on critical workflows",
+              "Reduced cognitive load for expert users",
+              "Streamlined triage and comparison flows",
+              "Enabled faster, more confident decision-making",
+            ]}
+            to="#coming-soon"
+            sx={{
+              gridColumn: { xs: "1 / -1", md: "3 / span 4" },
+            }}
+          />
+        </Box>
       </Box>
     </Section>
   );

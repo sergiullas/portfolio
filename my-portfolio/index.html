@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,10 +8,8 @@
 
   <!-- Primary SEO -->
   <title>Sergio Antezana – Principal Product & UX Designer</title>
-  <meta
-    name="description"
-    content="Principal Product & UX Designer focused on systems-level UX, design operations, and accessibility for complex federal programs and enterprise tools."
-  >
+  <meta name="description"
+    content="Principal Product & UX Designer focused on systems-level UX, design operations, and accessibility for complex federal programs and enterprise tools.">
   <meta name="author" content="Sergio Antezana">
   <meta name="robots" content="index,follow">
 
@@ -20,20 +19,16 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://sergioantezana.com/">
   <meta property="og:title" content="Sergio Antezana – Principal Product & UX Designer">
-  <meta
-    property="og:description"
-    content="Principal Product & UX Designer focused on systems-level UX, design operations, and accessibility for complex federal and enterprise platforms."
-  >
+  <meta property="og:description"
+    content="Principal Product & UX Designer focused on systems-level UX, design operations, and accessibility for complex federal and enterprise platforms.">
   <meta property="og:site_name" content="Sergio Antezana">
   <meta property="og:image" content="https://sergioantezana.com/og-default.png">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Sergio Antezana – Principal Product & UX Designer">
-  <meta
-    name="twitter:description"
-    content="Principal Product & UX Designer focused on systems-level UX, design operations, and accessibility for complex products."
-  >
+  <meta name="twitter:description"
+    content="Principal Product & UX Designer focused on systems-level UX, design operations, and accessibility for complex products.">
   <meta name="twitter:image" content="https://sergioantezana.com/og-default.png">
 
   <!-- Structured data -->
@@ -63,15 +58,25 @@
 
   <!-- Microsoft Clarity -->
   <script type="text/javascript">
-    (function (c, l, a, r, i, t, y) {
-      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-    })(window, document, "clarity", "script", "u82a15912k");
+    // 1. Check if the hostname is NOT localhost
+    if (!window.location.host.includes('localhost') && !window.location.host.includes('127.0.0.1')) {
+      // 2. Standard Clarity Tracking Code
+      (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "u82a15912k");
+
+    } else {
+      console.log('Clarity tracking disabled on localhost');
+    }
   </script>
+
 </head>
+
 <body>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
+
 </html>

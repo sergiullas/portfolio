@@ -51,7 +51,7 @@ export default function LayoutShell({ mode, setMode, children }) {
         component="main"
         id="main"
         sx={{
-          pt: { xs: 4, sm: 6 }, // pushes content below fixed header
+          pt: { xs: 4, sm: 2 }, // pushes content below fixed header
         }}
       >
         {children}

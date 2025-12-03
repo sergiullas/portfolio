@@ -1,50 +1,78 @@
-// -----------------------------------------------------------------------------
 // components/CaseStudyCard.jsx
-// Card component to showcase a case study/portfolio item.
-//
-// - Receives data (title, summary, tags, links) and renders a clickable card.
-// - Stateless aside from hover/focus styling handled by the parent or theme.
-//
-// Accessibility
-// - Card uses semantic headings and links; ensure the entire card is reachable by
-//   keyboard and has discernible link text.
-// - Provide alt text for thumbnails and aria-labels for icon links.
 
-// How to customize
-// - Add metrics, status badges, or interaction states (selected/featured).
-// - Configure layout (vertical/horizontal) via props for different grids.
-// -----------------------------------------------------------------------------
 import * as React from "react";
-import { Grid, Card, CardContent, Typography, Box } from "@mui/material";
+import { Card, CardContent, Typography, Box } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
+import { useTheme } from "@mui/material/styles";
 
-export default function CaseStudyCard({ title, problem, role, outcomes }) {
+export default function CaseStudyCard({
+  title,
+  problem,
+  role,
+  outcomes = [],
+  to = "#",
+  sx = {},          // ⬅️ allow layout overrides
+}) {
+  const theme = useTheme();
+
+  const baseStyles = {
+    display: "block",
+    height: "100%",
+    p: 0,
+    textDecoration: "none",
+    color: "inherit",
+    borderRadius: 3,
+    border: `1px solid ${
+      theme.palette.mode === "dark"
+        ? "rgba(255,255,255,0.08)"
+        : "rgba(0,0,0,0.08)"
+    }`,
+    transition: "all 0.3s ease",
+    "&:hover": {
+      transform: "translateY(-4px)",
+      boxShadow: theme.shadows[4],
+      borderColor: theme.palette.primary.main,
+    },
+    "@media (prefers-reduced-motion: reduce)": {
+      transition: "none",
+      "&:hover": {
+        transform: "none",
+        boxShadow: theme.shadows[2],
+      },
+    },
+  };
+
   return (
-    <Grid item xs={12} md={6}>
-      <Card variant="outlined" sx={{ height: "100%" }}>
-        <CardContent>
-          <Typography variant="h6" sx={{ mb: 1 }}>
-            {title}
-          </Typography>
+    <Card component={RouterLink} to={to} sx={{ ...baseStyles, ...sx }}>
+      <CardContent sx={{ p: 3 }}>
+        <Typography variant="h5" component="h3" sx={{ fontWeight: 600, mb: 1 }}>
+          {title}
+        </Typography>
 
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            <strong>Problem:</strong> {problem}
-            <br />
-            <strong>Role:</strong> {role}
-          </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+          {problem}
+        </Typography>
 
-          <Typography variant="subtitle2" sx={{ mb: 1 }}>
-            Outcomes
-          </Typography>
+        <Typography
+          variant="subtitle2"
+          sx={{ fontWeight: 600, color: "text.primary", mb: 1 }}
+        >
+          {role}
+        </Typography>
 
-          <Box component="ul" sx={{ pl: 3 }}>
-            {outcomes.map((o) => (
-              <li key={o}>
-                <Typography color="text.secondary">{o}</Typography>
-              </li>
-            ))}
-          </Box>
-        </CardContent>
-      </Card>
-    </Grid>
+        <Box component="ul" sx={{ pl: 3, m: 0, lineHeight: 1.6 }}>
+          {outcomes.map((item, index) => (
+            <Typography
+              key={index}
+              component="li"
+              variant="body2"
+              sx={{ mb: 0.5 }}
+            >
+              {item}
+            </Typography>
+          ))}
+        </Box>
+      </CardContent>
+    </Card>
   );
 }

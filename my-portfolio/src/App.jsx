@@ -33,6 +33,8 @@ import ContactSection from "./sections/ContactSection";
 import PhilosophySection from "./sections/PhilosophySection.jsx";
 import HowIWork from "./sections/HowIWork.jsx";
 import WhatImWorkingOn from "./pages/WhatImWorkingOn.jsx";
+import CaseStudyLowCode from "./pages/CaseStudyLowCode.jsx";
+import CaseStudyPortfolioSystem from "./pages/CaseStudyPortfolioSystem.jsx";
 
 // App receives mode + setMode from main.jsx
 export default function App({ mode, setMode }) {
@@ -70,6 +72,14 @@ export default function App({ mode, setMode }) {
         <Route path="/portfolio" element={<PortfolioPage />} />
         <Route path="/resume" element={<MyResumePage />} />
         <Route path="/wip" element={<WhatImWorkingOn />} />
+        <Route
+          path="/case-studies/low-code-case-management"
+          element={<CaseStudyLowCode />}
+        />
+        <Route
+          path="/case-studies/portfolio-and-resume-system"
+          element={<CaseStudyPortfolioSystem />}
+        />
       </Routes>
     </LayoutShell>
   );
