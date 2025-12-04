@@ -1,4 +1,5 @@
 <?php
+file_put_contents("debug.log", print_r($_POST, true));
 // Simple contact form handler for portfolio site
 // - Accepts POST requests with name, email, message, and honeypot company field
 // - Validates inputs and attempts to send an email

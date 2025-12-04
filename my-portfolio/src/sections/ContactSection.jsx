@@ -22,14 +22,14 @@ import ContactForm from "../components/contact/ContactForm";
 
 export default function ContactSection() {
   return (
-    <Section id="contact" title="Contact" variant="dark" layout="split">
+    <Section id="contact" title="Contact" variant="dark" layout="split" sx={{ width: "900px !important", }} >
       {/* Add this INSIDE your existing Contact section container,
     AFTER your current contact paragraph text */}
       <Box
         sx={{
           display: "grid",
-          gridTemplateColumns: { xs: "1fr", md: "1.3fr 1fr" },
-          gap: { xs: 3, md: 8 },
+          gridTemplateColumns: { xs: "1fr", md: "1fr 1.5fr" },
+          gap: { xs: 3, md: 2 },
           mt: { xs: 4, md: 6 },
         }}
       >
@@ -104,9 +104,15 @@ export default function ContactSection() {
             borderRadius: 2,
             border: "1px solid",
             borderColor: "divider",
-            bgcolor: "rgba(255,255,255,0.03)",
+            // Always dark, in both light + dark themes
+            bgcolor: "rgba(255,255,255,0.04)",
+            width: "100%",
+            maxWidth: { xs: "100%", md: "82ch" },
+            alignSelf: "flex-start",
+            justifySelf: { xs: "stretch", md: "end" },
           }}
         >
+
           <Stack spacing={2}>
             <Box>
               <Typography variant="h6" sx={{ fontWeight: 600 }}>

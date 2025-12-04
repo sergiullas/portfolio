@@ -175,7 +175,7 @@ export default function EditorialHero({
             }}
           >
             <MuiLink
-              href="https://github.com/sergiullas/"
+              href="https://github.com/sergiullas/portfolio"
               target="_blank"
               rel="noreferrer"
               aria-label="GitHub Profile"
@@ -195,12 +195,13 @@ export default function EditorialHero({
             </MuiLink>
 
             <MuiLink
-              href="mailto:santezana@nayas.com"
+              href="#contact"
               aria-label="Email"
               sx={{ display: "inline-flex", alignItems: "center", p: 1 }}
             >
               <MailOutlineIcon fontSize="small" />
             </MuiLink>
+
           </Stack>
         </Box>
       </Box>

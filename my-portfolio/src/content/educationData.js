@@ -118,7 +118,7 @@ export const CERTIFICATIONS = [
     category: "Agile",
   },
     {
-    id: "csm-scrum-alliance",
+    id: "sm-safe-6-practitioner",
     title: "Certified SAFe® 6 Practitioner",
     issuer: "SAFe by Scaled Agile, Inc.",
     //year: "2019",
