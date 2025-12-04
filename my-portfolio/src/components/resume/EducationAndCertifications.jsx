@@ -29,17 +29,21 @@ export default function EducationAndCertifications() {
             Education
           </Typography>
 
-          <Grid container spacing={2}>
+          <Grid
+            container
+            spacing={2}
+            sx={{ "& > .MuiGrid-item": { display: "flex" } }}
+          >
             {EDUCATION.map((item) => (
               <Grid
+                key={item.id || `${item.school}-${item.degree}`}
                 item
                 xs={12}
                 sm={12}
                 md={12}
                 lg={6}
-                key={item.id}
               >
-                <EducationCard {...item} />
+                <EducationCard item={item} />
               </Grid>
             ))}
           </Grid>
@@ -58,10 +62,21 @@ export default function EducationAndCertifications() {
               AI & Emerging Technology
             </Typography>
 
-            <Grid container spacing={2}>
+            <Grid
+              container
+              spacing={2}
+              sx={{ "& > .MuiGrid-item": { display: "flex" } }}
+            >
               {CERTIFICATIONS.filter((c) => c.category === "AI").map((cert) => (
-                <Grid item xs={12} sm={12} md={12} lg={6}>
-                  <CertificationCard {...cert} />
+                <Grid
+                  key={cert.id || cert.title}
+                  item
+                  xs={12}
+                  sm={12}
+                  md={12}
+                  lg={6}
+                >
+                  <CertificationCard item={cert} />
                 </Grid>
               ))}
             </Grid>
@@ -76,12 +91,23 @@ export default function EducationAndCertifications() {
               UX, Human Factors & Accessibility
             </Typography>
 
-            <Grid container spacing={2}>
+            <Grid
+              container
+              spacing={2}
+              sx={{ "& > .MuiGrid-item": { display: "flex" } }}
+            >
               {CERTIFICATIONS.filter((c) =>
                 ["UX", "Human Factors", "Accessibility"].includes(c.category)
               ).map((cert) => (
-                <Grid item xs={12} sm={12} md={12} lg={6}>
-                  <CertificationCard {...cert} />
+                <Grid
+                  key={cert.id || cert.title}
+                  item
+                  xs={12}
+                  sm={12}
+                  md={12}
+                  lg={6}
+                >
+                  <CertificationCard item={cert} />
                 </Grid>
               ))}
             </Grid>
@@ -96,10 +122,21 @@ export default function EducationAndCertifications() {
               Agile & Coaching
             </Typography>
 
-            <Grid container spacing={2}>
+            <Grid
+              container
+              spacing={2}
+              sx={{ "& > .MuiGrid-item": { display: "flex" } }}
+            >
               {CERTIFICATIONS.filter((c) => c.category === "Agile").map((cert) => (
-                <Grid item xs={12} sm={12} md={12} lg={6}>
-                  <CertificationCard {...cert} />
+                <Grid
+                  key={cert.id || cert.title}
+                  item
+                  xs={12}
+                  sm={12}
+                  md={12}
+                  lg={6}
+                >
+                  <CertificationCard item={cert} />
                 </Grid>
               ))}
             </Grid>
