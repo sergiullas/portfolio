@@ -87,7 +87,7 @@ export default function ContactForm() {
           label="Name"
           name="name"
           value={values.name}
-          onChange={handleChange("name")}
+          onChange={handleChange}
           required
           error={Boolean(fieldErrors.name)}
           helperText={fieldErrors.name}
@@ -99,7 +99,7 @@ export default function ContactForm() {
           name="email"
           type="email"
           value={values.email}
-          onChange={handleChange("email")}
+          onChange={handleChange}
           required
           error={Boolean(fieldErrors.email)}
           helperText={fieldErrors.email}
@@ -110,7 +110,7 @@ export default function ContactForm() {
           label="Message"
           name="message"
           value={values.message}
-          onChange={handleChange("message")}
+          onChange={handleChange}
           required
           multiline
           minRows={4}
@@ -128,7 +128,7 @@ export default function ContactForm() {
             tabIndex={-1}
             autoComplete="off"
             value={values.company}
-            onChange={handleChange("company")}
+            onChange={handleChange}
           />
         </Box>
 
