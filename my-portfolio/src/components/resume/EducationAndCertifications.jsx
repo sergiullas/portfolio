@@ -18,38 +18,7 @@ export default function EducationAndCertifications() {
 
   return (
     <Stack spacing={3} sx={{ mt: 1 }}>
-      {/* Education */}
-      {hasEducation && (
-        <Stack spacing={1.5}>
-          <Typography
-            variant="overline"
-            component="h3"
-            sx={{ letterSpacing: 1, color: "text.secondary" }}
-          >
-            Education
-          </Typography>
-
-          <Grid
-            container
-            spacing={2}
-            sx={{ "& > .MuiGrid-item": { display: "flex" } }}
-          >
-            {EDUCATION.map((item) => (
-              <Grid
-                key={item.id || `${item.school}-${item.degree}`}
-                item
-                xs={12}
-                sm={12}
-                md={12}
-                lg={6}
-              >
-                <EducationCard item={item} />
-              </Grid>
-            ))}
-          </Grid>
-        </Stack>
-      )}
-
+     
       {/* Certifications */}
       {hasCerts && (
         <Stack spacing={3}>
@@ -141,6 +110,38 @@ export default function EducationAndCertifications() {
               ))}
             </Grid>
           </Stack>
+        </Stack>
+        
+      )}
+       {/* Education */}
+      {hasEducation && (
+        <Stack spacing={1.5}>
+          <Typography
+            variant="overline"
+            component="h3"
+            sx={{ letterSpacing: 1, color: "text.secondary" }}
+          >
+            Education & Professional Development
+          </Typography>
+
+          <Grid
+            container
+            spacing={2}
+            sx={{ "& > .MuiGrid-item": { display: "flex" } }}
+          >
+            {EDUCATION.map((item) => (
+              <Grid
+                key={item.id || `${item.school}-${item.degree}`}
+                item
+                xs={12}
+                sm={12}
+                md={12}
+                lg={6}
+              >
+                <EducationCard item={item} />
+              </Grid>
+            ))}
+          </Grid>
         </Stack>
       )}
     </Stack>

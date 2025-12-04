@@ -1,4 +1,5 @@
 // src/components/resume/EducationCard.jsx
+// Neutral education cards; logo may link to institution
 
 import * as React from "react";
 import { Avatar, Box, Stack, Typography } from "@mui/material";
@@ -27,17 +28,18 @@ export default function EducationCard({ item }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        gap: 2,
+        gap: 1,
         p: 1.5,
         borderRadius: 2.5,
         border: "1px solid",
-        borderColor: alpha(theme.palette.divider, 0.9),
+        borderColor: theme.palette.divider,
         backgroundColor: theme.palette.background.paper,
         textDecoration: "none",
-        transition: "all 0.2s ease",
+        transition: "border-color 120ms ease, background-color 120ms ease",
+        // Very subtle hover (or you can remove this entirely)
         "&:hover": {
-          borderColor: theme.palette.text.secondary,
-          backgroundColor: theme.palette.action.hover,
+          borderColor: theme.palette.divider,
+          backgroundColor: theme.palette.background.paper,
         },
       }}
     >
