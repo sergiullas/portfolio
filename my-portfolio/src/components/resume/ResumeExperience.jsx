@@ -1,4 +1,18 @@
-// src/components/resume/ResumeExperience.jsx
+// -----------------------------------------------------------------------------
+// components/resume/ResumeExperience.jsx
+// Renders work experience entries.
+//
+// - Maps over experience data to output role, company, timeframe, and bullets.
+// - Stateless; formatting driven by data and theme tokens.
+//
+// Accessibility
+// - Uses headings and lists for duties/achievements; ensures date text is readable.
+// - Include aria-labels for external links and keep focus states visible.
+//
+// How to customize
+// - Add filters (by role/industry) or expandable details per job.
+// - Support condensed and detailed variants via props.
+// -----------------------------------------------------------------------------
 import * as React from "react";
 import { Box, Stack, Typography, Collapse, IconButton, Chip } from "@mui/material";
 

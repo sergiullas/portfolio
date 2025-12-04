@@ -1,4 +1,19 @@
-// src/components/LayoutShell.jsx
+// -----------------------------------------------------------------------------
+// components/LayoutShell.jsx
+// Shared layout wrapper for pages.
+//
+// - Provides persistent header, main container, and optional footer/skip link.
+// - Accepts children content plus props like `mode`/`setMode` for header controls.
+// - Manages spacing and max-width so sections stay consistent.
+//
+// Accessibility
+// - Includes skip-to-content patterns and logical landmark structure.
+// - Ensures header remains keyboard-accessible and non-obtrusive when sticky.
+//
+// How to customize
+// - Swap header/footer components or adjust max-width/padding tokens.
+// - Add global banners (e.g., hiring notices) without touching page components.
+// -----------------------------------------------------------------------------
 // Wraps the app with HeaderNameVisibilityProvider + Header + <main>.
 
 import * as React from "react";

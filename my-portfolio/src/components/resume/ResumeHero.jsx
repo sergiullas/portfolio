@@ -1,4 +1,19 @@
-// src/components/resume/ResumeHero.jsx
+// -----------------------------------------------------------------------------
+// components/resume/ResumeHero.jsx
+// Top banner for the resume page.
+//
+// - Receives meta data (name, title, location, contact) and renders headline
+//   content with key actions.
+// - Stateless; data flows in via props from pages/MyResume or sections.
+//
+// Accessibility
+// - Uses <header>/<section> semantics with an <h1>; contact links have clear labels.
+// - Ensure any decorative icons are aria-hidden to reduce noise.
+//
+// How to customize
+// - Add social/profile links, availability tags, or download buttons.
+// - Adjust layout for print vs. web by toggling typography/spacing props.
+// -----------------------------------------------------------------------------
 import * as React from "react";
 import { Box, Typography, Avatar } from "@mui/material";
 import NameWithPronunciation from "./shared/NameWithPronunciation.jsx";

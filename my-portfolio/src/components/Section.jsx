@@ -1,4 +1,18 @@
-// src/components/Section.jsx
+// -----------------------------------------------------------------------------
+// components/Section.jsx
+// Reusable section wrapper for landing-page blocks.
+//
+// - Accepts id, title, and children to render a consistent heading + content area.
+// - May apply theme-aware styling and spacing; minimal to no internal state.
+//
+// Accessibility
+// - Renders semantic <section> with an <h2>/<h3> based on props for SR navigation.
+// - Supports skip links/anchor targets via the provided id.
+//
+// How to customize
+// - Add props for variant (compact, spacious) or alignment.
+// - Extend to include optional description, breadcrumbs, or section-level actions.
+// -----------------------------------------------------------------------------
 // Layout primitive for page sections with optional title, variants, and layouts.
 
 import * as React from "react";
