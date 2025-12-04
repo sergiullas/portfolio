@@ -60,7 +60,7 @@ export default function EducationCard({ item }) {
         >
           <Avatar
             src={logoSrc}
-            alt={school}
+            alt={school || degree}
             variant="rounded"
             sx={{ width: 40, height: 40, borderRadius: 2 }}
           />
