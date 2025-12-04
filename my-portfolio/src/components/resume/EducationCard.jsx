@@ -14,7 +14,7 @@ export default function EducationCard({ item }) {
         href: institutionUrl,
         target: "_blank",
         rel: "noopener noreferrer",
-        "aria-label": `Visit ${school}`,
+        "aria-label": `Visit ${school || degree}`,
       }
     : {};
 
