@@ -23,8 +23,8 @@ export default function ContactForm() {
   const [error, setError] = useState("");
   const [fieldErrors, setFieldErrors] = useState({});
 
-  const handleChange = (field) => (event) => {
-    setValues((prev) => ({ ...prev, [field]: event.target.value }));
+  const handleChange = (event) => {
+    setValues((prev) => ({ ...prev, [event.target.name]: event.target.value }));
   };
 
   const handleSubmit = async (event) => {
