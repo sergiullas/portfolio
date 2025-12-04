@@ -64,10 +64,10 @@ if (!empty($errors)) {
     exit;
 }
 
-// Basic sanitization to prevent header injection
-$safe_name = str_replace(["\r", "\n"], ' ', $name);
+// Basic sanitization to prevent header injection and escape HTML
+$safe_name = htmlspecialchars(str_replace(["\r", "\n"], ' ', $name), ENT_QUOTES, 'UTF-8');
 $safe_email = str_replace(["\r", "\n"], '', $email);
-$safe_message = trim($message);
+$safe_message = htmlspecialchars(trim($message), ENT_QUOTES, 'UTF-8');
 
 $to = 'santezana@nayas.com';
 $subject = 'New contact form message';
