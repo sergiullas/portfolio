@@ -16,8 +16,9 @@
 // Wrapper around <Section> for the "Contact" content on the home page.
 
 import * as React from "react";
-import { Stack, Typography, Box, Link } from "@mui/material";
+import { Stack, Typography, Box, Link, Paper } from "@mui/material";
 import Section from "../components/Section";
+import ContactForm from "../components/contact/ContactForm";
 
 export default function ContactSection() {
   return (
@@ -96,17 +97,30 @@ export default function ContactSection() {
         </Stack>
 
         {/* RIGHT COLUMN – “Let us talk” */}
-        <Stack spacing={1.5}>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: 600 }}
-          >
-            Let us talk
-          </Typography>
-          <Typography variant="body2" sx={{ opacity: 0.9 }}>
-          I am open to discussing new product ideas, UX challenges, or interesting opportunities. Feel free to reach out.
-          </Typography>
-        </Stack>
+        <Paper
+          elevation={0}
+          sx={{
+            p: { xs: 2.5, md: 3 },
+            borderRadius: 2,
+            border: "1px solid",
+            borderColor: "divider",
+            bgcolor: "rgba(255,255,255,0.03)",
+          }}
+        >
+          <Stack spacing={2}>
+            <Box>
+              <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                Let us talk
+              </Typography>
+              <Typography variant="body2" sx={{ opacity: 0.9, mt: 0.5 }}>
+                I am open to discussing new product ideas, UX challenges, or
+                interesting opportunities. Feel free to reach out.
+              </Typography>
+            </Box>
+
+            <ContactForm />
+          </Stack>
+        </Paper>
       </Box>
 
     </Section>
