@@ -28,7 +28,7 @@ export default function CertificationCard({ item }) {
           href: institutionUrl,
           target: "_blank",
           rel: "noopener noreferrer",
-          "aria-label": `Visit ${issuer}`,
+          "aria-label": `Visit ${issuer || title}`,
         }
       : {};
 
